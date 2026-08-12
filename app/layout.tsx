@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PROCRO",
-  description: "A daily word-deduction puzzle. Every tile must fit.",
+  title: "vwldrp",
+  description: "A daily word puzzle. Vowels are free — only consonants count.",
 };
 
 export default function RootLayout({

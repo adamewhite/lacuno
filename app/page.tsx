@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import Board from './Board';
-import classicData from './puzzles.json';
+// import classicData from './puzzles.json'; // re-enable with the classic variant
 import vowelData from './puzzles-vowels.json';
 import type { PuzzleData } from './usePuzzle';
 
@@ -19,19 +19,21 @@ import type { PuzzleData } from './usePuzzle';
  */
 const VARIANTS = [
   {
-    key: 'classic' as const,
-    label: 'classic',
-    puzzles: classicData.puzzles as unknown as PuzzleData[],
-    values: classicData.values as number[],
-    blurb: 'every tile scores',
-  },
-  {
     key: 'zero-vowels' as const,
     label: 'vwldrp',
     puzzles: vowelData.puzzles as unknown as PuzzleData[],
     values: vowelData.values as number[],
     blurb: 'vowels are free — only consonants count',
   },
+  // Classic (every tile scores) is hidden while vwldrp is the focus. Its
+  // puzzles are still generated and tested; restore the entry to compare.
+  // {
+  //   key: 'classic' as const,
+  //   label: 'classic',
+  //   puzzles: classicData.puzzles as unknown as PuzzleData[],
+  //   values: classicData.values as number[],
+  //   blurb: 'every tile scores',
+  // },
 ];
 
 export default function Home() {
@@ -74,26 +76,28 @@ export default function Home() {
 
   return (
     <main>
-      <div className="mx-auto flex w-full max-w-2xl items-center gap-2 px-4 pt-6">
-        {VARIANTS.map((v, i) => (
-          <button
-            key={v.key}
-            onClick={() => {
-              setVariantIndex(i);
-              setIndex(0);
-            }}
-            className={[
-              'rounded-full border px-3 py-1 font-mono text-xs transition-colors',
-              i === variantIndex
-                ? 'border-stone-900 bg-stone-900 text-stone-50 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900'
-                : 'border-stone-300 text-stone-500 hover:border-stone-500 dark:border-stone-700',
-            ].join(' ')}
-          >
-            {v.label}
-          </button>
-        ))}
-        <span className="ml-1 font-mono text-[11px] text-stone-400">{variant.blurb}</span>
-      </div>
+      {VARIANTS.length > 1 && (
+        <div className="mx-auto flex w-full max-w-2xl items-center gap-2 px-4 pt-6">
+          {VARIANTS.map((v, i) => (
+            <button
+              key={v.key}
+              onClick={() => {
+                setVariantIndex(i);
+                setIndex(0);
+              }}
+              className={[
+                'rounded-full border px-3 py-1 font-mono text-xs transition-colors',
+                i === variantIndex
+                  ? 'border-stone-900 bg-stone-900 text-stone-50 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900'
+                  : 'border-stone-300 text-stone-500 hover:border-stone-500 dark:border-stone-700',
+              ].join(' ')}
+            >
+              {v.label}
+            </button>
+          ))}
+          <span className="ml-1 font-mono text-[11px] text-stone-400">{variant.blurb}</span>
+        </div>
+      )}
 
       <Board
         key={`${variant.key}-${puzzles[safeIndex].id}`}

@@ -129,8 +129,8 @@ export default function Board({
   return (
     <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-12">
       <header className="mb-8 flex items-baseline justify-between border-b border-stone-300 pb-3 dark:border-stone-700">
-        <h1 className="font-mono text-2xl tracking-[0.2em] text-stone-900 dark:text-stone-100">
-          PROCRO
+        <h1 className="font-mono text-2xl lowercase tracking-[0.2em] text-stone-900 dark:text-stone-100">
+          vwldrp
         </h1>
         <span className="font-mono text-xs text-stone-500">
           {index + 1} / {count}

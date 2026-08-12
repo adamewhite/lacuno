@@ -12,7 +12,7 @@
     "build:wordlists": "tsx scripts/build-wordlists.ts"
   },
   "dependencies": {
-    "next": "15.2.2",
+    "next": "^15.5.23",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -25,5 +25,8 @@
     "tsx": "^4.23.12",
     "typescript": "^5",
     "vitest": "^3.2.7"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
