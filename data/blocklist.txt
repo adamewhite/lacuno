@@ -1,0 +1,223 @@
+# PROCRO solution blocklist
+#
+# Words that must NEVER be the answer to a daily puzzle.
+#
+# This is a SOLUTION filter, not a validation filter. Blocked words stay in the
+# dictionary and remain perfectly valid to spell: a player who arranges tiles
+# into one still gets a glow and can still win. They simply cannot be the word
+# the generator built the puzzle around.
+#
+# That asymmetry is deliberate. Removing them from the dictionary entirely would
+# make the game reject words that are unquestionably real, which is the failure
+# mode SPEC §5 warns about. Keeping them out of the SOLUTION vocabulary means
+# the game never publishes them under our name.
+#
+# Frequency filtering does not catch these — the problem cases are common words.
+# JEW and TIT both appeared in generated puzzles from the "familiar" tier.
+#
+# Format: one word per line, `#` for comments. Case is ignored.
+#
+# Categories, roughly:
+#   - slurs and ethnic/religious/national identifiers that read as slurs in
+#     puzzle context (a bare identity term as "the answer of the day" reads
+#     badly even when the word itself is neutral)
+#   - sexual and scatological vulgarity
+#   - violence, death, and self-harm
+#   - medical and bodily terms that would land badly as a daily answer
+#
+# THIS LIST NEEDS HUMAN REVIEW. It is a starting point assembled for obvious
+# cases, not a vetted policy document. Add to it whenever a generated puzzle
+# surfaces something uncomfortable — that feedback loop matters more than
+# getting the initial list exhaustive.
+
+# --- identity terms that read as slurs in puzzle context ---
+JEW
+JEWS
+NEGRO
+NEGROES
+COLORED
+ORIENTAL
+ORIENTALS
+GYPSY
+GYPSIES
+SPIC
+SPICS
+WOP
+WOPS
+DAGO
+DAGOS
+KIKE
+KIKES
+CHINK
+CHINKS
+GOOK
+GOOKS
+COON
+COONS
+DARKY
+DARKIES
+WETBACK
+WETBACKS
+REDSKIN
+REDSKINS
+SQUAW
+SQUAWS
+HALFBREED
+MULATTO
+MULATTOS
+QUEER
+QUEERS
+FAG
+FAGS
+FAGGOT
+FAGGOTS
+DYKE
+DYKES
+TRANNY
+HOMO
+HOMOS
+CRIPPLE
+CRIPPLES
+RETARD
+RETARDS
+RETARDED
+SPASTIC
+MIDGET
+MIDGETS
+
+# --- sexual and scatological ---
+TIT
+TITS
+TITTY
+ASS
+ASSES
+ARSE
+ARSES
+BUTT
+CRAP
+CRAPS
+TURD
+TURDS
+FART
+FARTS
+PISS
+PISSED
+SHIT
+SHITS
+FUCK
+FUCKS
+CUNT
+CUNTS
+COCK
+COCKS
+DICK
+DICKS
+PRICK
+PRICKS
+KNOB
+PENIS
+VAGINA
+PUSSY
+TWAT
+BALLS
+BOOB
+BOOBS
+NIPPLE
+NIPPLES
+BREAST
+BREASTS
+NUDE
+NUDES
+NAKED
+PORN
+PORNO
+SEX
+SEXY
+SEXED
+ORGASM
+ORGY
+ORGIES
+HORNY
+SLUT
+SLUTS
+WHORE
+WHORES
+HOOKER
+HOOKERS
+PIMP
+PIMPS
+RAPE
+RAPES
+RAPED
+RAPIST
+INCEST
+SPERM
+SEMEN
+SCROTUM
+ANUS
+ANAL
+RECTUM
+ERECTION
+CONDOM
+CONDOMS
+
+# --- violence, death, self-harm ---
+KILL
+KILLS
+KILLED
+KILLER
+MURDER
+MURDERS
+MURDERED
+SUICIDE
+RAPING
+LYNCH
+LYNCHED
+LYNCHING
+NOOSE
+NOOSES
+CORPSE
+CORPSES
+GENOCIDE
+MASSACRE
+SLAUGHTER
+TORTURE
+STRANGLE
+BEHEAD
+DECAPITATE
+
+# --- slurs and epithets, general ---
+BASTARD
+BASTARDS
+BITCH
+BITCHES
+BUGGER
+WANKER
+BOLLOCKS
+DAMN
+DAMNED
+HELL
+GODDAMN
+
+# --- drugs ---
+HEROIN
+COCAINE
+METH
+CRACK
+
+# --- medical/bodily, uncomfortable as a daily answer ---
+CANCER
+TUMOR
+TUMORS
+ABORTION
+ABORTIONS
+MISCARRIAGE
+STILLBIRTH
+DIARRHEA
+VOMIT
+VOMITS
+PHLEGM
+MUCUS
+PUS
+URINE
+FECES

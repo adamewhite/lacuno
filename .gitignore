@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated word lists — rebuild with `npm run build:wordlists`
+/data/generated
+
+# local tooling config
+.claude/
+
+# upstream 12dicts package — the files we use are vendored in data/raw/
+# (2of12inf.txt and the ReadMe, which the licence asks us to ship)
+/12dicts-6.0.2

@@ -1,0 +1,623 @@
+{
+  "dictVersion": "1df848befddada76",
+  "values": [
+    1,
+    7,
+    4,
+    3,
+    0,
+    8,
+    5,
+    6,
+    3,
+    13,
+    9,
+    2,
+    6,
+    3,
+    0,
+    5,
+    14,
+    2,
+    1,
+    2,
+    4,
+    10,
+    8,
+    12,
+    7,
+    11
+  ],
+  "generatedWith": {
+    "seed": 777,
+    "tier": "common"
+  },
+  "puzzles": [
+    {
+      "id": "p1",
+      "tiles": [
+        "B",
+        "B",
+        "G",
+        "H",
+        "I",
+        "O",
+        "O",
+        "O",
+        "R",
+        "T",
+        "U",
+        "Y"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 16
+        },
+        {
+          "length": 4,
+          "target": 12
+        },
+        {
+          "length": 3,
+          "target": 15
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        }
+      ],
+      "solution": [
+        "BOOTY",
+        "HOUR",
+        "BIG"
+      ],
+      "searchSpace": [
+        390,
+        217,
+        29
+      ]
+    },
+    {
+      "id": "p2",
+      "tiles": [
+        "D",
+        "E",
+        "E",
+        "E",
+        "G",
+        "G",
+        "K",
+        "N",
+        "O",
+        "S",
+        "T",
+        "T",
+        "U"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 14
+        },
+        {
+          "length": 4,
+          "target": 13
+        },
+        {
+          "length": 3,
+          "target": 7
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "U"
+        }
+      ],
+      "solution": [
+        "TONGUE",
+        "DESK",
+        "GET"
+      ],
+      "searchSpace": [
+        596,
+        213,
+        55
+      ]
+    },
+    {
+      "id": "p3",
+      "tiles": [
+        "C",
+        "E",
+        "I",
+        "K",
+        "K",
+        "L",
+        "N",
+        "O",
+        "O",
+        "T",
+        "Z"
+      ],
+      "racks": [
+        {
+          "length": 4,
+          "target": 14
+        },
+        {
+          "length": 4,
+          "target": 15
+        },
+        {
+          "length": 3,
+          "target": 14
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "Z"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "L"
+        }
+      ],
+      "solution": [
+        "ZONE",
+        "LOCK",
+        "KIT"
+      ],
+      "searchSpace": [
+        192,
+        192,
+        45
+      ]
+    },
+    {
+      "id": "p4",
+      "tiles": [
+        "A",
+        "A",
+        "D",
+        "D",
+        "E",
+        "F",
+        "I",
+        "K",
+        "N",
+        "S",
+        "T",
+        "U",
+        "U"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 13
+        },
+        {
+          "length": 5,
+          "target": 14
+        },
+        {
+          "length": 3,
+          "target": 15
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "D"
+        }
+      ],
+      "solution": [
+        "AUDIT",
+        "ASKED",
+        "FUN"
+      ],
+      "searchSpace": [
+        379,
+        369,
+        29
+      ]
+    },
+    {
+      "id": "p5",
+      "tiles": [
+        "A",
+        "A",
+        "C",
+        "E",
+        "G",
+        "H",
+        "H",
+        "H",
+        "I",
+        "I",
+        "L",
+        "L",
+        "O",
+        "P",
+        "P"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 14
+        },
+        {
+          "length": 5,
+          "target": 15
+        },
+        {
+          "length": 4,
+          "target": 20
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "C"
+        }
+      ],
+      "solution": [
+        "POLICE",
+        "ALPHA",
+        "HIGH"
+      ],
+      "searchSpace": [
+        596,
+        381,
+        49
+      ]
+    },
+    {
+      "id": "p6",
+      "tiles": [
+        "D",
+        "E",
+        "G",
+        "G",
+        "H",
+        "I",
+        "R",
+        "S",
+        "S",
+        "T",
+        "U",
+        "U",
+        "U"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 15
+        },
+        {
+          "length": 4,
+          "target": 15
+        },
+        {
+          "length": 4,
+          "target": 10
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "U"
+        }
+      ],
+      "solution": [
+        "DRUGS",
+        "HUGE",
+        "SUIT"
+      ],
+      "searchSpace": [
+        381,
+        192,
+        194
+      ]
+    },
+    {
+      "id": "p7",
+      "tiles": [
+        "B",
+        "I",
+        "I",
+        "L",
+        "M",
+        "O",
+        "P",
+        "R",
+        "T",
+        "U",
+        "U",
+        "Y"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 16
+        },
+        {
+          "length": 4,
+          "target": 11
+        },
+        {
+          "length": 3,
+          "target": 18
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "M"
+        }
+      ],
+      "solution": [
+        "LIMIT",
+        "POUR",
+        "BUY"
+      ],
+      "searchSpace": [
+        390,
+        216,
+        10
+      ]
+    },
+    {
+      "id": "p8",
+      "tiles": [
+        "A",
+        "A",
+        "A",
+        "E",
+        "E",
+        "G",
+        "H",
+        "H",
+        "M",
+        "N",
+        "T",
+        "T",
+        "T"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 18
+        },
+        {
+          "length": 4,
+          "target": 11
+        },
+        {
+          "length": 3,
+          "target": 6
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "M"
+        }
+      ],
+      "solution": [
+        "ANTHEM",
+        "THAT",
+        "AGE"
+      ],
+      "searchSpace": [
+        604,
+        216,
+        37
+      ]
+    },
+    {
+      "id": "p9",
+      "tiles": [
+        "A",
+        "A",
+        "B",
+        "D",
+        "G",
+        "I",
+        "I",
+        "L",
+        "L",
+        "M",
+        "P"
+      ],
+      "racks": [
+        {
+          "length": 4,
+          "target": 12
+        },
+        {
+          "length": 4,
+          "target": 11
+        },
+        {
+          "length": 3,
+          "target": 15
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        }
+      ],
+      "solution": [
+        "PAID",
+        "MALL",
+        "BIG"
+      ],
+      "searchSpace": [
+        217,
+        216,
+        29
+      ]
+    },
+    {
+      "id": "p10",
+      "tiles": [
+        "A",
+        "D",
+        "D",
+        "E",
+        "G",
+        "G",
+        "I",
+        "M",
+        "O",
+        "R",
+        "R",
+        "S",
+        "V"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 17
+        },
+        {
+          "length": 5,
+          "target": 15
+        },
+        {
+          "length": 3,
+          "target": 9
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "M"
+        }
+      ],
+      "solution": [
+        "GROVE",
+        "GRAMS",
+        "DID"
+      ],
+      "searchSpace": [
+        328,
+        381,
+        51
+      ]
+    }
+  ]
+}

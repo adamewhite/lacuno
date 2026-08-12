@@ -1,103 +1,113 @@
-import Image from "next/image";
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import Board from './Board';
+import classicData from './puzzles.json';
+import vowelData from './puzzles-vowels.json';
+import type { PuzzleData } from './usePuzzle';
+
+/**
+ * Two variants side by side for playtesting:
+ *
+ *   classic     — every letter scores; the pool is one undifferentiated set
+ *   zero-vowels — A E I O U are worth 0 and sit in their own stack, but the
+ *                 counts are still exact and every tile must be used
+ *
+ * Same rules otherwise. The zero-vowels variant exists to cut arithmetic: a
+ * five-letter word may have only two or three numbers to add.
+ */
+const VARIANTS = [
+  {
+    key: 'classic' as const,
+    label: 'classic',
+    puzzles: classicData.puzzles as unknown as PuzzleData[],
+    values: classicData.values as number[],
+    blurb: 'every tile scores',
+  },
+  {
+    key: 'zero-vowels' as const,
+    label: 'vwldrp',
+    puzzles: vowelData.puzzles as unknown as PuzzleData[],
+    values: vowelData.values as number[],
+    blurb: 'vowels are free — only consonants count',
+  },
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [variantIndex, setVariantIndex] = useState(0);
+  const [index, setIndex] = useState(0);
+  const [dictionary, setDictionary] = useState<ReadonlySet<string> | null>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+  // The dictionary ships as a static asset and is fetched once. It is the same
+  // list the generator verified against, so a rack glowing here means the same
+  // thing it meant at generation time (SPEC §5).
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/dictionary.txt')
+      .then((res) => res.text())
+      .then((text) => {
+        if (cancelled) return;
+        setDictionary(new Set(text.split('\n').filter(Boolean)));
+      })
+      .catch(() => {
+        if (!cancelled) setDictionary(new Set());
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const variant = VARIANTS[variantIndex];
+  const puzzles = variant.puzzles;
+
+  if (puzzles.length === 0) {
+    return (
+      <main className="p-8 font-mono text-sm">
+        No puzzles. Run <code>npx tsx scripts/make-puzzles.ts</code> and{' '}
+        <code>npx tsx scripts/make-variant-puzzles.ts</code>.
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+    );
+  }
+
+  const safeIndex = index % puzzles.length;
+
+  return (
+    <main>
+      <div className="mx-auto flex w-full max-w-2xl items-center gap-2 px-4 pt-6">
+        {VARIANTS.map((v, i) => (
+          <button
+            key={v.key}
+            onClick={() => {
+              setVariantIndex(i);
+              setIndex(0);
+            }}
+            className={[
+              'rounded-full border px-3 py-1 font-mono text-xs transition-colors',
+              i === variantIndex
+                ? 'border-stone-900 bg-stone-900 text-stone-50 dark:border-stone-100 dark:bg-stone-100 dark:text-stone-900'
+                : 'border-stone-300 text-stone-500 hover:border-stone-500 dark:border-stone-700',
+            ].join(' ')}
+          >
+            {v.label}
+          </button>
+        ))}
+        <span className="ml-1 font-mono text-[11px] text-stone-400">{variant.blurb}</span>
+      </div>
+
+      <Board
+        key={`${variant.key}-${puzzles[safeIndex].id}`}
+        puzzle={puzzles[safeIndex]}
+        values={variant.values}
+        dictionary={dictionary}
+        index={safeIndex}
+        count={puzzles.length}
+        onNext={() => setIndex((i) => (i + 1) % puzzles.length)}
+      />
+
+      <footer className="pb-10 text-center font-mono text-[10px] text-stone-400">
+        from Vitura Studio · word list based on 12dicts by Alan Beale
       </footer>
-    </div>
+    </main>
   );
 }

@@ -1,0 +1,827 @@
+{
+  "dictVersion": "1df848befddada76",
+  "variant": "zero-vowels",
+  "values": [
+    0,
+    4,
+    3,
+    2,
+    0,
+    5,
+    3,
+    4,
+    0,
+    7,
+    5,
+    2,
+    3,
+    2,
+    0,
+    3,
+    7,
+    1,
+    1,
+    1,
+    0,
+    6,
+    5,
+    6,
+    4,
+    6
+  ],
+  "generatedWith": {
+    "seed": 777,
+    "tier": "common",
+    "scheme": "FLAT_3"
+  },
+  "puzzles": [
+    {
+      "id": "v1",
+      "variant": "zero-vowels",
+      "tiles": [
+        "E",
+        "G",
+        "I",
+        "I",
+        "M",
+        "N",
+        "O",
+        "R",
+        "R",
+        "R",
+        "R",
+        "U",
+        "V"
+      ],
+      "vowels": [
+        "E",
+        "I",
+        "I",
+        "O",
+        "U"
+      ],
+      "consonants": [
+        "G",
+        "M",
+        "N",
+        "R",
+        "R",
+        "R",
+        "R",
+        "V"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 6
+        },
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 3,
+          "target": 3
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "O"
+        }
+      ],
+      "solution": [
+        "MIRROR",
+        "GIVE",
+        "RUN"
+      ],
+      "acceptedCount": 2,
+      "searchSpace": [
+        785,
+        240,
+        58
+      ]
+    },
+    {
+      "id": "v2",
+      "variant": "zero-vowels",
+      "tiles": [
+        "B",
+        "E",
+        "L",
+        "L",
+        "L",
+        "N",
+        "O",
+        "P",
+        "T",
+        "U",
+        "W",
+        "W"
+      ],
+      "vowels": [
+        "E",
+        "O",
+        "U"
+      ],
+      "consonants": [
+        "B",
+        "L",
+        "L",
+        "L",
+        "N",
+        "P",
+        "T",
+        "W",
+        "W"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 13
+        },
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 3,
+          "target": 4
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "P"
+        }
+      ],
+      "solution": [
+        "BLOWN",
+        "WELL",
+        "PUT"
+      ],
+      "acceptedCount": 1,
+      "searchSpace": [
+        195,
+        240,
+        112
+      ]
+    },
+    {
+      "id": "v3",
+      "variant": "zero-vowels",
+      "tiles": [
+        "A",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "K",
+        "M",
+        "O",
+        "P",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "O"
+      ],
+      "consonants": [
+        "C",
+        "D",
+        "F",
+        "G",
+        "H",
+        "K",
+        "M",
+        "P",
+        "R",
+        "R"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 11
+        },
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 4,
+          "target": 10
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "P"
+        }
+      ],
+      "solution": [
+        "GRAPH",
+        "FORM",
+        "DECK"
+      ],
+      "acceptedCount": 2,
+      "searchSpace": [
+        384,
+        240,
+        154
+      ]
+    },
+    {
+      "id": "v4",
+      "variant": "zero-vowels",
+      "tiles": [
+        "B",
+        "D",
+        "E",
+        "G",
+        "I",
+        "K",
+        "N",
+        "O",
+        "R",
+        "S",
+        "U",
+        "X"
+      ],
+      "vowels": [
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "consonants": [
+        "B",
+        "D",
+        "G",
+        "K",
+        "N",
+        "R",
+        "S",
+        "X"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 5
+        },
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 3,
+          "target": 10
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "U"
+        }
+      ],
+      "solution": [
+        "URGES",
+        "KIND",
+        "BOX"
+      ],
+      "acceptedCount": 2,
+      "searchSpace": [
+        467,
+        240,
+        20
+      ]
+    },
+    {
+      "id": "v5",
+      "variant": "zero-vowels",
+      "tiles": [
+        "D",
+        "E",
+        "I",
+        "I",
+        "L",
+        "L",
+        "R",
+        "S",
+        "S",
+        "T",
+        "T",
+        "X",
+        "X"
+      ],
+      "vowels": [
+        "E",
+        "I",
+        "I"
+      ],
+      "consonants": [
+        "D",
+        "L",
+        "L",
+        "R",
+        "S",
+        "S",
+        "T",
+        "T",
+        "X",
+        "X"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 9
+        },
+        {
+          "length": 5,
+          "target": 7
+        },
+        {
+          "length": 3,
+          "target": 7
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "X"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "L"
+        }
+      ],
+      "solution": [
+        "TEXTS",
+        "DRILL",
+        "SIX"
+      ],
+      "acceptedCount": 2,
+      "searchSpace": [
+        622,
+        651,
+        88
+      ]
+    },
+    {
+      "id": "v6",
+      "variant": "zero-vowels",
+      "tiles": [
+        "B",
+        "B",
+        "C",
+        "C",
+        "D",
+        "E",
+        "I",
+        "L",
+        "O",
+        "O",
+        "R",
+        "S",
+        "U",
+        "W",
+        "Y"
+      ],
+      "vowels": [
+        "E",
+        "I",
+        "O",
+        "O",
+        "U"
+      ],
+      "consonants": [
+        "B",
+        "B",
+        "C",
+        "C",
+        "D",
+        "L",
+        "R",
+        "S",
+        "W",
+        "Y"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 16
+        },
+        {
+          "length": 5,
+          "target": 4
+        },
+        {
+          "length": 4,
+          "target": 9
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "D"
+        }
+      ],
+      "solution": [
+        "COWBOY",
+        "RIDES",
+        "CLUB"
+      ],
+      "acceptedCount": 3,
+      "searchSpace": [
+        117,
+        292,
+        240
+      ]
+    },
+    {
+      "id": "v7",
+      "variant": "zero-vowels",
+      "tiles": [
+        "A",
+        "E",
+        "E",
+        "I",
+        "M",
+        "N",
+        "N",
+        "N",
+        "N",
+        "T",
+        "U",
+        "U",
+        "X"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "E",
+        "I",
+        "U",
+        "U"
+      ],
+      "consonants": [
+        "M",
+        "N",
+        "N",
+        "N",
+        "N",
+        "T",
+        "X"
+      ],
+      "racks": [
+        {
+          "length": 5,
+          "target": 10
+        },
+        {
+          "length": 4,
+          "target": 3
+        },
+        {
+          "length": 4,
+          "target": 5
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "X"
+        }
+      ],
+      "solution": [
+        "ANNEX",
+        "UNIT",
+        "MENU"
+      ],
+      "acceptedCount": 1,
+      "searchSpace": [
+        503,
+        174,
+        361
+      ]
+    },
+    {
+      "id": "v8",
+      "variant": "zero-vowels",
+      "tiles": [
+        "C",
+        "E",
+        "F",
+        "H",
+        "I",
+        "K",
+        "N",
+        "O",
+        "O",
+        "O",
+        "P",
+        "P",
+        "R",
+        "R",
+        "T"
+      ],
+      "vowels": [
+        "E",
+        "I",
+        "O",
+        "O",
+        "O"
+      ],
+      "consonants": [
+        "C",
+        "F",
+        "H",
+        "K",
+        "N",
+        "P",
+        "P",
+        "R",
+        "R",
+        "T"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 7
+        },
+        {
+          "length": 5,
+          "target": 11
+        },
+        {
+          "length": 4,
+          "target": 10
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "P"
+        }
+      ],
+      "solution": [
+        "COOPER",
+        "FORTH",
+        "PINK"
+      ],
+      "acceptedCount": 2,
+      "searchSpace": [
+        926,
+        384,
+        154
+      ]
+    },
+    {
+      "id": "v9",
+      "variant": "zero-vowels",
+      "tiles": [
+        "D",
+        "E",
+        "H",
+        "L",
+        "M",
+        "N",
+        "O",
+        "O",
+        "O",
+        "S",
+        "S",
+        "S",
+        "S",
+        "U",
+        "W"
+      ],
+      "vowels": [
+        "E",
+        "O",
+        "O",
+        "O",
+        "U"
+      ],
+      "consonants": [
+        "D",
+        "H",
+        "L",
+        "M",
+        "N",
+        "S",
+        "S",
+        "S",
+        "S",
+        "W"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 5
+        },
+        {
+          "length": 5,
+          "target": 5
+        },
+        {
+          "length": 4,
+          "target": 12
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "L"
+        }
+      ],
+      "solution": [
+        "LOSSES",
+        "SOUND",
+        "WHOM"
+      ],
+      "acceptedCount": 1,
+      "searchSpace": [
+        476,
+        467,
+        64
+      ]
+    },
+    {
+      "id": "v10",
+      "variant": "zero-vowels",
+      "tiles": [
+        "A",
+        "B",
+        "C",
+        "C",
+        "D",
+        "D",
+        "H",
+        "I",
+        "I",
+        "L",
+        "P",
+        "T",
+        "U"
+      ],
+      "vowels": [
+        "A",
+        "I",
+        "I",
+        "U"
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "C",
+        "D",
+        "D",
+        "H",
+        "L",
+        "P",
+        "T"
+      ],
+      "racks": [
+        {
+          "length": 6,
+          "target": 13
+        },
+        {
+          "length": 4,
+          "target": 5
+        },
+        {
+          "length": 3,
+          "target": 6
+        }
+      ],
+      "pins": [
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "I"
+        }
+      ],
+      "solution": [
+        "CLUTCH",
+        "PAID",
+        "BID"
+      ],
+      "acceptedCount": 1,
+      "searchSpace": [
+        447,
+        361,
+        105
+      ]
+    }
+  ]
+}
