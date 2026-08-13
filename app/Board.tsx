@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
+import { useDrag } from './useDrag';
 import { usePuzzle, type PuzzleData } from './usePuzzle';
 
 /**
@@ -36,8 +37,41 @@ export default function Board({
   const [caret, setCaret] = useState(0);
   /** Rack to flash when a keystroke is rejected — the tile is not available. */
   const [rejected, setRejected] = useState<number | null>(null);
-  /** Slot being dragged over, as "rack:slot", for the drop highlight. */
-  const [dragOver, setDragOver] = useState<string | null>(null);
+  /**
+   * Pointer-based dragging. HTML5 drag-and-drop does not work on touch devices
+   * — the browser scrolls or selects text instead — so drops are resolved by
+   * hit-testing `data-drop` attributes under the pointer.
+   */
+  const [drag, dragHandlers, dragging] = useDrag((tileId, target) => {
+    if (!target) return;
+    if (target === 'pool') {
+      actions.returnTile(tileId);
+      return;
+    }
+    // Number('') is 0, not NaN, so guard on the raw parts before converting —
+    // otherwise a malformed key like "1:" would resolve to slot 0.
+    const parts = target.split(':');
+    if (parts.length !== 2 || parts.some((p) => p === '')) return;
+    const [rack, slot] = parts.map(Number);
+    if (Number.isInteger(rack) && Number.isInteger(slot)) {
+      actions.placeTile(tileId, rack, slot);
+    }
+  });
+  const dragOver = drag.over;
+
+  // A pointer drag ends with a synthetic click on the element it began on.
+  // This flag swallows that one click so a drag never also counts as a tap.
+  const justDragged = useRef(false);
+  useEffect(() => {
+    if (dragging) {
+      justDragged.current = true;
+    } else if (justDragged.current) {
+      const timer = setTimeout(() => {
+        justDragged.current = false;
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+  }, [dragging]);
 
   useEffect(() => setShowAnswer(false), [puzzle]);
 
@@ -127,7 +161,12 @@ export default function Board({
   }, [focusedRack, caret, actions, state.racks]);
 
   return (
-    <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:py-12">
+    <div
+      className={[
+        'mx-auto w-full max-w-2xl px-4 py-8 sm:py-12',
+        dragging ? 'select-none' : '',
+      ].join(' ')}
+    >
       <header className="mb-8 flex items-baseline justify-between border-b border-stone-300 pb-3 dark:border-stone-700">
         <h1 className="font-mono text-2xl lowercase tracking-[0.2em] text-stone-900 dark:text-stone-100">
           vwldrp
@@ -173,6 +212,9 @@ export default function Board({
                         key={slot}
                         onClick={(e) => {
                           e.stopPropagation();
+                          // A completed drag also fires a click on its origin;
+                          // ignore it so dragging does not double as a tap.
+                          if (justDragged.current) return;
                           // Clicking a slot puts the typing caret there, so the
                           // next keystroke fills THIS slot rather than the
                           // start of the rack.
@@ -185,27 +227,11 @@ export default function Board({
                           }
                         }}
                         disabled={locked}
-                        // A placed tile can be dragged straight to another slot.
-                        draggable={Boolean(tile) && !locked}
-                        onDragStart={(e) => {
-                          if (!tile || locked) return;
-                          e.dataTransfer.setData('text/plain', String(tile.id));
-                          e.dataTransfer.effectAllowed = 'move';
-                        }}
-                        onDragOver={(e) => {
-                          if (locked) return;
-                          e.preventDefault();
-                          e.dataTransfer.dropEffect = 'move';
-                          setDragOver(`${rackIndex}:${slot}`);
-                        }}
-                        onDragLeave={() => setDragOver(null)}
-                        onDrop={(e) => {
-                          e.preventDefault();
-                          setDragOver(null);
-                          if (locked) return;
-                          const id = Number(e.dataTransfer.getData('text/plain'));
-                          if (Number.isFinite(id)) actions.placeTile(id, rackIndex, slot);
-                        }}
+                        // Drop target for pointer dragging; also the source
+                        // when this slot already holds a tile.
+                        data-drop={locked ? undefined : `${rackIndex}:${slot}`}
+                        {...(tile && !locked ? dragHandlers(tile.id) : {})}
+                        style={tile && !locked ? { touchAction: 'none' } : undefined}
                         aria-label={
                           tile
                             ? `Rack ${rackIndex + 1} slot ${slot + 1}, ${tile.letter}${locked ? ', locked hint' : ''}`
@@ -301,24 +327,18 @@ export default function Board({
             Vowels — 0 points ({state.vowelPool.length} left)
           </h2>
           <div
-            onDragOver={(e) => e.preventDefault()}
-            onDrop={(e) => {
-              // Dropping onto the pool returns the tile to it.
-              e.preventDefault();
-              const id = Number(e.dataTransfer.getData('text/plain'));
-              if (Number.isFinite(id)) actions.returnTile(id);
-            }}
+            data-drop="pool"
             className="flex min-h-[3.5rem] flex-wrap gap-1.5 rounded-lg border border-emerald-200 bg-emerald-50/60 p-2 dark:border-emerald-900 dark:bg-emerald-950/30"
           >
             {state.vowelPool.map((tile) => (
               <button
                 key={tile.id}
-                onClick={() => actions.selectTile(tile.id)}
-                draggable
-                onDragStart={(e) => {
-                  e.dataTransfer.setData('text/plain', String(tile.id));
-                  e.dataTransfer.effectAllowed = 'move';
+                onClick={() => {
+                  if (justDragged.current) return;
+                  actions.selectTile(tile.id);
                 }}
+                {...dragHandlers(tile.id)}
+                style={{ touchAction: 'none' }}
                 aria-pressed={state.selectedTileId === tile.id}
                 aria-label={`Vowel ${tile.letter}, 0 points`}
                 className={[
@@ -355,23 +375,18 @@ export default function Board({
         </div>
 
         <div
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => {
-            e.preventDefault();
-            const id = Number(e.dataTransfer.getData('text/plain'));
-            if (Number.isFinite(id)) actions.returnTile(id);
-          }}
+          data-drop="pool"
           className="flex min-h-[3.5rem] flex-wrap gap-1.5 rounded-lg border border-stone-200 bg-stone-50 p-2 dark:border-stone-800 dark:bg-stone-900/50"
         >
           {state.consonantPool.map((tile) => (
             <button
               key={tile.id}
-              onClick={() => actions.selectTile(tile.id)}
-              draggable
-              onDragStart={(e) => {
-                e.dataTransfer.setData('text/plain', String(tile.id));
-                e.dataTransfer.effectAllowed = 'move';
+              onClick={() => {
+                if (justDragged.current) return;
+                actions.selectTile(tile.id);
               }}
+              {...dragHandlers(tile.id)}
+              style={{ touchAction: 'none' }}
               aria-pressed={state.selectedTileId === tile.id}
               aria-label={`Tile ${tile.letter}, ${tile.value} points`}
               className={[
@@ -456,6 +471,24 @@ export default function Board({
           <p className="mt-1 text-[11px] text-stone-500">
             Any anagram of these words is equally correct.
           </p>
+        </div>
+      )}
+
+      {/* The tile under the pointer while dragging. Rendered fixed so it can
+          follow the finger outside its original container. */}
+      {dragging && drag.tileId !== null && (
+        <div
+          className="pointer-events-none fixed z-50 flex h-16 w-14 flex-col items-center justify-center rounded-md border-2 border-stone-900 bg-stone-100 opacity-90 shadow-xl dark:border-stone-100 dark:bg-stone-700"
+          style={{ left: drag.x - 28, top: drag.y - 32 }}
+        >
+          <span className="font-mono text-2xl font-semibold leading-none text-stone-900 dark:text-stone-100">
+            {state.tiles[drag.tileId]?.letter}
+          </span>
+          {state.tiles[drag.tileId]?.value !== 0 && (
+            <span className="mt-1 font-mono text-sm font-bold leading-none tabular-nums text-stone-900 opacity-70 dark:text-stone-100">
+              {state.tiles[drag.tileId]?.value}
+            </span>
+          )}
         </div>
       )}
 
