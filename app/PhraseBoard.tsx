@@ -213,14 +213,10 @@ export default function PhraseBoard({
         </div>
       </div>
 
-      {/* Board field — racks wrap in sequence so the phrase reads in order.
-          The block of racks is centred in the field, but rows inside it are
-          left-aligned to a shared edge. Centring each row independently makes a
-          partial row float, which leaves a gap beside the first rack and
-          misaligns the rows below it; left-aligning the whole field instead
-          pins the board to the edge of the screen. This does both. */}
+      {/* Board field — racks wrap in sequence so the phrase reads in order,
+          each row centred. */}
       <div className="flex flex-1 items-center justify-center px-3.5 pb-7 pt-6">
-        <div className="flex flex-wrap content-center justify-start gap-x-3 gap-y-5">
+        <div className="flex flex-wrap content-center justify-center gap-x-3 gap-y-5">
         {state.racks.map((rack, rackIndex) => {
           const solved = rack.full && rack.total === rack.target;
 
