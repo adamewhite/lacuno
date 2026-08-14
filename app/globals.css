@@ -1,26 +1,68 @@
 @import "tailwindcss";
 
+/**
+ * Design tokens from the VWL DRP handoff.
+ *
+ * The palette derives from a physical Scrabble board: cream tiles, oxblood
+ * frame, slate-blue field. Colours, type and sizing here are the handoff's
+ * exact values — only the gameplay differs from that prototype.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --page: #1a242e;
+  --shell: #22303c;
+  --frame: #8e1c19;
+  --frame-text: #f4e8d2;
+  --tray: #101922;
+  --text: #e6ecf1;
+
+  --tile-face: #dccfb2;      /* tiles on the board */
+  --tile-face-hand: #ece0c4; /* tiles in hand and piles */
+  --tile-text: #141d25;
+
+  --slot-fill: #1d2833;
+  --slot-border: #4a5f70;
+  --spent-fill: #1a2530;
+  --spent-border: #33455260;
+
+  --ledge: #3a4d5c;
+  --accent: #e0604d;         /* selection and placement rings */
+  --accent-text: #ef8f7d;
+  --solved: #4fbf85;
+
+  --pile-mid: #3b4c59;
+  --pile-back: #26333d;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-page: var(--page);
+  --color-shell: var(--shell);
+  --color-frame: var(--frame);
+  --color-frame-text: var(--frame-text);
+  --color-tray: var(--tray);
+  --color-board-text: var(--text);
+  --color-tile-face: var(--tile-face);
+  --color-tile-face-hand: var(--tile-face-hand);
+  --color-tile-text: var(--tile-text);
+  --color-slot-fill: var(--slot-fill);
+  --color-slot-border: var(--slot-border);
+  --color-ledge: var(--ledge);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-solved: var(--solved);
+  --color-pile-mid: var(--pile-mid);
+  --color-pile-back: var(--pile-back);
+  --font-display: Arvo, Georgia, serif;
+  --font-tile: "DM Mono", ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--page);
+  color: var(--text);
+  font-family: Arvo, Georgia, serif;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
 }

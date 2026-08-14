@@ -1,0 +1,1228 @@
+{
+  "variant": "phrase",
+  "values": [
+    0,
+    4,
+    3,
+    2,
+    0,
+    5,
+    3,
+    4,
+    0,
+    7,
+    5,
+    2,
+    3,
+    2,
+    0,
+    3,
+    7,
+    1,
+    1,
+    1,
+    0,
+    6,
+    5,
+    6,
+    4,
+    6
+  ],
+  "puzzles": [
+    {
+      "id": "f1",
+      "racks": [
+        {
+          "length": 4,
+          "target": 7
+        },
+        {
+          "length": 4,
+          "target": 6
+        }
+      ],
+      "consonants": [
+        "C",
+        "D",
+        "F",
+        "L",
+        "T"
+      ],
+      "vowels": [
+        "E",
+        "O"
+      ],
+      "letterCount": 8,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "COLD FEET"
+    },
+    {
+      "id": "f2",
+      "racks": [
+        {
+          "length": 5,
+          "target": 10
+        },
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 3,
+          "target": 3
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "H",
+        "K",
+        "R",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "BREAK THE ICE"
+    },
+    {
+      "id": "f3",
+      "racks": [
+        {
+          "length": 3,
+          "target": 4
+        },
+        {
+          "length": 2,
+          "target": 1
+        },
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 5,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "C",
+        "C",
+        "H",
+        "H",
+        "S",
+        "T",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 3,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "CUT TO THE CHASE"
+    },
+    {
+      "id": "f4",
+      "racks": [
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 5,
+          "target": 4
+        },
+        {
+          "length": 5,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "C",
+        "D",
+        "G",
+        "H",
+        "L",
+        "S",
+        "S",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O"
+      ],
+      "letterCount": 14,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        }
+      ],
+      "phrase": "WILD GOOSE CHASE"
+    },
+    {
+      "id": "f5",
+      "racks": [
+        {
+          "length": 5,
+          "target": 11
+        },
+        {
+          "length": 2,
+          "target": 2
+        },
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 5,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "H",
+        "H",
+        "L",
+        "N",
+        "R",
+        "T",
+        "T",
+        "T",
+        "W",
+        "W"
+      ],
+      "vowels": [
+        "E",
+        "I",
+        "O"
+      ],
+      "letterCount": 15,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 2,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 3,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "I"
+        }
+      ],
+      "phrase": "THROW IN THE TOWEL"
+    },
+    {
+      "id": "f6",
+      "racks": [
+        {
+          "length": 4,
+          "target": 5
+        },
+        {
+          "length": 2,
+          "target": 2
+        },
+        {
+          "length": 1,
+          "target": 0
+        },
+        {
+          "length": 4,
+          "target": 6
+        },
+        {
+          "length": 4,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "L",
+        "M",
+        "N",
+        "N",
+        "N"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 15,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 1,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 4,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 4,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 2,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 3,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 4,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 4,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "A"
+        }
+      ],
+      "phrase": "ONCE IN A BLUE MOON"
+    },
+    {
+      "id": "f7",
+      "racks": [
+        {
+          "length": 4,
+          "target": 5
+        },
+        {
+          "length": 6,
+          "target": 5
+        },
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 4,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "B",
+        "B",
+        "D",
+        "H",
+        "H",
+        "N",
+        "R",
+        "S",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "O",
+        "U"
+      ],
+      "letterCount": 17,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 3,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "BEAT AROUND THE BUSH"
+    },
+    {
+      "id": "f8",
+      "racks": [
+        {
+          "length": 1,
+          "target": 0
+        },
+        {
+          "length": 8,
+          "target": 13
+        },
+        {
+          "length": 2,
+          "target": 2
+        },
+        {
+          "length": 8,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "B",
+        "D",
+        "G",
+        "G",
+        "L",
+        "N",
+        "N",
+        "S",
+        "S",
+        "S",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "U"
+      ],
+      "letterCount": 19,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 3,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 6,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 4,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 5,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 7,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "A"
+        }
+      ],
+      "phrase": "A BLESSING IN DISGUISE"
+    },
+    {
+      "id": "f9",
+      "racks": [
+        {
+          "length": 7,
+          "target": 12
+        },
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 8,
+          "target": 15
+        },
+        {
+          "length": 3,
+          "target": 2
+        }
+      ],
+      "consonants": [
+        "B",
+        "D",
+        "G",
+        "G",
+        "H",
+        "H",
+        "L",
+        "M",
+        "N",
+        "N",
+        "N",
+        "R",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 21,
+      "hints": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 5,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 6,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 7,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 0,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 1,
+          "letter": "I"
+        }
+      ],
+      "phrase": "BURNING THE MIDNIGHT OIL"
+    },
+    {
+      "id": "f10",
+      "racks": [
+        {
+          "length": 11,
+          "target": 15
+        },
+        {
+          "length": 2,
+          "target": 2
+        },
+        {
+          "length": 4,
+          "target": 5
+        },
+        {
+          "length": 7,
+          "target": 12
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "F",
+        "H",
+        "L",
+        "M",
+        "N",
+        "R",
+        "R",
+        "S",
+        "S",
+        "T",
+        "T",
+        "T",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 24,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 7,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 10,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 1,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 3,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 5,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 6,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 8,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 9,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 3,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "I"
+        }
+      ],
+      "phrase": "BUTTERFLIES IN YOUR STOMACH"
+    }
+  ]
+}

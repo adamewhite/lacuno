@@ -1,0 +1,74 @@
+/**
+ * Build phrase puzzles from data/phrases.txt.
+ *
+ *   npx tsx scripts/make-phrase-puzzles.ts
+ *
+ * Writes app/puzzles-phrases.json. There is no search and no uniqueness gate —
+ * every curated phrase becomes a puzzle. Quality comes from the phrase list,
+ * not from the generator.
+ */
+
+import { readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+import {
+  buildPhrasePuzzle,
+  normalizePhrase,
+  phraseHints,
+} from '../lib/procro/phrase';
+import { FLAT_3 } from '../lib/valuation/consonant-schemes';
+
+const ROOT = join(import.meta.dirname, '..');
+const VALUES = FLAT_3;
+
+const lines = readFileSync(join(ROOT, 'data', 'phrases.txt'), 'utf8').split('\n');
+const phrases = lines.map(normalizePhrase).filter((p): p is string => p !== null);
+
+if (phrases.length === 0) {
+  console.error('No phrases found in data/phrases.txt');
+  process.exit(1);
+}
+
+const seen = new Set<string>();
+const puzzles = [];
+
+for (const phrase of phrases) {
+  if (seen.has(phrase)) {
+    console.warn(`  skipping duplicate: ${phrase}`);
+    continue;
+  }
+  seen.add(phrase);
+
+  const puzzle = buildPhrasePuzzle(phrase, VALUES, `f${puzzles.length + 1}`);
+
+  puzzles.push({
+    id: puzzle.id,
+    racks: puzzle.racks.map((r) => ({ length: r.length, target: r.target })),
+    consonants: puzzle.consonants,
+    vowels: puzzle.vowels,
+    letterCount: puzzle.letterCount,
+    // Hints are precomputed so the client never needs the phrase to serve one.
+    hints: phraseHints(puzzle),
+    // Playtesting only. A shipped puzzle must not carry its answer in the
+    // client payload (SPEC §7).
+    phrase: puzzle.phrase,
+  });
+}
+
+writeFileSync(
+  join(ROOT, 'app', 'puzzles-phrases.json'),
+  JSON.stringify({ variant: 'phrase', values: [...VALUES], puzzles }, null, 2) + '\n',
+);
+
+console.log(`Wrote ${puzzles.length} phrase puzzles to app/puzzles-phrases.json\n`);
+console.log('phrase'.padEnd(30) + 'racks'.padStart(6) + 'cons'.padStart(6) + '  vowels  targets');
+console.log('-'.repeat(72));
+for (const p of puzzles) {
+  console.log(
+    p.phrase.padEnd(30) +
+      String(p.racks.length).padStart(6) +
+      String(p.consonants.length).padStart(6) +
+      '  ' + p.vowels.join('').padEnd(6) +
+      '  ' + p.racks.map((r) => r.target).join(' '),
+  );
+}
