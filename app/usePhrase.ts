@@ -232,10 +232,9 @@ export function usePhrase(
       if (target < 0) return false;
 
       if ((ALL_VOWELS as readonly string[]).includes(upper)) {
-        // Only vowels the phrase actually uses may be placed; typing a vowel
-        // that appears nowhere is a rejection, same as an unavailable
-        // consonant.
-        if (!puzzle.vowels.includes(upper)) return false;
+        // Every vowel is placeable, whether or not the phrase uses it —
+        // rejecting an unused vowel would reveal that it is absent. A wrong
+        // vowel simply leaves the rack unsolved.
         placeVowel(upper, rack, target);
         return true;
       }

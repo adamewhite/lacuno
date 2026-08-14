@@ -49,8 +49,11 @@
         "T"
       ],
       "vowels": [
+        "A",
         "E",
-        "O"
+        "I",
+        "O",
+        "U"
       ],
       "letterCount": 8,
       "hints": [
@@ -124,7 +127,9 @@
       "vowels": [
         "A",
         "E",
-        "I"
+        "I",
+        "O",
+        "U"
       ],
       "letterCount": 11,
       "hints": [
@@ -219,6 +224,7 @@
       "vowels": [
         "A",
         "E",
+        "I",
         "O",
         "U"
       ],
@@ -322,7 +328,8 @@
         "A",
         "E",
         "I",
-        "O"
+        "O",
+        "U"
       ],
       "letterCount": 14,
       "hints": [
@@ -432,9 +439,11 @@
         "W"
       ],
       "vowels": [
+        "A",
         "E",
         "I",
-        "O"
+        "O",
+        "U"
       ],
       "letterCount": 15,
       "hints": [
@@ -671,6 +680,7 @@
       "vowels": [
         "A",
         "E",
+        "I",
         "O",
         "U"
       ],
@@ -801,6 +811,7 @@
         "A",
         "E",
         "I",
+        "O",
         "U"
       ],
       "letterCount": 19,
@@ -940,6 +951,7 @@
         "T"
       ],
       "vowels": [
+        "A",
         "E",
         "I",
         "O",

@@ -333,11 +333,10 @@ export default function PhraseBoard({
                     aria-label={`Vowel ${letter}`}
                     className="absolute left-0 top-0 h-12 w-12 rounded-[3px] bg-tile-face-hand text-tile-text"
                   >
+                    {/* No point value: vowels score nothing, so a "0" is noise
+                        on every tile rather than information. */}
                     <span className="absolute inset-0 flex items-center justify-center font-tile text-[25px] font-medium">
                       {letter}
-                    </span>
-                    <span className="absolute bottom-0.5 right-1 font-tile text-[9px] opacity-70">
-                      0
                     </span>
                     {selected && (
                       <span

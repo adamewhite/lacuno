@@ -64,26 +64,14 @@ describe('buildPhrasePuzzle', () => {
     expect(puzzle.racks[1].vowelSlots).toEqual([1, 2]); // f-E-E-t
   });
 
-  it('offers only the vowels the phrase uses', () => {
-    // A stack the player can never legally use is a false signal — and the
-    // absence of A, I and U here is real information about the answer.
-    expect(buildPhrasePuzzle('COLD FEET', V, 'p1').vowels).toEqual(['E', 'O']);
-    expect(buildPhrasePuzzle('BREAK THE ICE', V, 'p1').vowels).toEqual(['A', 'E', 'I']);
-  });
-
-  it('deduplicates vowels, since the supply is unlimited', () => {
-    // FEET has two Es; one E on offer is all the player needs.
-    expect(buildPhrasePuzzle('FEET', V, 'p1').vowels).toEqual(['E']);
-  });
-
-  it('lists vowels in A E I O U order, not order of appearance', () => {
-    expect(buildPhrasePuzzle('ONCE IN A BLUE MOON', V, 'p1').vowels).toEqual([
-      'A', 'E', 'I', 'O', 'U',
-    ]);
-  });
-
-  it('offers no vowels for a phrase without any', () => {
-    expect(buildPhrasePuzzle('MY GYM', V, 'p1').vowels).toEqual([]);
+  it('offers all five vowels regardless of the phrase', () => {
+    // Narrowing the piles to the vowels in play would tell the player which
+    // ones are absent — a strong hint. The piles stay uniform.
+    const all = ['A', 'E', 'I', 'O', 'U'];
+    expect(buildPhrasePuzzle('COLD FEET', V, 'p1').vowels).toEqual(all);
+    expect(buildPhrasePuzzle('BREAK THE ICE', V, 'p1').vowels).toEqual(all);
+    // Even a phrase with no vowels at all offers the full set.
+    expect(buildPhrasePuzzle('MY GYM', V, 'p1').vowels).toEqual(all);
   });
 
   it('counts letters without the spaces', () => {

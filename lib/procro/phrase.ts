@@ -43,12 +43,12 @@ export interface PhrasePuzzle {
   /** The scarce pool: every consonant in the phrase, sorted. */
   readonly consonants: readonly string[];
   /**
-   * Which vowels the phrase uses, sorted and deduplicated.
+   * The vowels on offer: always all five, in A E I O U order.
    *
-   * Supply is still UNLIMITED — this narrows the alphabet on offer, not the
-   * count. Showing only the vowels in play is real information (COLD FEET
-   * offers just O and E, so no A, I or U appears anywhere) and it makes the
-   * board honest: a stack the player can never legally use is a false signal.
+   * Supply is unlimited, and every vowel is offered whether or not the phrase
+   * uses it. Restricting the piles to the vowels actually present would leak
+   * which vowels are absent — a strong hint — so the piles stay uniform and
+   * the player has to work out which belong.
    */
   readonly vowels: readonly string[];
   /** Total letters, for display ("24 letters"). */
@@ -106,12 +106,9 @@ export function buildPhrasePuzzle(
 
   const consonants = [...letters].filter((letter) => !isVowelLetter(letter)).sort();
 
-  // Deduplicated: the supply is unlimited, so one of each is all the player
-  // needs. Sorted into the conventional A E I O U order rather than
-  // alphabetically-by-accident, since that is how people read a vowel set.
-  const VOWEL_ORDER = ['A', 'E', 'I', 'O', 'U'];
-  const present = new Set([...letters].filter(isVowelLetter));
-  const vowels = VOWEL_ORDER.filter((v) => present.has(v));
+  // All five, always. See the `vowels` field comment: narrowing the piles to
+  // the vowels the phrase uses would tell the player which ones are absent.
+  const vowels = ['A', 'E', 'I', 'O', 'U'];
 
   return {
     id,
