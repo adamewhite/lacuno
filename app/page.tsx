@@ -41,9 +41,9 @@ export default function Home() {
         count={puzzles.length}
         onNext={() => setIndex((i) => (i + 1) % puzzles.length)}
       />
-      <footer className="pb-4 pt-2 text-center text-[9px] uppercase tracking-[0.14em] opacity-40">
+      {/* <footer className="pb-4 pt-2 text-center text-[9px] uppercase tracking-[0.14em] opacity-40">
         from Vitura Studio · word list based on 12dicts by Alan Beale
-      </footer>
+      </footer> */}
     </main>
   );
 }

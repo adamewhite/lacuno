@@ -253,8 +253,17 @@ export default function PhraseBoard({
                   const locked = rack.locked[slot];
                   const focused = focusedRack === rackIndex && caret === slot;
 
+                  // The wrapper is sized to the tile exactly. Left implicit it
+                  // would size to an inline-block button, which sits on the
+                  // text baseline and leaves descender space beneath it — and
+                  // since the rings are inset from the wrapper, that phantom
+                  // space made them hang low and sit loose around the tile.
                   return (
-                    <div key={slot} className="relative">
+                    <div
+                      key={slot}
+                      className="relative block"
+                      style={{ width: tileWidth, height: tileHeight }}
+                    >
                       <button
                         data-drop={locked ? undefined : `${rackIndex}:${slot}`}
                         onClick={(e) => {
@@ -270,8 +279,6 @@ export default function PhraseBoard({
                           ? dragHandlers(content.tileId)
                           : {})}
                         style={{
-                          width: tileWidth,
-                          height: tileHeight,
                           touchAction:
                             content?.kind === 'consonant' && !locked ? 'none' : undefined,
                           background: content ? 'var(--tile-face)' : 'var(--slot-fill)',
@@ -281,7 +288,7 @@ export default function PhraseBoard({
                         aria-label={`Word ${rackIndex + 1}, letter ${slot + 1}${
                           content ? `, ${content.letter}` : ', empty'
                         }`}
-                        className="relative rounded"
+                        className="absolute inset-0 block rounded"
                       >
                         {content && (
                           <>
