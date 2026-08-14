@@ -146,6 +146,26 @@ export default function PhraseBoard({
     (r) => r.full && r.total === r.target,
   ).length;
 
+  /**
+   * Tile size, shrunk so the longest word still fits the shell.
+   *
+   * The design's 44px tile supports about 6 letters at 430px, but phrases like
+   * BUTTERFLIES IN YOUR STOMACH have an 11-letter word — at full size that rack
+   * is 543px and overflows. Scaling down keeps a long word on one line, which
+   * matters more than tile size: a word broken across rows stops reading as a
+   * word.
+   */
+  const longestWord = Math.max(...state.racks.map((r) => r.length));
+  const BOARD_WIDTH = 392; // 430 shell - 5px border x2 - 14px padding x2
+  const GAP = 5;
+  const tileWidth = Math.min(
+    44,
+    Math.floor((BOARD_WIDTH - (longestWord - 1) * GAP - 8) / longestWord),
+  );
+  const tileHeight = Math.round(tileWidth * (52 / 44));
+  const letterSize = Math.max(13, Math.round(tileWidth * (25 / 44)));
+  const valueSize = Math.max(8, Math.round(tileWidth * (11 / 44)));
+
   return (
     <div
       className={[
@@ -193,8 +213,11 @@ export default function PhraseBoard({
         </div>
       </div>
 
-      {/* Board field — racks wrap in sequence so the phrase reads in order. */}
-      <div className="flex flex-1 flex-wrap content-center justify-center gap-x-3 gap-y-5 px-3.5 pb-7 pt-6">
+      {/* Board field — racks wrap in sequence so the phrase reads in order.
+          Rows are LEFT-aligned rather than centred: with `justify-center` a
+          partial row floats in the middle, leaving a gap beside the first rack
+          and misaligning the rows below it. A phrase should read like text. */}
+      <div className="flex flex-1 flex-wrap content-center justify-start gap-x-3 gap-y-5 px-3.5 pb-7 pt-6">
         {state.racks.map((rack, rackIndex) => {
           const solved = rack.full && rack.total === rack.target;
 
@@ -248,6 +271,8 @@ export default function PhraseBoard({
                           ? dragHandlers(content.tileId)
                           : {})}
                         style={{
+                          width: tileWidth,
+                          height: tileHeight,
                           touchAction:
                             content?.kind === 'consonant' && !locked ? 'none' : undefined,
                           background: content ? 'var(--tile-face)' : 'var(--slot-fill)',
@@ -257,15 +282,21 @@ export default function PhraseBoard({
                         aria-label={`Word ${rackIndex + 1}, letter ${slot + 1}${
                           content ? `, ${content.letter}` : ', empty'
                         }`}
-                        className="relative h-[52px] w-[44px] rounded"
+                        className="relative rounded"
                       >
                         {content && (
                           <>
-                            <span className="absolute inset-0 flex items-center justify-center font-tile text-[25px] font-medium">
+                            <span
+                              className="absolute inset-0 flex items-center justify-center font-tile font-medium"
+                              style={{ fontSize: letterSize }}
+                            >
                               {content.letter}
                             </span>
                             {content.kind === 'consonant' && (
-                              <span className="absolute bottom-0.5 right-1 font-tile text-[11px] opacity-70">
+                              <span
+                                className="absolute bottom-0.5 right-1 font-tile opacity-70"
+                                style={{ fontSize: valueSize }}
+                              >
                                 {content.value}
                               </span>
                             )}
@@ -376,9 +407,11 @@ export default function PhraseBoard({
             </div>
           </div>
 
+          {/* min-height holds the rack's footprint as tiles leave it, so the
+              tray does not creep upward on every placement. */}
           <div
             data-drop="pool"
-            className="relative mt-2 flex flex-wrap justify-center gap-1.5 px-1 pb-2.5"
+            className="relative mt-2 flex min-h-[64px] flex-wrap content-start justify-center gap-1.5 px-1 pb-2.5"
           >
             <span className="absolute bottom-0 left-0 right-0 h-1 rounded-sm bg-ledge" />
             {state.pool.map((tile) => {
@@ -413,29 +446,27 @@ export default function PhraseBoard({
               );
             })}
             {state.pool.length === 0 && (
-              <span className="py-4 font-tile text-[11px] opacity-50">
+              <span className="self-center font-tile text-[11px] opacity-50">
                 all consonants placed
               </span>
             )}
           </div>
 
-          {state.won && (
-            <div
-              className="mt-1 rounded border-2 px-3 py-2.5 text-center"
-              style={{ borderColor: 'var(--solved)' }}
-            >
+          {/* One fixed-height row carries both the solved banner and the
+              revealed answer, so neither appearing nor disappearing shifts the
+              tray. Solving a puzzle should not make the board jump. */}
+          <div className="mt-1 flex h-[26px] items-center justify-center">
+            {state.won ? (
               <p
                 className="font-tile text-[13px] font-medium uppercase"
                 style={{ color: 'var(--solved)', letterSpacing: '0.1em' }}
               >
                 Solved · {state.moves} moves
               </p>
-            </div>
-          )}
-
-          {showAnswer && (
-            <p className="mt-1 font-tile text-[13px] opacity-80">{puzzle.phrase}</p>
-          )}
+            ) : showAnswer ? (
+              <p className="font-tile text-[13px] opacity-80">{puzzle.phrase}</p>
+            ) : null}
+          </div>
 
           <button
             onClick={onNext}
