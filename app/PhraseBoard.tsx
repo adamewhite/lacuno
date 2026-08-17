@@ -2,8 +2,16 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import Link from 'next/link';
+
 import { useDrag } from './useDrag';
 import { usePhrase, type PhrasePuzzleData } from './usePhrase';
+import {
+  DEFAULT_DIFFICULTY,
+  DIFFICULTIES,
+  DIFFICULTY_META,
+  type Difficulty,
+} from '../lib/procro/difficulty';
 
 /**
  * Phrase board, styled from the VWL DRP design handoff.
@@ -26,12 +34,15 @@ export default function PhraseBoard({
   puzzle,
   values,
   onNext,
+  difficulty = DEFAULT_DIFFICULTY,
 }: {
   puzzle: PhrasePuzzleData;
   values: readonly number[];
   onNext: () => void;
+  difficulty?: Difficulty;
 }) {
-  const [state, actions] = usePhrase(puzzle, values);
+  const [state, actions] = usePhrase(puzzle, values, difficulty);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const [focusedRack, setFocusedRack] = useState<number | null>(null);
   const [caret, setCaret] = useState(0);
@@ -372,7 +383,9 @@ export default function PhraseBoard({
         {/* Menu placeholder. The solved counter and reset control lived here;
             both are reachable from a menu once one exists. */}
         <button
+          onClick={() => setMenuOpen((open) => !open)}
           aria-label="Menu"
+          aria-expanded={menuOpen}
           className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(254,242,160,0.16)]"
         >
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
@@ -392,6 +405,43 @@ export default function PhraseBoard({
       </div>
 
       </div>
+
+      {/* Difficulty menu. Overlaid rather than inline so opening it costs the
+          board no height. */}
+      {menuOpen && (
+        <div className="relative z-40">
+          <div className="absolute left-1.5 right-1.5 top-0 rounded-b-md border-x border-b border-frame bg-tray p-3 shadow-xl">
+            <p
+              className="mb-2 text-[10px] font-semibold uppercase opacity-60"
+              style={{ letterSpacing: '0.14em' }}
+            >
+              Vowel help
+            </p>
+            <div className="flex flex-col gap-1">
+              {DIFFICULTIES.map((slug) => {
+                const meta = DIFFICULTY_META[slug];
+                const current = slug === difficulty;
+                return (
+                  <Link
+                    key={slug}
+                    href={`/${slug}`}
+                    onClick={() => setMenuOpen(false)}
+                    className={[
+                      'flex items-baseline justify-between gap-3 rounded px-2 py-1.5 transition-colors',
+                      current
+                        ? 'bg-frame text-frame-text'
+                        : 'hover:bg-[rgba(254,242,160,0.1)]',
+                    ].join(' ')}
+                  >
+                    <span className="text-[13px] font-semibold">{meta.label}</span>
+                    <span className="text-[10px] opacity-70">{meta.blurb}</span>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Board field — racks wrap in sequence so the phrase reads in order,
           each row centred. */}
@@ -543,11 +593,12 @@ export default function PhraseBoard({
                           style={{ inset: '-2px', border: '2px solid var(--accent)' }}
                         />
                       )}
-                      {/* A hint's ring marks a letter the player was given. Once
-                          the whole answer is revealed every slot is "given", so
-                          ringing them all would be noise — and would read as
-                          "correct" on a puzzle that was not solved. */}
-                      {locked && !state.revealed && (
+                      {/* A hint's ring marks a letter the player asked for.
+                          Vowels the difficulty gives away are not hints, so
+                          they carry no ring — and once the whole answer is
+                          revealed, ringing every slot would be noise and would
+                          read as "correct" on a puzzle that was not solved. */}
+                      {locked && !state.revealed && content?.kind !== 'vowel' && (
                         <span
                           className="pointer-events-none absolute rounded-[5px]"
                           style={{ inset: '-2px', border: '2px solid var(--solved)' }}

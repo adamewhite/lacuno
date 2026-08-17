@@ -48,8 +48,9 @@ describe('puzzle library', () => {
 
   it('carries the categories the board displays', () => {
     const categories = new Set(puzzles.map((p) => p.category));
-    expect(categories.has('Places')).toBe(true);
-    expect(categories.has('People')).toBe(true);
+    // Singular: each puzzle is one place or one person.
+    expect(categories.has('Place')).toBe(true);
+    expect(categories.has('Person')).toBe(true);
   });
 
   it('has no duplicate phrases', () => {

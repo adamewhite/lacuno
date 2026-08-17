@@ -7,7 +7,7 @@
 # to the kind of answer:
 #
 #     Idiom | Cold feet
-#     People | Marie Curie
+#     Person | Marie Curie
 #     Cold feet                 <- no category given, shown as "Phrase"
 #
 # Each phrase becomes one puzzle: one rack per word, in order. The player is
@@ -46,44 +46,44 @@ Idiom | A blessing in disguise
 Idiom | Burning the midnight oil
 Idiom | Butterflies in your stomach
 
-Places | Paris France
-Places | Farmers Market
-Places | Times Square
-Places | Golden Gate Bridge
-Places | Grand Canyon
-Places | New York City
-Places | Niagara Falls
-Places | Mount Everest
-Places | Sahara Desert
-Places | Buenos Aires
-Places | Machu Picchu
-Places | Great Barrier Reef
-Places | Rocky Mountains
-Places | Death Valley
-Places | Central Park
-Places | Amazon River
-Places | Hong Kong
-Places | Cape Town
-Places | Costa Rica
-Places | Silicon Valley
+Place | Paris France
+Place | Farmers Market
+Place | Times Square
+Place | Golden Gate Bridge
+Place | Grand Canyon
+Place | New York City
+Place | Niagara Falls
+Place | Mount Everest
+Place | Sahara Desert
+Place | Buenos Aires
+Place | Machu Picchu
+Place | Great Barrier Reef
+Place | Rocky Mountains
+Place | Death Valley
+Place | Central Park
+Place | Amazon River
+Place | Hong Kong
+Place | Cape Town
+Place | Costa Rica
+Place | Silicon Valley
 
-People | Ronald Reagan
-People | Harry Potter
-People | Marie Curie
-People | Sherlock Holmes
-People | Amelia Earhart
-People | Nelson Mandela
-People | Rosa Parks
-People | Walt Disney
-People | Mark Twain
-People | Jane Austen
-People | Vincent Van Gogh
-People | Serena Williams
-People | Neil Armstrong
-People | Frida Kahlo
-People | Dolly Parton
-People | Julia Child
-People | Steve Jobs
-People | Muhammad Ali
-People | Emily Dickinson
-People | Charlie Chaplin
+Person | Ronald Reagan
+Person | Harry Potter
+Person | Marie Curie
+Person | Sherlock Holmes
+Person | Amelia Earhart
+Person | Nelson Mandela
+Person | Rosa Parks
+Person | Walt Disney
+Person | Mark Twain
+Person | Jane Austen
+Person | Vincent Van Gogh
+Person | Serena Williams
+Person | Neil Armstrong
+Person | Frida Kahlo
+Person | Dolly Parton
+Person | Julia Child
+Person | Steve Jobs
+Person | Muhammad Ali
+Person | Emily Dickinson
+Person | Charlie Chaplin

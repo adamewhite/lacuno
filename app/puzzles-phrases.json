@@ -1078,7 +1078,7 @@
     },
     {
       "id": "f10",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -1167,7 +1167,7 @@
     },
     {
       "id": "f11",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 7,
@@ -1268,7 +1268,7 @@
     },
     {
       "id": "f12",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -1356,7 +1356,7 @@
     },
     {
       "id": "f13",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 6,
@@ -1477,7 +1477,7 @@
     },
     {
       "id": "f14",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -1567,7 +1567,7 @@
     },
     {
       "id": "f15",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 3,
@@ -1661,7 +1661,7 @@
     },
     {
       "id": "f16",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 7,
@@ -1755,7 +1755,7 @@
     },
     {
       "id": "f17",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -1849,7 +1849,7 @@
     },
     {
       "id": "f18",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 6,
@@ -1943,7 +1943,7 @@
     },
     {
       "id": "f19",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 6,
@@ -2030,7 +2030,7 @@
     },
     {
       "id": "f20",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -2119,7 +2119,7 @@
     },
     {
       "id": "f21",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -2239,7 +2239,7 @@
     },
     {
       "id": "f22",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -2345,7 +2345,7 @@
     },
     {
       "id": "f23",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -2434,7 +2434,7 @@
     },
     {
       "id": "f24",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 7,
@@ -2524,7 +2524,7 @@
     },
     {
       "id": "f25",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 6,
@@ -2612,7 +2612,7 @@
     },
     {
       "id": "f26",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 4,
@@ -2685,7 +2685,7 @@
     },
     {
       "id": "f27",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 4,
@@ -2757,7 +2757,7 @@
     },
     {
       "id": "f28",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 5,
@@ -2834,7 +2834,7 @@
     },
     {
       "id": "f29",
-      "category": "Places",
+      "category": "Place",
       "racks": [
         {
           "length": 7,
@@ -2934,7 +2934,7 @@
     },
     {
       "id": "f30",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 6,
@@ -3028,7 +3028,7 @@
     },
     {
       "id": "f31",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 5,
@@ -3118,7 +3118,7 @@
     },
     {
       "id": "f32",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 5,
@@ -3199,7 +3199,7 @@
     },
     {
       "id": "f33",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 8,
@@ -3306,7 +3306,7 @@
     },
     {
       "id": "f34",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 6,
@@ -3404,7 +3404,7 @@
     },
     {
       "id": "f35",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 6,
@@ -3504,7 +3504,7 @@
     },
     {
       "id": "f36",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 4,
@@ -3582,7 +3582,7 @@
     },
     {
       "id": "f37",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 4,
@@ -3666,7 +3666,7 @@
     },
     {
       "id": "f38",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 4,
@@ -3744,7 +3744,7 @@
     },
     {
       "id": "f39",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 4,
@@ -3826,7 +3826,7 @@
     },
     {
       "id": "f40",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 7,
@@ -3937,7 +3937,7 @@
     },
     {
       "id": "f41",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 6,
@@ -4042,7 +4042,7 @@
     },
     {
       "id": "f42",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 4,
@@ -4143,7 +4143,7 @@
     },
     {
       "id": "f43",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 5,
@@ -4226,7 +4226,7 @@
     },
     {
       "id": "f44",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 5,
@@ -4316,7 +4316,7 @@
     },
     {
       "id": "f45",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 5,
@@ -4399,7 +4399,7 @@
     },
     {
       "id": "f46",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 5,
@@ -4477,7 +4477,7 @@
     },
     {
       "id": "f47",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 8,
@@ -4565,7 +4565,7 @@
     },
     {
       "id": "f48",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 5,
@@ -4671,7 +4671,7 @@
     },
     {
       "id": "f49",
-      "category": "People",
+      "category": "Person",
       "racks": [
         {
           "length": 7,

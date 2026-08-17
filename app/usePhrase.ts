@@ -2,6 +2,12 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import {
+  DEFAULT_DIFFICULTY,
+  planVowels,
+  type Difficulty,
+} from '../lib/procro/difficulty';
+
 export interface PhrasePuzzleData {
   readonly id: string;
   /** Shown under the header as a clue to the kind of answer. */
@@ -90,6 +96,7 @@ export interface PhraseActions {
 export function usePhrase(
   puzzle: PhrasePuzzleData,
   values: readonly number[],
+  difficulty: Difficulty = DEFAULT_DIFFICULTY,
 ): [PhraseState, PhraseActions] {
   const tiles = useMemo<ConsonantTile[]>(
     () =>
@@ -101,22 +108,40 @@ export function usePhrase(
     [puzzle, values],
   );
 
-  /** contents[rack][slot] — the board itself. */
-  const [contents, setContents] = useState<SlotContent[][]>(() =>
-    puzzle.racks.map((r) => new Array<SlotContent>(r.length).fill(null)),
+  /**
+   * Vowels the level gives away, and the piles it leaves live. Recomputed when
+   * the puzzle or the level changes.
+   */
+  const vowelPlan = useMemo(
+    () => planVowels(puzzle.phrase.split(' '), difficulty),
+    [puzzle, difficulty],
   );
+
+  /** contents[rack][slot] — the board itself. */
+  const initialContents = useCallback(
+    () =>
+      puzzle.racks.map((rack, rackIndex) =>
+        Array.from({ length: rack.length }, (_, slot): SlotContent => {
+          const given = vowelPlan.prefilled.get(`${rackIndex}:${slot}`);
+          return given ? { kind: 'vowel', letter: given } : null;
+        }),
+      ),
+    [puzzle, vowelPlan],
+  );
+
+  const [contents, setContents] = useState<SlotContent[][]>(initialContents);
   const [selected, setSelected] = useState<PhraseState['selected']>(null);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [moves, setMoves] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    setContents(puzzle.racks.map((r) => new Array<SlotContent>(r.length).fill(null)));
+    setContents(initialContents());
     setSelected(null);
     setHintsUsed(0);
     setMoves(0);
     setRevealed(false);
-  }, [puzzle]);
+  }, [puzzle, initialContents]);
 
   /** Slots fixed by a revealed hint — or every slot, once the answer is shown. */
   const lockedSlots = useMemo(() => {
@@ -127,11 +152,12 @@ export function usePhrase(
       });
       return set;
     }
+    for (const key of vowelPlan.prefilled.keys()) set.add(key);
     for (const hint of puzzle.hints.slice(0, hintsUsed)) {
       set.add(`${hint.rackIndex}:${hint.slot}`);
     }
     return set;
-  }, [puzzle, hintsUsed, revealed]);
+  }, [puzzle, hintsUsed, revealed, vowelPlan]);
 
   const usedTileIds = useMemo(() => {
     const set = new Set<number>();
@@ -246,9 +272,10 @@ export function usePhrase(
       if (target < 0) return false;
 
       if ((ALL_VOWELS as readonly string[]).includes(upper)) {
-        // Every vowel is placeable, whether or not the phrase uses it —
-        // rejecting an unused vowel would reveal that it is absent. A wrong
-        // vowel simply leaves the rack unsolved.
+        // Only vowels this level offers. At the hardest level that is all
+        // five, so a wrong vowel is accepted and simply leaves the rack
+        // unsolved — rejecting it would reveal that it is absent.
+        if (!vowelPlan.enabled.has(upper)) return false;
         placeVowel(upper, rack, target);
         return true;
       }
@@ -260,7 +287,7 @@ export function usePhrase(
       placeConsonant(free.id, rack, target);
       return true;
     },
-    [puzzle, contents, lockedSlots, tiles, usedTileIds, placeVowel, placeConsonant],
+    [puzzle, contents, lockedSlots, tiles, usedTileIds, placeVowel, placeConsonant, vowelPlan],
   );
 
   const clearSlot = useCallback(
@@ -399,7 +426,7 @@ export function usePhrase(
       hintsAvailable: puzzle.hints.length,
       moves,
       revealed,
-      vowels: puzzle.vowels,
+      vowels: puzzle.vowels.filter((v) => vowelPlan.enabled.has(v)),
     },
     {
       selectConsonant,
