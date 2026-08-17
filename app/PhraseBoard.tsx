@@ -213,6 +213,8 @@ export default function PhraseBoard({
   const handTileHeight = Math.round(handTileWidth * (52 / 44));
   const handLetterSize = Math.max(13, Math.round(handTileWidth * (25 / 44)));
   const handValueSize = Math.max(8, Math.round(handTileWidth * (11 / 44)));
+  /** How far each pile layer peeks out behind the face. */
+  const pileOffset = Math.max(2, Math.round(handTileWidth * (2 / 44)));
 
   return (
     <div
@@ -391,10 +393,35 @@ export default function PhraseBoard({
               const selected =
                 state.selected?.kind === 'vowel' && state.selected.letter === letter;
               return (
-                <div key={letter} className="relative h-[52px] w-[52px]">
-                  {/* Stacked layers read as an unlimited pile. */}
-                  <span className="absolute left-1 top-[5px] h-12 w-12 rounded-[3px] bg-pile-back" />
-                  <span className="absolute left-0.5 top-0.5 h-12 w-12 rounded-[3px] bg-pile-mid" />
+                <div
+                  key={letter}
+                  className="relative"
+                  style={{
+                    width: handTileWidth + pileOffset * 2,
+                    height: handTileHeight + pileOffset * 2,
+                  }}
+                >
+                  {/* Two offset layers behind the face read as a pile. Their
+                      size and offset both scale with the tile — hardcoded, they
+                      stuck out past a shrunken face and smeared. */}
+                  <span
+                    className="absolute rounded-[3px] bg-pile-back"
+                    style={{
+                      left: pileOffset * 2,
+                      top: pileOffset * 2,
+                      width: handTileWidth,
+                      height: handTileHeight,
+                    }}
+                  />
+                  <span
+                    className="absolute rounded-[3px] bg-pile-mid"
+                    style={{
+                      left: pileOffset,
+                      top: pileOffset,
+                      width: handTileWidth,
+                      height: handTileHeight,
+                    }}
+                  />
                   <button
                     onClick={() => {
                       if (justDragged.current) return;
