@@ -454,6 +454,14 @@ export default function PhraseBoard({
                 );
               })}
             </div>
+
+            <Link
+              href="/how-to-play"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 block rounded border-[1.5px] border-accent px-2 py-1.5 text-center text-[12px] font-semibold text-accent-text"
+            >
+              How to play
+            </Link>
           </div>
         </div>
       )}

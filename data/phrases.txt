@@ -45,7 +45,7 @@ Idiom | Once in a blue moon
 Idiom | Beat around the bush
 Idiom | A blessing in disguise
 Idiom | Burning the midnight oil
-Idiom | Butterflies in your stomach
+Idiom | Bite the bullet
 
 Place | Paris France
 Place | Farmers Market
@@ -88,3 +88,45 @@ Person | Steve Jobs
 Person | Muhammad Ali
 Person | Emily Dickinson
 Person | Charlie Chaplin
+
+Animal | Polar Bear
+Animal | Bald Eagle
+Animal | Praying Mantis
+Animal | Sea Turtle
+Animal | King Cobra
+Animal | Monarch Butterfly
+Animal | Grizzly Bear
+Animal | Snow Leopard
+Animal | Hermit Crab
+Animal | Great White Shark
+Object | Chess Board
+Object | Rubber Duck
+Object | Pocket Watch
+Object | Ferris Wheel
+Object | Rocking Chair
+Object | Paper Airplane
+Object | Fire Escape
+Object | Coffee Table
+Object | Message Bottle
+Object | Weather Vane
+
+Movie | Jurassic Park
+Movie | The Godfather
+Movie | Star Wars
+Movie | Home Alone
+Movie | Pulp Fiction
+Movie | Jaws
+Movie | The Sound Of Music
+Movie | Toy Story
+Movie | The Matrix
+Movie | Forrest Gump
+Movie | Rocky
+Movie | Titanic
+Movie | Back To The Future
+Movie | Finding Nemo
+Movie | Groundhog Day
+Movie | The Lion King
+Movie | Mary Poppins
+Movie | Citizen Kane
+Movie | Blade Runner
+Movie | Top Gun

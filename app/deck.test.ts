@@ -20,19 +20,21 @@ describe('puzzle deck', () => {
   it('deals every puzzle exactly once', () => {
     // The point of a deck over independent random draws: no repeats, and
     // nothing is unreachable.
+    const count = (phraseData.puzzles as unknown[]).length;
     for (let trial = 0; trial < 20; trial++) {
-      const deck = shuffle(49);
-      expect(new Set(deck).size).toBe(49);
+      const deck = shuffle(count);
+      expect(new Set(deck).size).toBe(count);
       expect(Math.min(...deck)).toBe(0);
-      expect(Math.max(...deck)).toBe(48);
+      expect(Math.max(...deck)).toBe(count - 1);
     }
   });
 
   it('varies its order between shuffles', () => {
     // A deck that always dealt the same order would defeat the purpose. With
-    // 49 puzzles the odds of two shuffles matching are vanishing.
-    const first = shuffle(49).join();
-    const differs = Array.from({ length: 10 }, () => shuffle(49).join()).some(
+    // this many puzzles the odds of two shuffles matching are vanishing.
+    const count = (phraseData.puzzles as unknown[]).length;
+    const first = shuffle(count).join();
+    const differs = Array.from({ length: 10 }, () => shuffle(count).join()).some(
       (order) => order !== first,
     );
     expect(differs).toBe(true);
@@ -48,9 +50,11 @@ describe('puzzle library', () => {
 
   it('carries the categories the board displays', () => {
     const categories = new Set(puzzles.map((p) => p.category));
-    // Singular: each puzzle is one place or one person.
-    expect(categories.has('Place')).toBe(true);
-    expect(categories.has('Person')).toBe(true);
+    // Singular, and specific: "Animal" and "Object" say more to a player than
+    // a catch-all "Thing" would.
+    for (const c of ['Idiom', 'Place', 'Person', 'Animal', 'Object', 'Movie']) {
+      expect(categories.has(c)).toBe(true);
+    }
   });
 
   it('has no duplicate phrases', () => {
