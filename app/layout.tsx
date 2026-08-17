@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Arvo, DM_Mono } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 
-/** UI type from the design handoff. */
-const arvo = Arvo({
-  variable: "--font-arvo",
+/**
+ * Outfit for everything — UI and tiles alike.
+ *
+ * The design handoff paired Arvo with DM Mono. A single family keeps the board
+ * quieter; the weight range covers the range of jobs, from 10px uppercase
+ * labels to 25px tile letters.
+ */
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-/** Tiles and numerals. */
-const dmMono = DM_Mono({
-  variable: "--font-dm-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -28,9 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${arvo.variable} ${dmMono.variable} antialiased`}>
-        {children}
-      </body>
+      <body className={`${outfit.variable} antialiased`}>{children}</body>
     </html>
   );
 }

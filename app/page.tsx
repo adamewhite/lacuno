@@ -38,7 +38,6 @@ export default function Home() {
         puzzle={puzzles[safeIndex]}
         values={values}
         index={safeIndex}
-        count={puzzles.length}
         onNext={() => setIndex((i) => (i + 1) % puzzles.length)}
       />
       {/* <footer className="pb-4 pt-2 text-center text-[9px] uppercase tracking-[0.14em] opacity-40">

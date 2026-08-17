@@ -1,36 +1,40 @@
 @import "tailwindcss";
 
 /**
- * Design tokens from the VWL DRP handoff.
+ * Palette: deep indigo → plum → orange → gold.
  *
- * The palette derives from a physical Scrabble board: cream tiles, oxblood
- * frame, slate-blue field. Colours, type and sizing here are the handoff's
- * exact values — only the gameplay differs from that prototype.
+ *   #1e104e  darkest — the page behind the shell
+ *   #452e5a  plum    — mid surfaces
+ *   #ff653f  orange  — frame and accent
+ *   #ffc85c  gold    — tile faces and highlights
+ *
+ * Layout tokens (sizes, radii, spacing) still come from the VWL DRP handoff;
+ * only the colours have been replaced.
  */
 :root {
-  --page: #1a242e;
-  --shell: #22303c;
-  --frame: #8e1c19;
-  --frame-text: #f4e8d2;
-  --tray: #101922;
-  --text: #e6ecf1;
+  --page: #150b38;    /* a shade under the darkest, so the shell reads as raised */
+  --shell: #1e104e;
+  --frame: #ff653f;
+  --frame-text: #1e104e;   /* dark on orange: the frame is bright, so its text is not */
+  --tray: #150b38;
+  --text: #ffc85c;
 
-  --tile-face: #dccfb2;      /* tiles on the board */
-  --tile-face-hand: #ece0c4; /* tiles in hand and piles */
-  --tile-text: #141d25;
+  --tile-face: #ffc85c;       /* tiles on the board */
+  --tile-face-hand: #ffd88a;  /* hand and piles, a step lighter so they read as "available" */
+  --tile-text: #1e104e;
 
-  --slot-fill: #1d2833;
-  --slot-border: #4a5f70;
-  --spent-fill: #1a2530;
-  --spent-border: #33455260;
+  --slot-fill: #452e5a;
+  --slot-border: #6b5080;
+  --spent-fill: #2a1a52;
+  --spent-border: #452e5a;
 
-  --ledge: #3a4d5c;
-  --accent: #e0604d;         /* selection and placement rings */
-  --accent-text: #ef8f7d;
-  --solved: #4fbf85;
+  --ledge: #452e5a;
+  --accent: #ff653f;          /* selection and placement rings */
+  --accent-text: #ff8a6b;
+  --solved: #ffc85c;          /* gold reads as success against the indigo */
 
-  --pile-mid: #3b4c59;
-  --pile-back: #26333d;
+  --pile-mid: #452e5a;
+  --pile-back: #2a1a52;
 }
 
 @theme inline {
@@ -51,15 +55,16 @@
   --color-solved: var(--solved);
   --color-pile-mid: var(--pile-mid);
   --color-pile-back: var(--pile-back);
-  --font-display: Arvo, Georgia, serif;
-  --font-tile: "DM Mono", ui-monospace, monospace;
+  /* One family throughout — UI labels and tile letters alike. */
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  --font-tile: var(--font-outfit), system-ui, sans-serif;
 }
 
 body {
   margin: 0;
   background: var(--page);
   color: var(--text);
-  font-family: Arvo, Georgia, serif;
+  font-family: var(--font-outfit), system-ui, sans-serif;
 }
 
 button {

@@ -27,13 +27,11 @@ export default function PhraseBoard({
   values,
   onNext,
   index,
-  count,
 }: {
   puzzle: PhrasePuzzleData;
   values: readonly number[];
   onNext: () => void;
   index: number;
-  count: number;
 }) {
   const [state, actions] = usePhrase(puzzle, values);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -142,9 +140,8 @@ export default function PhraseBoard({
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [focusedRack, caret, actions, state.racks]);
 
-  const solvedCount = state.racks.filter(
-    (r) => r.full && r.total === r.target,
-  ).length;
+  /** Next is available once the puzzle is finished, either way. */
+  const canAdvance = state.won || showAnswer;
 
   /**
    * Tile size, shrunk so the longest word still fits the shell.
@@ -183,34 +180,17 @@ export default function PhraseBoard({
           >
             VWL DRP
           </div>
-          <div
-            className="mt-[3px] text-[10px] uppercase opacity-70"
-            style={{ letterSpacing: '0.14em' }}
-          >
-            No. {index + 1} · Fill the racks
-          </div>
         </div>
-        <div className="flex items-center gap-2.5">
-          <div className="text-right">
-            <div
-              className="text-[9px] font-semibold uppercase opacity-70"
-              style={{ letterSpacing: '0.12em' }}
-            >
-              Solved
-            </div>
-            <div className="text-[18px] font-bold leading-[1.2] tabular-nums">
-              {solvedCount}
-              <span className="text-[11px] opacity-70">/{state.racks.length}</span>
-            </div>
-          </div>
-          <button
-            onClick={actions.clearAll}
-            aria-label="Reset puzzle"
-            className="flex h-[34px] w-[34px] items-center justify-center rounded-md border-[1.5px] border-frame-text bg-transparent text-[16px] leading-none text-frame-text transition-colors hover:bg-[rgba(244,232,210,0.16)]"
-          >
-            ↺
-          </button>
-        </div>
+        {/* Menu placeholder. The solved counter and reset control lived here;
+            both are reachable from a menu once one exists. */}
+        <button
+          aria-label="Menu"
+          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(30,16,78,0.16)]"
+        >
+          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
+          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
+          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
+        </button>
       </div>
 
       {/* Board field — racks wrap in sequence so the phrase reads in order,
@@ -401,15 +381,26 @@ export default function PhraseBoard({
               <button
                 onClick={actions.revealHint}
                 disabled={state.hintsUsed >= state.hintsAvailable}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,74,61,0.16)] disabled:opacity-40"
+                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(255,101,63,0.16)] disabled:opacity-40"
               >
                 Hint
               </button>
               <button
-                onClick={() => setShowAnswer((s) => !s)}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,74,61,0.16)]"
+                onClick={() => setShowAnswer(true)}
+                disabled={state.won || showAnswer}
+                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(255,101,63,0.16)] disabled:opacity-40"
               >
-                {showAnswer ? 'Hide' : 'Give up'}
+                Show Solution
+              </button>
+              {/* Gated: a puzzle has to be finished — solved or conceded —
+                  before moving on, so Next is never an accidental skip. */}
+              <button
+                onClick={onNext}
+                disabled={!canAdvance}
+                title={canAdvance ? undefined : 'Solve it or show the solution first'}
+                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(255,101,63,0.16)] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Next Puzzle
               </button>
             </div>
           </div>
@@ -475,13 +466,6 @@ export default function PhraseBoard({
             ) : null}
           </div>
 
-          <button
-            onClick={onNext}
-            className="mt-1 w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90"
-            style={{ letterSpacing: '0.12em' }}
-          >
-            Next puzzle · {index + 1}/{count}
-          </button>
         </div>
       </div>
 
