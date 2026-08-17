@@ -1,40 +1,40 @@
 @import "tailwindcss";
 
 /**
- * Palette: deep indigo → plum → orange → gold.
+ * Palette: near-black → deep green → teal → periwinkle.
  *
- *   #1e104e  darkest — the page behind the shell
- *   #452e5a  plum    — mid surfaces
- *   #ff653f  orange  — frame and accent
- *   #ffc85c  gold    — tile faces and highlights
+ *   #0b0909  near-black — the page behind the shell
+ *   #2e4540  deep green — mid surfaces
+ *   #408175  teal       — frame and accent
+ *   #b5b9f0  periwinkle — tile faces and highlights
  *
  * Layout tokens (sizes, radii, spacing) still come from the VWL DRP handoff;
  * only the colours have been replaced.
  */
 :root {
-  --page: #150b38;    /* a shade under the darkest, so the shell reads as raised */
-  --shell: #1e104e;
-  --frame: #ff653f;
-  --frame-text: #1e104e;   /* dark on orange: the frame is bright, so its text is not */
-  --tray: #150b38;
-  --text: #ffc85c;
+  --page: #0b0909;
+  --shell: #14201d;   /* between the near-black and the green, so the shell reads as raised */
+  --frame: #408175;
+  --frame-text: #0b0909;   /* dark on teal: the frame is the bright band, so its text is not */
+  --tray: #0b0909;
+  --text: #b5b9f0;
 
-  --tile-face: #ffc85c;       /* tiles on the board */
-  --tile-face-hand: #ffd88a;  /* hand and piles, a step lighter so they read as "available" */
-  --tile-text: #1e104e;
+  --tile-face: #b5b9f0;       /* tiles on the board */
+  --tile-face-hand: #cfd2f6;  /* hand and piles, a step lighter so they read as "available" */
+  --tile-text: #0b0909;
 
-  --slot-fill: #452e5a;
-  --slot-border: #6b5080;
-  --spent-fill: #2a1a52;
-  --spent-border: #452e5a;
+  --slot-fill: #2e4540;
+  --slot-border: #47645d;
+  --spent-fill: #1b2926;
+  --spent-border: #2e4540;
 
-  --ledge: #452e5a;
-  --accent: #ff653f;          /* selection and placement rings */
-  --accent-text: #ff8a6b;
-  --solved: #ffc85c;          /* gold reads as success against the indigo */
+  --ledge: #2e4540;
+  --accent: #408175;          /* selection and placement rings */
+  --accent-text: #6fb3a5;
+  --solved: #b5b9f0;          /* periwinkle reads as success against the green */
 
-  --pile-mid: #452e5a;
-  --pile-back: #2a1a52;
+  --pile-mid: #2e4540;
+  --pile-back: #1b2926;
 }
 
 @theme inline {

@@ -185,7 +185,7 @@ export default function PhraseBoard({
             both are reachable from a menu once one exists. */}
         <button
           aria-label="Menu"
-          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(30,16,78,0.16)]"
+          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(11,9,9,0.16)]"
         >
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
@@ -381,26 +381,16 @@ export default function PhraseBoard({
               <button
                 onClick={actions.revealHint}
                 disabled={state.hintsUsed >= state.hintsAvailable}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(255,101,63,0.16)] disabled:opacity-40"
+                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(64,129,117,0.16)] disabled:opacity-40"
               >
                 Hint
               </button>
               <button
                 onClick={() => setShowAnswer(true)}
                 disabled={state.won || showAnswer}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(255,101,63,0.16)] disabled:opacity-40"
+                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(64,129,117,0.16)] disabled:opacity-40"
               >
-                Show Solution
-              </button>
-              {/* Gated: a puzzle has to be finished — solved or conceded —
-                  before moving on, so Next is never an accidental skip. */}
-              <button
-                onClick={onNext}
-                disabled={!canAdvance}
-                title={canAdvance ? undefined : 'Solve it or show the solution first'}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(255,101,63,0.16)] disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Next Puzzle
+                Give Up
               </button>
             </div>
           </div>
@@ -465,6 +455,18 @@ export default function PhraseBoard({
               <p className="font-tile text-[13px] opacity-80">{puzzle.phrase}</p>
             ) : null}
           </div>
+
+          {/* Gated: a puzzle has to be finished — solved or given up on —
+              before moving on, so Next is never an accidental skip. */}
+          <button
+            onClick={onNext}
+            disabled={!canAdvance}
+            title={canAdvance ? undefined : 'Solve it or give up first'}
+            className="mt-1 w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
+            style={{ letterSpacing: '0.12em' }}
+          >
+            Next Puzzle
+          </button>
 
         </div>
       </div>
