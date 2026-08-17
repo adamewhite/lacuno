@@ -430,7 +430,7 @@ export default function PhraseBoard({
               className="mb-2 text-[10px] font-semibold uppercase opacity-60"
               style={{ letterSpacing: '0.14em' }}
             >
-              Vowel help
+              Difficulty level
             </p>
             <div className="flex flex-col gap-1">
               {DIFFICULTIES.map((slug) => {
