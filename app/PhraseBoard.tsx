@@ -334,10 +334,20 @@ export default function PhraseBoard({
   const handRowWidth = handPerRow * handTileWidth + (handPerRow - 1) * HAND_GAP;
   const handReservedHeight =
     handRowCount * handTileHeight + (handRowCount - 1) * HAND_GAP + 9;
+
+  /**
+   * Vowel pile size. The piles shrink when the rack needs two rows, giving
+   * that height back to the board — five piles on one line have room to spare,
+   * whereas a two-row rack is what actually squeezes the layout.
+   */
+  const pileTileWidth =
+    handRowCount > 1 ? Math.max(22, Math.round(handTileWidth * 0.8)) : handTileWidth;
+  const pileTileHeight = Math.round(pileTileWidth * (52 / 44));
+  const pileLetterSize = Math.max(13, Math.round(pileTileWidth * (25 / 44)));
   const handLetterSize = Math.max(13, Math.round(handTileWidth * (25 / 44)));
   const handValueSize = Math.max(8, Math.round(handTileWidth * (11 / 44)));
   /** How far each pile layer peeks out behind the face. */
-  const pileOffset = Math.max(2, Math.round(handTileWidth * (2 / 44)));
+  const pileOffset = 2;
 
   return (
     <div
@@ -353,7 +363,7 @@ export default function PhraseBoard({
       <div className="mx-1.5 mt-1.5 flex shrink-0 items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
         <div>
           <div
-            className="font-tile text-[23px] font-medium leading-[1.1]"
+            className="font-tile text-[28px] font-normal leading-[1.1]"
             style={{ letterSpacing: '0.14em' }}
           >
             VWL DRP
@@ -561,8 +571,8 @@ export default function PhraseBoard({
                   key={letter}
                   className="relative"
                   style={{
-                    width: handTileWidth + pileOffset * 2,
-                    height: handTileHeight + pileOffset * 2,
+                    width: pileTileWidth + pileOffset * 2,
+                    height: pileTileHeight + pileOffset * 2,
                   }}
                 >
                   {/* Two offset layers behind the face read as a pile. Their
@@ -573,8 +583,8 @@ export default function PhraseBoard({
                     style={{
                       left: pileOffset * 2,
                       top: pileOffset * 2,
-                      width: handTileWidth,
-                      height: handTileHeight,
+                      width: pileTileWidth,
+                      height: pileTileHeight,
                     }}
                   />
                   <span
@@ -582,8 +592,8 @@ export default function PhraseBoard({
                     style={{
                       left: pileOffset,
                       top: pileOffset,
-                      width: handTileWidth,
-                      height: handTileHeight,
+                      width: pileTileWidth,
+                      height: pileTileHeight,
                     }}
                   />
                   <button
@@ -595,8 +605,8 @@ export default function PhraseBoard({
                     aria-pressed={selected}
                     aria-label={`Vowel ${letter}`}
                     style={{
-                      width: handTileWidth,
-                      height: handTileHeight,
+                      width: pileTileWidth,
+                      height: pileTileHeight,
                       touchAction: 'none',
                     }}
                     className="absolute left-0 top-0 rounded-[3px] bg-tile-face-hand text-tile-text"
@@ -605,7 +615,7 @@ export default function PhraseBoard({
                         on every tile rather than information. */}
                     <span
                       className="absolute inset-0 flex items-center justify-center font-tile font-medium"
-                      style={{ fontSize: handLetterSize }}
+                      style={{ fontSize: pileLetterSize }}
                     >
                       {letter}
                     </span>
