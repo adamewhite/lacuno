@@ -16,10 +16,10 @@ import {
   parsePhraseLine,
   phraseHints,
 } from '../lib/procro/phrase';
-import { FLAT_3 } from '../lib/valuation/consonant-schemes';
+import { TILE_VALUES } from '../lib/procro/letter-values';
 
 const ROOT = join(import.meta.dirname, '..');
-const VALUES = FLAT_3;
+const VALUES = TILE_VALUES;
 
 const lines = readFileSync(join(ROOT, 'data', 'phrases.txt'), 'utf8').split('\n');
 const phrases = lines

@@ -18,9 +18,7 @@
  * judge that. Curation replaces verification.
  */
 
-import { scoreWord } from './letters';
-import type { LetterValues } from './types';
-import { VOWELS } from './variant';
+import { scoreWord, VOWELS, type LetterValues } from './letter-values';
 
 export interface PhraseRack {
   /** Number of letters in this word. */

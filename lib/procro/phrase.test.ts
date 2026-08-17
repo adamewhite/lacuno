@@ -8,9 +8,9 @@ import {
   parsePhraseLine,
   phraseHints,
 } from './phrase';
-import { FLAT_3 } from '../valuation/consonant-schemes';
+import { TILE_VALUES } from './letter-values';
 
-const V = FLAT_3;
+const V = TILE_VALUES;
 
 describe('normalizePhrase', () => {
   it('uppercases and collapses whitespace', () => {

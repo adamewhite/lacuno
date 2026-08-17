@@ -40,9 +40,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# generated word lists — rebuild with `npm run build:wordlists`
-/data/generated
-
 # local tooling config
 .claude/
 
