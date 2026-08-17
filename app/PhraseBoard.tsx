@@ -310,6 +310,30 @@ export default function PhraseBoard({
     ),
   );
   const handTileHeight = Math.round(handTileWidth * (52 / 44));
+
+  /**
+   * Rack geometry, fixed from the FULL pool rather than what is left in it.
+   *
+   * Two things depend on this staying constant. The row count sets a reserved
+   * height, so the tray does not shrink as tiles are placed and jerk the board
+   * around. And the per-row cap balances the rows: eight tiles read 4+4 rather
+   * than the 6+2 that natural wrapping produces.
+   */
+  const handRowCount = Math.min(
+    MAX_HAND_ROWS,
+    Math.max(
+      1,
+      Math.ceil(
+        handCount /
+          Math.max(1, Math.floor((HAND_WIDTH + HAND_GAP) / (handTileWidth + HAND_GAP))),
+      ),
+    ),
+  );
+  const handPerRow = Math.ceil(handCount / handRowCount);
+  /** Width of one balanced row, so the flex box wraps where we intend. */
+  const handRowWidth = handPerRow * handTileWidth + (handPerRow - 1) * HAND_GAP;
+  const handReservedHeight =
+    handRowCount * handTileHeight + (handRowCount - 1) * HAND_GAP + 9;
   const handLetterSize = Math.max(13, Math.round(handTileWidth * (25 / 44)));
   const handValueSize = Math.max(8, Math.round(handTileWidth * (11 / 44)));
   /** How far each pile layer peeks out behind the face. */
@@ -355,25 +379,6 @@ export default function PhraseBoard({
         >
           {puzzle.category}
         </span>
-        {/* The tiles carry the win; this just names it. Reserved height so the
-            board does not shift when it appears. */}
-        <div className="flex h-[16px] items-center justify-center">
-          {state.won ? (
-            <span
-              className="text-[11px] font-bold uppercase"
-              style={{ color: 'var(--solved)', letterSpacing: '0.2em' }}
-            >
-              Congratulations
-            </span>
-          ) : showAnswer ? (
-            <span
-              className="text-[11px] font-semibold uppercase opacity-50"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Solution shown
-            </span>
-          ) : null}
-        </div>
       </div>
 
       </div>
@@ -619,19 +624,22 @@ export default function PhraseBoard({
 
         <div className="flex flex-col gap-1.5">
 
-          {/* min-height holds the rack's footprint as tiles leave it, so the
-              tray does not creep upward on every placement. */}
+          {/* Height is reserved from the FULL pool, so the rack keeps its
+              footprint as tiles leave it and the board above never shifts. */}
           <div
             data-drop="pool"
-            // Reserve exactly one row of tiles plus the ledge padding. A fixed
-            // min-height taller than the tiles left the ledge floating below
-            // them, so the gap did not match the puzzle racks'.
-            style={{ minHeight: handTileHeight + 9 }}
-            className="relative mt-1.5 flex flex-wrap content-start justify-center gap-1.5 px-1 pb-[9px]"
+            style={{ height: handReservedHeight }}
+            className="relative mt-1.5 flex flex-col items-center px-1 pb-[9px]"
           >
             {/* Same ledge height and gap as the puzzle racks above, so the two
                 surfaces read as the same object. */}
             <span className="absolute bottom-0 left-0 right-0 h-[5px] rounded-[3px] bg-ledge" />
+            {/* Fixed-width box so the rows break evenly: eight tiles read 4+4
+                rather than the 6+2 natural wrapping produces. */}
+            <div
+              className="flex flex-wrap content-start justify-center gap-1.5"
+              style={{ width: handRowWidth }}
+            >
             {state.pool.map((tile) => {
               const selected =
                 state.selected?.kind === 'consonant' && state.selected.id === tile.id;
@@ -673,12 +681,8 @@ export default function PhraseBoard({
                 </button>
               );
             })}
-
+            </div>
           </div>
-
-          {/* One fixed-height row carries both the solved banner and the
-              revealed answer, so neither appearing nor disappearing shifts the
-              tray. Solving a puzzle should not make the board jump. */}
 
           {/* Hint and Give Up split the width, directly above Next Puzzle. */}
           <div className="flex gap-2">

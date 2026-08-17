@@ -20,7 +20,7 @@
 :root {
   /* Four stacked surfaces, each a distinct step so they read apart:
      page (outside the shell) < board field < frame band, with the tray
-     matching the page. Empty slots sit darker still against the field. */
+     matching the page. Empty slots sit darker still against te field. */
   --page: #3f1818;
   --shell: #5c2222;      /* the board field the racks sit on */
   --frame: #bc4f4f;      /* the bright band around it */
