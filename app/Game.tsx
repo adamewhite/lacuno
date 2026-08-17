@@ -56,7 +56,7 @@ export default function Game({
 
   if (puzzles.length === 0) {
     return (
-      <main className="p-8 text-sm">
+      <main className="h-full p-8 text-sm">
         No puzzles. Run <code>npm run build:puzzles</code>.
       </main>
     );
@@ -65,7 +65,8 @@ export default function Game({
   const puzzle = puzzles[deck[position] ?? 0];
 
   return (
-    <main>
+    // h-full so the board's own h-full resolves against the fixed body.
+    <main className="h-full">
       <PhraseBoard
         // Keyed by difficulty too: changing level must rebuild the board, since
         // which vowels are pre-filled changes with it.

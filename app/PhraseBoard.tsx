@@ -14,7 +14,7 @@ import {
 } from '../lib/procro/difficulty';
 
 /**
- * Phrase board, styled from the VWL DRP design handoff.
+ * Phrase board, styled from the design handoff.
  *
  * Visual system is the handoff's: oxblood frame, cream tiles on a slate field,
  * score superscript above each rack's right edge, tray below holding the vowel
@@ -378,7 +378,10 @@ export default function PhraseBoard({
         // min-w floors the shell at the narrowest supported phone. Below that
         // the page scrolls sideways rather than crushing the tiles past
         // legibility — a rare case, and scrolling is the lesser failure.
-        'mx-auto flex h-[100svh] w-full min-w-[320px] max-w-[430px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
+        // h-full, not 100svh: the body is fixed to the viewport, so the shell
+        // fills its parent. svh units would still track the address bar and
+        // reintroduce the shifting this is meant to stop.
+        'mx-auto flex h-full w-full min-w-[320px] max-w-[430px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
         dragging ? 'select-none' : '',
       ].join(' ')}
       ref={shellRef}
@@ -392,7 +395,7 @@ export default function PhraseBoard({
             className="font-tile text-[28px] font-normal leading-[1.1]"
             style={{ letterSpacing: '0.14em' }}
           >
-            VWL DRP
+            GIST
           </div>
         </div>
         {/* Menu placeholder. The solved counter and reset control lived here;

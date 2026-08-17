@@ -77,11 +77,34 @@
   --font-tile: var(--font-outfit), system-ui, sans-serif;
 }
 
+/**
+ * Lock the page to one viewport.
+ *
+ * The board sizes itself to fit without scrolling, but that alone does not stop
+ * iOS: as long as the document can scroll at all, Safari and Chrome will pull
+ * the address bar around and trigger pull-to-refresh on an over-drag. Fixing
+ * the body removes the scroll container entirely, so there is nothing to drag.
+ *
+ * `overscroll-behavior: none` covers browsers that still register an over-drag,
+ * and `position: fixed` on the body is what actually defeats iOS — height alone
+ * is not enough there.
+ */
+html,
 body {
   margin: 0;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  position: fixed;
+  inset: 0;
   background: var(--page);
   color: var(--text);
   font-family: var(--font-outfit), system-ui, sans-serif;
+  /* Stop iOS enlarging text in landscape, which would break the tile sizing. */
+  -webkit-text-size-adjust: 100%;
 }
 
 button {

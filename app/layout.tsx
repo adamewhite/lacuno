@@ -16,8 +16,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "VWL DRP",
-  description: "A daily word puzzle. Vowels are free — only consonants count.",
+  title: "GIST",
+  description: "A daily word puzzle. Catch the gist from the consonants.",
 };
 
 export default function RootLayout({

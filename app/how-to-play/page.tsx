@@ -100,7 +100,9 @@ function Step({
 export default function HowToPlay() {
   return (
     <main
-      className="mx-auto flex min-h-[100svh] w-full min-w-[320px] max-w-[430px] flex-col border-[5px] border-frame"
+      // The body is fixed to the viewport, so this scrolls itself rather than
+      // scrolling the page.
+      className="mx-auto flex h-full w-full min-w-[320px] max-w-[430px] flex-col overflow-y-auto border-[5px] border-frame"
       style={{ background: 'var(--shell)', boxSizing: 'border-box' }}
     >
       <header className="mx-1.5 mt-1.5 flex items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
