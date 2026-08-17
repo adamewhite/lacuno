@@ -618,12 +618,6 @@ export default function PhraseBoard({
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <span
-            className="text-[10px] font-semibold uppercase opacity-60"
-            style={{ letterSpacing: '0.14em' }}
-          >
-            Your rack ({state.pool.length})
-          </span>
 
           {/* min-height holds the rack's footprint as tiles leave it, so the
               tray does not creep upward on every placement. */}
