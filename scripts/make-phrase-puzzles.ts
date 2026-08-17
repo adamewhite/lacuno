@@ -42,11 +42,16 @@ const puzzles = [];
 /**
  * Longest word a rack may hold.
  *
- * Rack tiles shrink to keep a word on one line, and past ten letters they get
- * too small to read. A word broken across rows stops reading as a word, so the
- * limit is on the content rather than the layout.
+ * Set by the narrowest phone worth supporting — 375px, which covers the iPhone
+ * SE, 8, X and 13 mini. At that width a nine-letter word renders at 33px tiles,
+ * comfortably tappable; a tenth letter drops it to 29px, which is legible but
+ * fiddly. Wider phones could take ten or eleven, but the limit has to hold for
+ * the smallest screen since the phrase list is shared.
+ *
+ * A word broken across rows stops reading as a word, so the limit is on the
+ * content rather than the layout.
  */
-const MAX_WORD_LENGTH = 10;
+const MAX_WORD_LENGTH = 9;
 
 /**
  * Most consonants the player's rack can hold.

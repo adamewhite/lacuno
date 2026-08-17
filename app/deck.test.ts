@@ -64,7 +64,9 @@ describe('puzzle library', () => {
     for (const { phrase } of puzzles) {
       const words = phrase.split(' ');
       expect(words.length).toBeLessThanOrEqual(5);
-      for (const word of words) expect(word.length).toBeLessThanOrEqual(10);
+      // Nine, not ten: a ten-letter word drops below a comfortable tap target
+      // on the narrowest phone supported (375px).
+      for (const word of words) expect(word.length).toBeLessThanOrEqual(9);
 
       const consonants = [...phrase.replace(/ /g, '')].filter(
         (c) => !'AEIOU'.includes(c),

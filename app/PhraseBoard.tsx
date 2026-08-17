@@ -185,6 +185,12 @@ export default function PhraseBoard({
   const headerRef = useRef<HTMLDivElement | null>(null);
   const trayRef = useRef<HTMLDivElement | null>(null);
   const [available, setAvailable] = useState(0);
+  /**
+   * The shell's real width. It is capped at 430px but a narrower phone gets
+   * less — an iPhone SE is 375 — and assuming the cap overflowed the board off
+   * both edges. Starts at the reference for the server render.
+   */
+  const [shellWidth, setShellWidth] = useState(430);
 
   useEffect(() => {
     const measure = () => {
@@ -192,6 +198,9 @@ export default function PhraseBoard({
       const header = headerRef.current?.offsetHeight ?? 0;
       const tray = trayRef.current?.offsetHeight ?? 0;
       if (shell > 0) setAvailable(shell - header - tray);
+
+      const width = shellRef.current?.clientWidth ?? 0;
+      if (width > 0) setShellWidth(width);
     };
 
     measure();
@@ -207,7 +216,9 @@ export default function PhraseBoard({
   }, []);
 
   const longestWord = Math.max(...state.racks.map((r) => r.length));
-  const BOARD_WIDTH = 392; // 430 shell - 5px border x2 - 14px padding x2
+  // clientWidth already excludes the 5px border; subtract the field's own
+  // 14px horizontal padding.
+  const BOARD_WIDTH = Math.max(160, shellWidth - 28);
   const GAP = 5;
 
   // How many rows the racks will wrap into at full size. A phrase of many
@@ -240,7 +251,8 @@ export default function PhraseBoard({
   const MAX_BOARD_ROWS = 4;
   const MAX_HAND_ROWS = 2;
 
-  const HAND_WIDTH = 376; // 430 - 5px border x2 - 6px margin x2 - 16px padding x2
+  // Tray margin (6px each side) and padding (16px each side).
+  const HAND_WIDTH = Math.max(160, shellWidth - 44);
   const HAND_GAP = 6;
 
   /**
@@ -363,7 +375,10 @@ export default function PhraseBoard({
   return (
     <div
       className={[
-        'mx-auto flex h-[100svh] w-full max-w-[430px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
+        // min-w floors the shell at the narrowest supported phone. Below that
+        // the page scrolls sideways rather than crushing the tiles past
+        // legibility — a rare case, and scrolling is the lesser failure.
+        'mx-auto flex h-[100svh] w-full min-w-[320px] max-w-[430px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
         dragging ? 'select-none' : '',
       ].join(' ')}
       ref={shellRef}

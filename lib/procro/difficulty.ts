@@ -5,10 +5,10 @@
  * how much of the vowel work is done for the player:
  *
  *   easiest   every vowel is already on the board; all five piles disabled
- *   easier    vowels the phrase never uses are disabled, so the piles show
- *             only what is genuinely in play
- *   medium    as `easier`, plus one whole vowel pre-filled (every A, say),
- *             with that pile disabled too
+ *   easier    one whole vowel pre-filled throughout (every E, say), and the
+ *             piles show only the vowels genuinely in play
+ *   medium    vowels the phrase never uses are disabled, so the piles show
+ *             only what is in play — but nothing is placed for you
  *   hardest   nothing given; all five piles live, whether or not the phrase
  *             uses them
  *
@@ -43,12 +43,12 @@ export const DIFFICULTY_META: Record<Difficulty, DifficultyMeta> = {
   easier: {
     slug: 'easier',
     label: 'Easier',
-    blurb: 'Only the vowels in play are offered',
+    blurb: 'One vowel filled in for you',
   },
   medium: {
     slug: 'medium',
     label: 'Medium',
-    blurb: 'One vowel filled in for you',
+    blurb: 'Only the vowels in play are offered',
   },
   hardest: {
     slug: 'hardest',
@@ -99,11 +99,6 @@ export function planVowels(words: readonly string[], difficulty: Difficulty): Vo
     }
 
     case 'easier': {
-      // Nothing filled, but the piles no longer lie about what is in play.
-      return { prefilled, enabled: used };
-    }
-
-    case 'medium': {
       // Give away the vowel that appears most, so the help is worth something.
       // Ties break by A E I O U order, keeping it predictable across sessions.
       const counts = new Map<string, number>();
@@ -120,6 +115,12 @@ export function planVowels(words: readonly string[], difficulty: Difficulty): Vo
       const enabled = new Set(used);
       enabled.delete(given ?? '');
       return { prefilled, enabled };
+    }
+
+    case 'medium': {
+      // Nothing filled, but the piles no longer lie about what is in play:
+      // a vowel the phrase never uses is not offered.
+      return { prefilled, enabled: used };
     }
 
     case 'hardest':

@@ -18,14 +18,15 @@
 #   - recognisable enough that the skeleton is enough to trigger recall
 #   - within the limits below, which the build enforces
 #
-# Limits, set by what fits legibly on the smallest phone (667px) without
-# shrinking tiles below about 32px:
+# Limits, set by what fits legibly on the smallest phone worth supporting —
+# 375 x 667, the iPhone SE — without shrinking tiles below about 30px:
 #
 #   <= 16 consonants   the binding one. The rack is capped at two rows, and
 #                      past sixteen those rows only fit by going unreadable.
 #                      Roughly a 22-24 letter phrase.
-#   <= 10 letters/word a longer word cannot stay on one line, and a word split
-#                      across rows stops reading as a word.
+#   <= 9 letters/word  set by the narrowest phone supported (375px, the iPhone
+#                      SE). Nine letters render at 33px tiles there; ten drop to
+#                      29px, which is legible but fiddly to tap.
 #   <= 5 words         rows 1-3 are free; the fourth costs tile size and the
 #                      fifth is where a small screen runs out. Short words
 #                      share a row, so five short words is usually fine.
