@@ -192,22 +192,27 @@ export default function PhraseBoard({
   const valueSize = Math.max(8, Math.round(tileWidth * (11 / 44)));
 
   /**
-   * Hand tile size, shrunk so the consonant pool never exceeds TWO rows.
+   * The player's rack uses the SAME tile size as the puzzle, so the two read as
+   * one system — and it costs less height than the design's larger hand tile.
    *
-   * The hand is the one part of the tray that grows with the phrase — a long
-   * phrase like BUTTERFLIES IN YOUR STOMACH has 15 consonants, which is three
-   * rows at full size and pushes the board off the top of the screen.
+   * It shrinks further if needed to keep the rack within two rows: the rack is
+   * the one part of the tray that grows with the phrase, and a third row
+   * pushes the board off the top of the screen.
    */
   const HAND_WIDTH = 376; // 430 - 5px border x2 - 6px margin x2 - 16px padding x2
   const HAND_GAP = 6;
   const handCount = Math.max(puzzle.consonants.length, 1);
   const perRow = Math.ceil(handCount / 2);
   const handTileWidth = Math.max(
-    30,
-    Math.min(48, Math.floor((HAND_WIDTH - (perRow - 1) * HAND_GAP) / perRow)),
+    24,
+    Math.min(
+      tileWidth,
+      Math.floor((HAND_WIDTH - (perRow - 1) * HAND_GAP) / perRow),
+    ),
   );
-  const handTileHeight = Math.round(handTileWidth * (54 / 48));
-  const handLetterSize = Math.max(15, Math.round(handTileWidth * (27 / 48)));
+  const handTileHeight = Math.round(handTileWidth * (52 / 44));
+  const handLetterSize = Math.max(13, Math.round(handTileWidth * (25 / 44)));
+  const handValueSize = Math.max(8, Math.round(handTileWidth * (11 / 44)));
 
   return (
     <div
@@ -426,7 +431,7 @@ export default function PhraseBoard({
           </div>
         </div>
 
-        <div>
+        <div className="flex flex-col gap-2.5">
           <span
             className="text-[10px] font-semibold uppercase opacity-60"
             style={{ letterSpacing: '0.14em' }}
@@ -438,7 +443,7 @@ export default function PhraseBoard({
               tray does not creep upward on every placement. */}
           <div
             data-drop="pool"
-            className="relative mt-2 flex min-h-[64px] flex-wrap content-start justify-center gap-1.5 px-1 pb-2.5"
+            className="relative mt-1.5 flex min-h-[64px] flex-wrap content-start justify-center gap-1.5 px-1 pb-2.5"
           >
             <span className="absolute bottom-0 left-0 right-0 h-1 rounded-sm bg-ledge" />
             {state.pool.map((tile) => {
@@ -467,7 +472,10 @@ export default function PhraseBoard({
                   >
                     {tile.letter}
                   </span>
-                  <span className="absolute bottom-0.5 right-1 font-tile text-[10px] opacity-70">
+                  <span
+                    className="absolute bottom-0.5 right-1 font-tile opacity-70"
+                    style={{ fontSize: handValueSize }}
+                  >
                     {tile.value}
                   </span>
                   {selected && (
@@ -489,7 +497,7 @@ export default function PhraseBoard({
           {/* One fixed-height row carries both the solved banner and the
               revealed answer, so neither appearing nor disappearing shifts the
               tray. Solving a puzzle should not make the board jump. */}
-          <div className="mt-1 flex h-[26px] items-center justify-center">
+          <div className="flex h-[26px] items-center justify-center">
             {state.won ? (
               <p
                 className="font-tile text-[13px] font-medium uppercase"
@@ -503,7 +511,7 @@ export default function PhraseBoard({
           </div>
 
           {/* Hint and Give Up split the width, directly above Next Puzzle. */}
-          <div className="flex gap-1.5">
+          <div className="flex gap-2">
             <button
               onClick={actions.revealHint}
               disabled={state.hintsUsed >= state.hintsAvailable}
@@ -526,7 +534,7 @@ export default function PhraseBoard({
             onClick={onNext}
             disabled={!canAdvance}
             title={canAdvance ? undefined : 'Solve it or give up first'}
-            className="mt-1 w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
+            className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
             style={{ letterSpacing: '0.12em' }}
           >
             Next Puzzle
@@ -537,10 +545,18 @@ export default function PhraseBoard({
 
       {dragging && drag.tileId !== null && (
         <div
-          className="pointer-events-none fixed z-50 flex h-[54px] w-12 items-center justify-center rounded-[3px] bg-tile-face-hand opacity-90 shadow-xl"
-          style={{ left: drag.x - 24, top: drag.y - 27 }}
+          className="pointer-events-none fixed z-50 flex items-center justify-center rounded-[3px] bg-tile-face-hand opacity-90 shadow-xl"
+          style={{
+            width: handTileWidth,
+            height: handTileHeight,
+            left: drag.x - handTileWidth / 2,
+            top: drag.y - handTileHeight / 2,
+          }}
         >
-          <span className="font-tile text-[27px] font-medium text-tile-text">
+          <span
+            className="font-tile font-medium text-tile-text"
+            style={{ fontSize: handLetterSize }}
+          >
             {drag.tileId >= VOWEL_DRAG_BASE
               ? state.vowels[drag.tileId - VOWEL_DRAG_BASE]
               : puzzle.consonants[drag.tileId]}
