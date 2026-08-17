@@ -271,6 +271,15 @@ export default function PhraseBoard({
   }
 
   const tileWidth = Math.max(22, fitted);
+
+  /**
+   * Where each rack begins within the phrase, so the solved ripple runs left
+   * to right across the whole board instead of restarting on every word.
+   */
+  const rackOffsets = state.racks.reduce<number[]>((acc, rack, i) => {
+    acc.push(i === 0 ? 0 : acc[i - 1] + state.racks[i - 1].length);
+    return acc;
+  }, []);
   const tileHeight = Math.round(tileWidth * (52 / 44));
   const letterSize = Math.max(13, Math.round(tileWidth * (25 / 44)));
   const valueSize = Math.max(8, Math.round(tileWidth * (11 / 44)));
@@ -346,6 +355,25 @@ export default function PhraseBoard({
         >
           {puzzle.category}
         </span>
+        {/* The tiles carry the win; this just names it. Reserved height so the
+            board does not shift when it appears. */}
+        <div className="flex h-[16px] items-center justify-center">
+          {state.won ? (
+            <span
+              className="text-[11px] font-bold uppercase"
+              style={{ color: 'var(--solved)', letterSpacing: '0.2em' }}
+            >
+              Congratulations
+            </span>
+          ) : showAnswer ? (
+            <span
+              className="text-[11px] font-semibold uppercase opacity-50"
+              style={{ letterSpacing: '0.2em' }}
+            >
+              Solution shown
+            </span>
+          ) : null}
+        </div>
       </div>
 
       </div>
@@ -444,6 +472,9 @@ export default function PhraseBoard({
                           background: content ? 'var(--tile-face)' : 'var(--slot-fill)',
                           color: content ? 'var(--tile-text)' : undefined,
                           border: content ? 'none' : '1.5px solid var(--slot-border)',
+                          animationDelay: state.won
+                            ? `${(rackOffsets[rackIndex] + slot) * 45}ms`
+                            : undefined,
                         }}
                         aria-label={`Word ${rackIndex + 1}, letter ${slot + 1}${
                           content ? `, ${content.letter}` : ', empty'
@@ -451,6 +482,7 @@ export default function PhraseBoard({
                         className={[
                           'absolute inset-0 block rounded',
                           landed === `${rackIndex}:${slot}` ? 'tile-snap' : '',
+                          state.won ? 'tile-solved' : '',
                         ].join(' ')}
                       >
                         {content && (
@@ -647,11 +679,7 @@ export default function PhraseBoard({
                 </button>
               );
             })}
-            {state.pool.length === 0 && (
-              <span className="self-center font-tile text-[11px] opacity-50">
-                all consonants placed
-              </span>
-            )}
+
           </div>
 
           {/* One fixed-height row carries both the solved banner and the
@@ -691,24 +719,7 @@ export default function PhraseBoard({
             Next Puzzle
           </button>
 
-          {/* Only occupies height when it has something to say. The tray is a
-              fixed band and the board flexes around it, so appearing here
-              costs the board a few pixels rather than pushing the page. */}
-          {(state.won || showAnswer) && (
-            <div className="flex items-center justify-center">
-              {state.won ? (
-                <p
-                  className="font-tile text-[12px] font-medium uppercase"
-                  style={{ color: 'var(--solved)', letterSpacing: '0.1em' }}
-                >
-                  Solved · {state.moves} moves
-                </p>
-              ) : (
-                // The answer is on the board, so there is nothing to print here.
-                <p className="font-tile text-[12px] opacity-60">Solution shown</p>
-              )}
-            </div>
-          )}
+
 
         </div>
       </div>

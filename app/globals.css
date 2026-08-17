@@ -110,8 +110,35 @@ button {
   animation: tile-snap 180ms cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
+/**
+ * A solved puzzle lights its own tiles: each letter takes a gold glow, and the
+ * letters ripple in sequence so the phrase reads left to right as it lands.
+ * The per-tile delay is set inline from the letter's position.
+ */
+@keyframes tile-solved {
+  0% {
+    box-shadow: 0 0 0 0 rgba(254, 242, 160, 0);
+  }
+  40% {
+    box-shadow: 0 0 14px 3px rgba(254, 242, 160, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 7px 1px rgba(254, 242, 160, 0.55);
+  }
+}
+
+.tile-solved {
+  animation: tile-solved 620ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .tile-snap {
+  .tile-snap,
+  .tile-solved {
     animation: none;
+  }
+
+  /* Still mark the win, just without the ripple. */
+  .tile-solved {
+    box-shadow: 0 0 7px 1px rgba(254, 242, 160, 0.55);
   }
 }
