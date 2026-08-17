@@ -144,24 +144,70 @@ export default function PhraseBoard({
   const canAdvance = state.won || showAnswer;
 
   /**
-   * Tile size, shrunk so the longest word still fits the shell.
+   * Puzzle tile size, shrunk so the longest word fits the shell on one line.
    *
-   * The design's 44px tile supports about 6 letters at 430px, but phrases like
-   * BUTTERFLIES IN YOUR STOMACH have an 11-letter word — at full size that rack
-   * is 543px and overflows. Scaling down keeps a long word on one line, which
-   * matters more than tile size: a word broken across rows stops reading as a
-   * word.
+   * The design's 44px tile supports about 6 letters at 430px, but BUTTERFLIES
+   * is 11 — at full size that rack is 543px and overflows. A word broken across
+   * rows stops reading as a word, so the tile shrinks instead. Racks themselves
+   * wrap freely; a phrase may take as many rows as it needs.
+   *
+   * Capped at 40 rather than the design's 44 to buy vertical room, since the
+   * whole game should sit in one viewport.
    */
   const longestWord = Math.max(...state.racks.map((r) => r.length));
   const BOARD_WIDTH = 392; // 430 shell - 5px border x2 - 14px padding x2
   const GAP = 5;
-  const tileWidth = Math.min(
-    44,
-    Math.floor((BOARD_WIDTH - (longestWord - 1) * GAP - 8) / longestWord),
+
+  // How many rows the racks will wrap into at full size. A phrase of many
+  // short words (A BLESSING IN DISGUISE) takes four rows even though no single
+  // word is long, so width alone does not bound the board's height.
+  const rowsAtWidth = (tile: number): number => {
+    let rows = 1;
+    let used = 0;
+    for (const rack of state.racks) {
+      const w = rack.length * tile + (rack.length - 1) * GAP + 8;
+      const add = used === 0 ? w : w + 8;
+      if (used + add > BOARD_WIDTH && used > 0) {
+        rows += 1;
+        used = w;
+      } else {
+        used += add;
+      }
+    }
+    return rows;
+  };
+
+  const widthLimit = Math.floor(
+    (BOARD_WIDTH - (longestWord - 1) * GAP - 8) / longestWord,
   );
+
+  // Step the tile down while the board would take more than three rows, so a
+  // many-word phrase still fits one viewport alongside the tray.
+  let fitted = Math.min(40, widthLimit);
+  while (fitted > 26 && rowsAtWidth(fitted) > 3) fitted -= 2;
+
+  const tileWidth = Math.max(24, fitted);
   const tileHeight = Math.round(tileWidth * (52 / 44));
   const letterSize = Math.max(13, Math.round(tileWidth * (25 / 44)));
   const valueSize = Math.max(8, Math.round(tileWidth * (11 / 44)));
+
+  /**
+   * Hand tile size, shrunk so the consonant pool never exceeds TWO rows.
+   *
+   * The hand is the one part of the tray that grows with the phrase — a long
+   * phrase like BUTTERFLIES IN YOUR STOMACH has 15 consonants, which is three
+   * rows at full size and pushes the board off the top of the screen.
+   */
+  const HAND_WIDTH = 376; // 430 - 5px border x2 - 6px margin x2 - 16px padding x2
+  const HAND_GAP = 6;
+  const handCount = Math.max(puzzle.consonants.length, 1);
+  const perRow = Math.ceil(handCount / 2);
+  const handTileWidth = Math.max(
+    30,
+    Math.min(48, Math.floor((HAND_WIDTH - (perRow - 1) * HAND_GAP) / perRow)),
+  );
+  const handTileHeight = Math.round(handTileWidth * (54 / 48));
+  const handLetterSize = Math.max(15, Math.round(handTileWidth * (27 / 48)));
 
   return (
     <div
@@ -172,7 +218,7 @@ export default function PhraseBoard({
       style={{ boxSizing: 'border-box' }}
     >
       {/* Header band */}
-      <div className="mx-1.5 mt-1.5 flex items-center justify-between gap-3 bg-frame px-5 pb-3 pt-3.5 text-frame-text">
+      <div className="mx-1.5 mt-1.5 flex items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
         <div>
           <div
             className="font-tile text-[23px] font-medium leading-[1.1]"
@@ -194,7 +240,7 @@ export default function PhraseBoard({
       </div>
 
       {/* Category — the kind of answer, centred under the header band. */}
-      <div className="pb-1 pt-3 text-center">
+      <div className="pb-0.5 pt-2 text-center">
         <span
           className="text-[10px] font-semibold uppercase opacity-60"
           style={{ letterSpacing: '0.18em' }}
@@ -205,8 +251,8 @@ export default function PhraseBoard({
 
       {/* Board field — racks wrap in sequence so the phrase reads in order,
           each row centred. */}
-      <div className="flex flex-1 items-center justify-center px-3.5 pb-7 pt-2">
-        <div className="flex flex-wrap content-center justify-center gap-x-3 gap-y-5">
+      <div className="flex flex-1 items-center justify-center px-3.5 pb-3 pt-1">
+        <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-3">
         {state.racks.map((rack, rackIndex) => {
           const solved = rack.full && rack.total === rack.target;
 
@@ -237,7 +283,7 @@ export default function PhraseBoard({
               </div>
 
               {/* Rack body with its ledge */}
-              <div className="relative flex gap-[5px] px-1 pb-[11px]">
+              <div className="relative flex gap-[5px] px-1 pb-[9px]">
                 <span className="absolute bottom-0 left-0 right-0 h-[5px] rounded-[3px] bg-ledge" />
                 {rack.slots.map((content, slot) => {
                   const locked = rack.locked[slot];
@@ -333,15 +379,9 @@ export default function PhraseBoard({
       </div>
 
       {/* Tray */}
-      <div className="mx-1.5 mb-1.5 flex flex-col gap-[11px] bg-tray px-4 pb-5 pt-3.5">
+      <div className="mx-1.5 mb-1.5 flex flex-col gap-2 bg-tray px-4 pb-3 pt-3">
         <div>
-          <span
-            className="text-[10px] font-semibold uppercase opacity-60"
-            style={{ letterSpacing: '0.14em' }}
-          >
-            Vowel piles
-          </span>
-          <div className="mt-2 flex justify-between gap-2">
+          <div className="flex justify-between gap-2">
             {state.vowels.map((letter, i) => {
               const selected =
                 state.selected?.kind === 'vowel' && state.selected.letter === letter;
@@ -356,14 +396,21 @@ export default function PhraseBoard({
                       actions.selectVowel(letter);
                     }}
                     {...dragHandlers(VOWEL_DRAG_BASE + i)}
-                    style={{ touchAction: 'none' }}
                     aria-pressed={selected}
                     aria-label={`Vowel ${letter}`}
-                    className="absolute left-0 top-0 h-12 w-12 rounded-[3px] bg-tile-face-hand text-tile-text"
+                    style={{
+                      width: handTileWidth,
+                      height: handTileHeight,
+                      touchAction: 'none',
+                    }}
+                    className="absolute left-0 top-0 rounded-[3px] bg-tile-face-hand text-tile-text"
                   >
                     {/* No point value: vowels score nothing, so a "0" is noise
                         on every tile rather than information. */}
-                    <span className="absolute inset-0 flex items-center justify-center font-tile text-[25px] font-medium">
+                    <span
+                      className="absolute inset-0 flex items-center justify-center font-tile font-medium"
+                      style={{ fontSize: handLetterSize }}
+                    >
                       {letter}
                     </span>
                     {selected && (
@@ -380,30 +427,12 @@ export default function PhraseBoard({
         </div>
 
         <div>
-          <div className="flex items-center justify-between">
-            <span
-              className="text-[10px] font-semibold uppercase opacity-60"
-              style={{ letterSpacing: '0.14em' }}
-            >
-              Your rack ({state.pool.length})
-            </span>
-            <div className="flex gap-1.5">
-              <button
-                onClick={actions.revealHint}
-                disabled={state.hintsUsed >= state.hintsAvailable}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
-              >
-                Hint
-              </button>
-              <button
-                onClick={() => setShowAnswer(true)}
-                disabled={state.won || showAnswer}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
-              >
-                Give Up
-              </button>
-            </div>
-          </div>
+          <span
+            className="text-[10px] font-semibold uppercase opacity-60"
+            style={{ letterSpacing: '0.14em' }}
+          >
+            Your rack ({state.pool.length})
+          </span>
 
           {/* min-height holds the rack's footprint as tiles leave it, so the
               tray does not creep upward on every placement. */}
@@ -423,12 +452,19 @@ export default function PhraseBoard({
                     actions.selectConsonant(tile.id);
                   }}
                   {...dragHandlers(tile.id)}
-                  style={{ touchAction: 'none' }}
                   aria-pressed={selected}
                   aria-label={`Tile ${tile.letter}, ${tile.value} points`}
-                  className="relative h-[54px] w-12 rounded-[3px] bg-tile-face-hand text-tile-text"
+                  style={{
+                    width: handTileWidth,
+                    height: handTileHeight,
+                    touchAction: 'none',
+                  }}
+                  className="relative rounded-[3px] bg-tile-face-hand text-tile-text"
                 >
-                  <span className="absolute inset-0 flex items-center justify-center font-tile text-[27px] font-medium">
+                  <span
+                    className="absolute inset-0 flex items-center justify-center font-tile font-medium"
+                    style={{ fontSize: handLetterSize }}
+                  >
                     {tile.letter}
                   </span>
                   <span className="absolute bottom-0.5 right-1 font-tile text-[10px] opacity-70">
@@ -464,6 +500,24 @@ export default function PhraseBoard({
             ) : showAnswer ? (
               <p className="font-tile text-[13px] opacity-80">{puzzle.phrase}</p>
             ) : null}
+          </div>
+
+          {/* Hint and Give Up split the width, directly above Next Puzzle. */}
+          <div className="flex gap-1.5">
+            <button
+              onClick={actions.revealHint}
+              disabled={state.hintsUsed >= state.hintsAvailable}
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
+            >
+              Hint
+            </button>
+            <button
+              onClick={() => setShowAnswer(true)}
+              disabled={state.won || showAnswer}
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
+            >
+              Give Up
+            </button>
           </div>
 
           {/* Gated: a puzzle has to be finished — solved or given up on —

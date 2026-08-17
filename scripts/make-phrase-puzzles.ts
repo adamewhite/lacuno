@@ -34,12 +34,29 @@ if (phrases.length === 0) {
 const seen = new Set<string>();
 const puzzles = [];
 
+/**
+ * Longest word a rack may hold.
+ *
+ * Rack tiles shrink to keep a word on one line, and past ten letters they get
+ * too small to read on a phone. A word broken across rows stops reading as a
+ * word, so the limit is on the content rather than the layout.
+ */
+const MAX_WORD_LENGTH = 10;
+
 for (const { phrase, category } of phrases) {
   if (seen.has(phrase)) {
     console.warn(`  skipping duplicate: ${phrase}`);
     continue;
   }
   seen.add(phrase);
+
+  const tooLong = phrase.split(' ').find((w) => w.length > MAX_WORD_LENGTH);
+  if (tooLong) {
+    console.warn(
+      `  skipping "${phrase}": ${tooLong} is ${tooLong.length} letters, over the ${MAX_WORD_LENGTH} limit`,
+    );
+    continue;
+  }
 
   const puzzle = buildPhrasePuzzle(phrase, VALUES, `f${puzzles.length + 1}`, category);
 
