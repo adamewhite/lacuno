@@ -26,12 +26,10 @@ export default function PhraseBoard({
   puzzle,
   values,
   onNext,
-  index,
 }: {
   puzzle: PhrasePuzzleData;
   values: readonly number[];
   onNext: () => void;
-  index: number;
 }) {
   const [state, actions] = usePhrase(puzzle, values);
   const [showAnswer, setShowAnswer] = useState(false);

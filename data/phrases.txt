@@ -45,3 +45,45 @@ Idiom | Beat around the bush
 Idiom | A blessing in disguise
 Idiom | Burning the midnight oil
 Idiom | Butterflies in your stomach
+
+Places | Paris France
+Places | Farmers Market
+Places | Times Square
+Places | Golden Gate Bridge
+Places | Grand Canyon
+Places | New York City
+Places | Niagara Falls
+Places | Mount Everest
+Places | Sahara Desert
+Places | Buenos Aires
+Places | Machu Picchu
+Places | Great Barrier Reef
+Places | Rocky Mountains
+Places | Death Valley
+Places | Central Park
+Places | Amazon River
+Places | Hong Kong
+Places | Cape Town
+Places | Costa Rica
+Places | Silicon Valley
+
+People | Ronald Reagan
+People | Harry Potter
+People | Marie Curie
+People | Sherlock Holmes
+People | Amelia Earhart
+People | Nelson Mandela
+People | Rosa Parks
+People | Walt Disney
+People | Mark Twain
+People | Jane Austen
+People | Vincent Van Gogh
+People | Serena Williams
+People | Neil Armstrong
+People | Frida Kahlo
+People | Dolly Parton
+People | Julia Child
+People | Steve Jobs
+People | Muhammad Ali
+People | Emily Dickinson
+People | Charlie Chaplin
