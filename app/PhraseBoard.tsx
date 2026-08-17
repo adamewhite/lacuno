@@ -155,18 +155,28 @@ export default function PhraseBoard({
    * whole game should sit in one viewport.
    */
   /**
-   * The real viewport height, so tiles size to the device rather than to an
-   * assumed 844px reference. An iPhone SE is 667px, and at that height a
-   * full-size board runs off the bottom.
+   * Height of the board region, measured rather than estimated.
    *
-   * Starts at the reference during server render, where no window exists.
+   * The shell is exactly one viewport tall and never scrolls: the header and
+   * the tray are fixed-height bands, and the board is the single flexible
+   * region between them. Whatever height that region ends up with is what the
+   * tiles must fit into, so it is measured directly — an estimate of "chrome"
+   * drifts every time the tray changes.
+   *
+   * 0 until the first measurement; the sizing below falls back to width-only
+   * limits while it is unknown, so the first paint is never oversized.
    */
-  const [viewportHeight, setViewportHeight] = useState(844);
+  const boardRef = useRef<HTMLDivElement | null>(null);
+  const [boardHeight, setBoardHeight] = useState(0);
+
   useEffect(() => {
-    const measure = () => setViewportHeight(window.innerHeight);
-    measure();
-    window.addEventListener('resize', measure);
-    return () => window.removeEventListener('resize', measure);
+    const el = boardRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setBoardHeight(entry.contentRect.height);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const longestWord = Math.max(...state.racks.map((r) => r.length));
@@ -196,31 +206,45 @@ export default function PhraseBoard({
     (BOARD_WIDTH - (longestWord - 1) * GAP - 8) / longestWord,
   );
 
+  /**
+   * Row caps. The board is the flexible region between two fixed bands, so
+   * both halves need a ceiling or one can squeeze the other out.
+   */
+  const MAX_BOARD_ROWS = 4;
+  const MAX_HAND_ROWS = 2;
+
+  const HAND_WIDTH = 376; // 430 - 5px border x2 - 6px margin x2 - 16px padding x2
+  const HAND_GAP = 6;
+
   /** How many rows the player's rack takes at a given tile size. */
   const handRowsAt = (tile: number): number => {
-    const per = Math.max(1, Math.floor((376 + 6) / (tile + 6)));
+    const per = Math.max(1, Math.floor((HAND_WIDTH + HAND_GAP) / (tile + HAND_GAP)));
     return Math.ceil(Math.max(puzzle.consonants.length, 1) / per);
   };
 
-  /**
-   * Total height the board and rack need at a given tile size, against the
-   * fixed chrome around them (frame, header, category, vowel piles, labels,
-   * buttons). Measured from the layout rather than guessed.
-   */
-  const CHROME = 250;
-  const heightAt = (tile: number): number => {
+  /** Height the racks need at a given tile size, inside the board region. */
+  const boardHeightAt = (tile: number): number => {
     const h = Math.round(tile * (52 / 44));
-    const boardRows = rowsAtWidth(tile);
-    const board = boardRows * (25 + h) + (boardRows - 1) * 12;
-    const hand = handRowsAt(tile) * (h + 6) + 9;
-    return CHROME + board + hand;
+    const rows = rowsAtWidth(tile);
+    // Each row is its score superscript plus the tile and its ledge padding.
+    return rows * (25 + h) + (rows - 1) * 12;
   };
 
-  // Step down until both the row count and the total height fit. Width alone
-  // does not bound height: a phrase of many short words wraps to several rows
-  // even when no single word is long.
+  /**
+   * Step the tile down until the racks fit the measured board region.
+   *
+   * Two separate pressures, and width alone bounds neither: a long word
+   * overflows sideways, while a phrase of many short words wraps to several
+   * rows and overflows downward. Most puzzles never enter this loop — a short
+   * phrase keeps the full-size tile.
+   */
   let fitted = Math.min(40, widthLimit);
-  while (fitted > 22 && (rowsAtWidth(fitted) > 3 || heightAt(fitted) > viewportHeight)) {
+  while (
+    fitted > 22 &&
+    (rowsAtWidth(fitted) > MAX_BOARD_ROWS ||
+      handRowsAt(fitted) > MAX_HAND_ROWS ||
+      (boardHeight > 0 && boardHeightAt(fitted) > boardHeight))
+  ) {
     fitted -= 2;
   }
 
@@ -237,12 +261,10 @@ export default function PhraseBoard({
    * the one part of the tray that grows with the phrase, and a third row
    * pushes the board off the top of the screen.
    */
-  const HAND_WIDTH = 376; // 430 - 5px border x2 - 6px margin x2 - 16px padding x2
-  const HAND_GAP = 6;
   const handCount = Math.max(puzzle.consonants.length, 1);
   const perRow = Math.ceil(handCount / 2);
   const handTileWidth = Math.max(
-    24,
+    22,
     Math.min(
       tileWidth,
       Math.floor((HAND_WIDTH - (perRow - 1) * HAND_GAP) / perRow),
@@ -257,13 +279,13 @@ export default function PhraseBoard({
   return (
     <div
       className={[
-        'mx-auto flex min-h-[100svh] w-full max-w-[430px] flex-col border-[5px] border-frame bg-shell',
+        'mx-auto flex h-[100svh] w-full max-w-[430px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
         dragging ? 'select-none' : '',
       ].join(' ')}
       style={{ boxSizing: 'border-box' }}
     >
       {/* Header band */}
-      <div className="mx-1.5 mt-1.5 flex items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
+      <div className="mx-1.5 mt-1.5 flex shrink-0 items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
         <div>
           <div
             className="font-tile text-[23px] font-medium leading-[1.1]"
@@ -285,7 +307,7 @@ export default function PhraseBoard({
       </div>
 
       {/* Category — the kind of answer, centred under the header band. */}
-      <div className="pb-0.5 pt-2 text-center">
+      <div className="shrink-0 pb-0.5 pt-2 text-center">
         <span
           className="text-[10px] font-semibold uppercase opacity-60"
           style={{ letterSpacing: '0.18em' }}
@@ -296,7 +318,10 @@ export default function PhraseBoard({
 
       {/* Board field — racks wrap in sequence so the phrase reads in order,
           each row centred. */}
-      <div className="flex flex-1 items-center justify-center px-3.5 pb-3 pt-1">
+      <div
+        ref={boardRef}
+        className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5 pb-3 pt-1"
+      >
         <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-3">
         {state.racks.map((rack, rackIndex) => {
           // Three states, signalled the moment the arithmetic says so rather
@@ -445,7 +470,7 @@ export default function PhraseBoard({
       </div>
 
       {/* Tray */}
-      <div className="mx-1.5 mb-1.5 flex flex-col gap-1.5 bg-tray px-4 pb-2 pt-2">
+      <div className="mx-1.5 mb-1.5 flex shrink-0 flex-col gap-1.5 bg-tray px-4 pb-2 pt-2">
         <div>
           <div className="flex justify-between gap-2">
             {state.vowels.map((letter, i) => {
