@@ -271,6 +271,8 @@ export default function PhraseBoard({
   }
 
   const tileWidth = Math.max(22, fitted);
+  /** Board rows at the chosen size, for spacing decisions below. */
+  const boardRowCount = rowsAtWidth(tileWidth);
 
   /**
    * Where each rack begins within the phrase, so the solved ripple runs left
@@ -335,17 +337,17 @@ export default function PhraseBoard({
   const handReservedHeight =
     handRowCount * handTileHeight + (handRowCount - 1) * HAND_GAP + 9;
 
-  /**
-   * Vowel pile size. The piles shrink when the rack needs two rows, giving
-   * that height back to the board — five piles on one line have room to spare,
-   * whereas a two-row rack is what actually squeezes the layout.
-   */
-  const pileTileWidth =
-    handRowCount > 1 ? Math.max(22, Math.round(handTileWidth * 0.8)) : handTileWidth;
-  const pileTileHeight = Math.round(pileTileWidth * (52 / 44));
-  const pileLetterSize = Math.max(13, Math.round(pileTileWidth * (25 / 44)));
   const handLetterSize = Math.max(13, Math.round(handTileWidth * (25 / 44)));
   const handValueSize = Math.max(8, Math.round(handTileWidth * (11 / 44)));
+  /**
+   * Vowel piles are always the same size as the player's consonant tiles.
+   * They are the same kind of object — a letter you pick up and place — so a
+   * size difference reads as a meaning difference.
+   */
+  const pileTileWidth = handTileWidth;
+  const pileTileHeight = handTileHeight;
+  const pileLetterSize = handLetterSize;
+
   /** How far each pile layer peeks out behind the face. */
   const pileOffset = 2;
 
@@ -382,7 +384,7 @@ export default function PhraseBoard({
       </div>
 
       {/* Category — the kind of answer, centred under the header band. */}
-      <div className="shrink-0 pb-0.5 pt-2 text-center">
+      <div className="shrink-0 pb-0.5 pt-1 text-center">
         <span
           className="text-[10px] font-semibold uppercase opacity-60"
           style={{ letterSpacing: '0.18em' }}
@@ -395,8 +397,15 @@ export default function PhraseBoard({
 
       {/* Board field — racks wrap in sequence so the phrase reads in order,
           each row centred. */}
+      {/* Padding is asymmetric and grows with the row count: a tall board wants
+          air under its last rack, separating the puzzle from the tray, and the
+          space comes from above rather than from the board itself. */}
       <div
-        className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5 pb-3 pt-1"
+        className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5"
+        style={{
+          paddingTop: 2,
+          paddingBottom: boardRowCount >= 3 ? 18 : 10,
+        }}
       >
         <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-3">
         {state.racks.map((rack, rackIndex) => {
