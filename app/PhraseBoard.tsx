@@ -386,7 +386,7 @@ export default function PhraseBoard({
     >
       {/* Header band and category: one fixed measurement block. */}
       <div ref={headerRef} className="shrink-0">
-      <div className="mx-1.5 mt-1.5 flex shrink-0 items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
+      <div className="relative mx-1.5 mt-1.5 flex shrink-0 items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
         <div>
           <div
             className="font-tile text-[28px] font-normal leading-[1.1]"
@@ -407,6 +407,50 @@ export default function PhraseBoard({
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
         </button>
+
+        {/* Difficulty menu, dropping from the nav bar. Absolutely positioned
+              so opening it costs the board no height. */}
+        {menuOpen && (
+          <div className="absolute left-0 right-0 top-full z-40 rounded-b-md border-x border-b border-frame bg-tray p-3 shadow-xl">
+              <p
+                className="mb-2 text-[10px] font-semibold uppercase opacity-60"
+                style={{ letterSpacing: '0.14em' }}
+              >
+                Difficulty level
+              </p>
+              <div className="flex flex-col gap-1">
+                {DIFFICULTIES.map((slug) => {
+                  const meta = DIFFICULTY_META[slug];
+                  const current = slug === difficulty;
+                  return (
+                    <Link
+                      key={slug}
+                      href={`/${slug}`}
+                      onClick={() => setMenuOpen(false)}
+                      className={[
+                        'flex items-baseline justify-between gap-3 rounded px-2 py-1.5 transition-colors',
+                        current
+                          ? 'bg-frame text-frame-text'
+                          : 'hover:bg-[rgba(254,242,160,0.1)]',
+                      ].join(' ')}
+                    >
+                      <span className="text-[13px] font-semibold">{meta.label}</span>
+                      <span className="text-[10px] opacity-70">{meta.blurb}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+
+              <Link
+                href="/how-to-play"
+                onClick={() => setMenuOpen(false)}
+                className="mt-2 block rounded border-[1.5px] border-accent px-2 py-1.5 text-center text-[12px] font-semibold text-accent-text"
+              >
+                How to play
+              </Link>
+            </div>
+          )}
+
       </div>
 
       {/* Category — the kind of answer, centred under the header band. */}
@@ -420,51 +464,6 @@ export default function PhraseBoard({
       </div>
 
       </div>
-
-      {/* Difficulty menu. Overlaid rather than inline so opening it costs the
-          board no height. */}
-      {menuOpen && (
-        <div className="relative z-40">
-          <div className="absolute left-1.5 right-1.5 top-0 rounded-b-md border-x border-b border-frame bg-tray p-3 shadow-xl">
-            <p
-              className="mb-2 text-[10px] font-semibold uppercase opacity-60"
-              style={{ letterSpacing: '0.14em' }}
-            >
-              Difficulty level
-            </p>
-            <div className="flex flex-col gap-1">
-              {DIFFICULTIES.map((slug) => {
-                const meta = DIFFICULTY_META[slug];
-                const current = slug === difficulty;
-                return (
-                  <Link
-                    key={slug}
-                    href={`/${slug}`}
-                    onClick={() => setMenuOpen(false)}
-                    className={[
-                      'flex items-baseline justify-between gap-3 rounded px-2 py-1.5 transition-colors',
-                      current
-                        ? 'bg-frame text-frame-text'
-                        : 'hover:bg-[rgba(254,242,160,0.1)]',
-                    ].join(' ')}
-                  >
-                    <span className="text-[13px] font-semibold">{meta.label}</span>
-                    <span className="text-[10px] opacity-70">{meta.blurb}</span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            <Link
-              href="/how-to-play"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 block rounded border-[1.5px] border-accent px-2 py-1.5 text-center text-[12px] font-semibold text-accent-text"
-            >
-              How to play
-            </Link>
-          </div>
-        </div>
-      )}
 
       {/* Board field — racks wrap in sequence so the phrase reads in order,
           each row centred. */}
