@@ -154,6 +154,21 @@ export default function PhraseBoard({
    * Capped at 40 rather than the design's 44 to buy vertical room, since the
    * whole game should sit in one viewport.
    */
+  /**
+   * The real viewport height, so tiles size to the device rather than to an
+   * assumed 844px reference. An iPhone SE is 667px, and at that height a
+   * full-size board runs off the bottom.
+   *
+   * Starts at the reference during server render, where no window exists.
+   */
+  const [viewportHeight, setViewportHeight] = useState(844);
+  useEffect(() => {
+    const measure = () => setViewportHeight(window.innerHeight);
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
   const longestWord = Math.max(...state.racks.map((r) => r.length));
   const BOARD_WIDTH = 392; // 430 shell - 5px border x2 - 14px padding x2
   const GAP = 5;
@@ -181,12 +196,35 @@ export default function PhraseBoard({
     (BOARD_WIDTH - (longestWord - 1) * GAP - 8) / longestWord,
   );
 
-  // Step the tile down while the board would take more than three rows, so a
-  // many-word phrase still fits one viewport alongside the tray.
-  let fitted = Math.min(40, widthLimit);
-  while (fitted > 26 && rowsAtWidth(fitted) > 3) fitted -= 2;
+  /** How many rows the player's rack takes at a given tile size. */
+  const handRowsAt = (tile: number): number => {
+    const per = Math.max(1, Math.floor((376 + 6) / (tile + 6)));
+    return Math.ceil(Math.max(puzzle.consonants.length, 1) / per);
+  };
 
-  const tileWidth = Math.max(24, fitted);
+  /**
+   * Total height the board and rack need at a given tile size, against the
+   * fixed chrome around them (frame, header, category, vowel piles, labels,
+   * buttons). Measured from the layout rather than guessed.
+   */
+  const CHROME = 250;
+  const heightAt = (tile: number): number => {
+    const h = Math.round(tile * (52 / 44));
+    const boardRows = rowsAtWidth(tile);
+    const board = boardRows * (25 + h) + (boardRows - 1) * 12;
+    const hand = handRowsAt(tile) * (h + 6) + 9;
+    return CHROME + board + hand;
+  };
+
+  // Step down until both the row count and the total height fit. Width alone
+  // does not bound height: a phrase of many short words wraps to several rows
+  // even when no single word is long.
+  let fitted = Math.min(40, widthLimit);
+  while (fitted > 22 && (rowsAtWidth(fitted) > 3 || heightAt(fitted) > viewportHeight)) {
+    fitted -= 2;
+  }
+
+  const tileWidth = Math.max(22, fitted);
   const tileHeight = Math.round(tileWidth * (52 / 44));
   const letterSize = Math.max(13, Math.round(tileWidth * (25 / 44)));
   const valueSize = Math.max(8, Math.round(tileWidth * (11 / 44)));
@@ -407,7 +445,7 @@ export default function PhraseBoard({
       </div>
 
       {/* Tray */}
-      <div className="mx-1.5 mb-1.5 flex flex-col gap-2 bg-tray px-4 pb-3 pt-3">
+      <div className="mx-1.5 mb-1.5 flex flex-col gap-1.5 bg-tray px-4 pb-2 pt-2">
         <div>
           <div className="flex justify-between gap-2">
             {state.vowels.map((letter, i) => {
@@ -479,7 +517,7 @@ export default function PhraseBoard({
           </div>
         </div>
 
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-1.5">
           <span
             className="text-[10px] font-semibold uppercase opacity-60"
             style={{ letterSpacing: '0.14em' }}
@@ -551,19 +589,6 @@ export default function PhraseBoard({
           {/* One fixed-height row carries both the solved banner and the
               revealed answer, so neither appearing nor disappearing shifts the
               tray. Solving a puzzle should not make the board jump. */}
-          <div className="flex h-[26px] items-center justify-center">
-            {state.won ? (
-              <p
-                className="font-tile text-[13px] font-medium uppercase"
-                style={{ color: 'var(--solved)', letterSpacing: '0.1em' }}
-              >
-                Solved · {state.moves} moves
-              </p>
-            ) : showAnswer ? (
-              // The answer is on the board, so there is nothing to print here.
-              <p className="font-tile text-[13px] opacity-60">Solution shown</p>
-            ) : null}
-          </div>
 
           {/* Hint and Give Up split the width, directly above Next Puzzle. */}
           <div className="flex gap-2">
@@ -597,6 +622,23 @@ export default function PhraseBoard({
           >
             Next Puzzle
           </button>
+
+          {/* Reserved below the buttons rather than above them: kept between
+              the rack and the buttons it read as dead space, and the racks
+              should sit tight to the controls. */}
+          <div className="flex h-[18px] items-center justify-center">
+            {state.won ? (
+              <p
+                className="font-tile text-[12px] font-medium uppercase"
+                style={{ color: 'var(--solved)', letterSpacing: '0.1em' }}
+              >
+                Solved · {state.moves} moves
+              </p>
+            ) : showAnswer ? (
+              // The answer is on the board, so there is nothing to print here.
+              <p className="font-tile text-[12px] opacity-60">Solution shown</p>
+            ) : null}
+          </div>
 
         </div>
       </div>
