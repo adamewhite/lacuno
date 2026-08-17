@@ -38,6 +38,14 @@ export default function PhraseBoard({
   const [focusedRack, setFocusedRack] = useState<number | null>(null);
   const [caret, setCaret] = useState(0);
   const [rejected, setRejected] = useState<number | null>(null);
+  /** Slot that just received a tile, as "rack:slot" — it plays the snap. */
+  const [landed, setLanded] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!landed) return;
+    const timer = setTimeout(() => setLanded(null), 200);
+    return () => clearTimeout(timer);
+  }, [landed]);
 
   useEffect(() => {
     setShowAnswer(false);
@@ -62,6 +70,7 @@ export default function PhraseBoard({
     } else {
       actions.placeConsonant(tileId, rack, slot);
     }
+    setLanded(`${rack}:${slot}`);
   });
 
   const justDragged = useRef(false);
@@ -96,6 +105,7 @@ export default function PhraseBoard({
       if (/^[a-zA-Z]$/.test(event.key)) {
         event.preventDefault();
         if (actions.typeLetter(focusedRack, event.key, caret)) {
+          setLanded(`${focusedRack}:${caret}`);
           setCaret(stepCaret(focusedRack, caret, 1));
         } else {
           setRejected(focusedRack);
@@ -155,28 +165,36 @@ export default function PhraseBoard({
    * whole game should sit in one viewport.
    */
   /**
-   * Height of the board region, measured rather than estimated.
+   * Height available to the board: the shell minus the two fixed bands.
    *
-   * The shell is exactly one viewport tall and never scrolls: the header and
-   * the tray are fixed-height bands, and the board is the single flexible
-   * region between them. Whatever height that region ends up with is what the
-   * tiles must fit into, so it is measured directly — an estimate of "chrome"
-   * drifts every time the tray changes.
-   *
-   * 0 until the first measurement; the sizing below falls back to width-only
-   * limits while it is unknown, so the first paint is never oversized.
+   * Measuring the board element itself does not work — it is a flex child that
+   * grows to fit its content, so measuring it and then checking the content
+   * against that measurement is circular and always "fits". The bands around
+   * it are what is actually fixed, so those are what get measured.
    */
-  const boardRef = useRef<HTMLDivElement | null>(null);
-  const [boardHeight, setBoardHeight] = useState(0);
+  const shellRef = useRef<HTMLDivElement | null>(null);
+  const headerRef = useRef<HTMLDivElement | null>(null);
+  const trayRef = useRef<HTMLDivElement | null>(null);
+  const [available, setAvailable] = useState(0);
 
   useEffect(() => {
-    const el = boardRef.current;
-    if (!el) return;
-    const observer = new ResizeObserver(([entry]) => {
-      setBoardHeight(entry.contentRect.height);
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
+    const measure = () => {
+      const shell = shellRef.current?.clientHeight ?? 0;
+      const header = headerRef.current?.offsetHeight ?? 0;
+      const tray = trayRef.current?.offsetHeight ?? 0;
+      if (shell > 0) setAvailable(shell - header - tray);
+    };
+
+    measure();
+    const observer = new ResizeObserver(measure);
+    for (const el of [shellRef.current, headerRef.current, trayRef.current]) {
+      if (el) observer.observe(el);
+    }
+    window.addEventListener('resize', measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', measure);
+    };
   }, []);
 
   const longestWord = Math.max(...state.racks.map((r) => r.length));
@@ -216,8 +234,12 @@ export default function PhraseBoard({
   const HAND_WIDTH = 376; // 430 - 5px border x2 - 6px margin x2 - 16px padding x2
   const HAND_GAP = 6;
 
-  /** How many rows the player's rack takes at a given tile size. */
-  const handRowsAt = (tile: number): number => {
+  /**
+   * How many rows the player's rack takes, given a BOARD tile size — the rack
+   * tile is derived from it, so the two move together.
+   */
+  const handRowsAt = (boardTile: number): number => {
+    const tile = Math.min(44, Math.round(boardTile * 1.15));
     const per = Math.max(1, Math.floor((HAND_WIDTH + HAND_GAP) / (tile + HAND_GAP)));
     return Math.ceil(Math.max(puzzle.consonants.length, 1) / per);
   };
@@ -243,7 +265,7 @@ export default function PhraseBoard({
     fitted > 22 &&
     (rowsAtWidth(fitted) > MAX_BOARD_ROWS ||
       handRowsAt(fitted) > MAX_HAND_ROWS ||
-      (boardHeight > 0 && boardHeightAt(fitted) > boardHeight))
+      (available > 0 && boardHeightAt(fitted) > available))
   ) {
     fitted -= 2;
   }
@@ -263,10 +285,18 @@ export default function PhraseBoard({
    */
   const handCount = Math.max(puzzle.consonants.length, 1);
   const perRow = Math.ceil(handCount / 2);
+  /**
+   * The rack sits a little LARGER than the board.
+   *
+   * The board is a reference the player reads; the rack is what they actually
+   * hit with a thumb, so it gets the bigger target. Capped at 44 (the design's
+   * size) and still shrunk to keep the rack within two rows.
+   */
   const handTileWidth = Math.max(
     22,
     Math.min(
-      tileWidth,
+      44,
+      Math.round(tileWidth * 1.15),
       Math.floor((HAND_WIDTH - (perRow - 1) * HAND_GAP) / perRow),
     ),
   );
@@ -282,9 +312,11 @@ export default function PhraseBoard({
         'mx-auto flex h-[100svh] w-full max-w-[430px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
         dragging ? 'select-none' : '',
       ].join(' ')}
+      ref={shellRef}
       style={{ boxSizing: 'border-box' }}
     >
-      {/* Header band */}
+      {/* Header band and category: one fixed measurement block. */}
+      <div ref={headerRef} className="shrink-0">
       <div className="mx-1.5 mt-1.5 flex shrink-0 items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
         <div>
           <div
@@ -316,10 +348,11 @@ export default function PhraseBoard({
         </span>
       </div>
 
+      </div>
+
       {/* Board field — racks wrap in sequence so the phrase reads in order,
           each row centred. */}
       <div
-        ref={boardRef}
         className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5 pb-3 pt-1"
       >
         <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-3">
@@ -394,8 +427,12 @@ export default function PhraseBoard({
                           if (justDragged.current) return;
                           setFocusedRack(rackIndex);
                           setCaret(slot);
-                          if (state.selected) actions.placeSelected(rackIndex, slot);
-                          else if (content) actions.clearSlot(rackIndex, slot);
+                          if (state.selected) {
+                            actions.placeSelected(rackIndex, slot);
+                            setLanded(`${rackIndex}:${slot}`);
+                          } else if (content) {
+                            actions.clearSlot(rackIndex, slot);
+                          }
                         }}
                         disabled={locked}
                         {...(content?.kind === 'consonant' && !locked
@@ -411,7 +448,10 @@ export default function PhraseBoard({
                         aria-label={`Word ${rackIndex + 1}, letter ${slot + 1}${
                           content ? `, ${content.letter}` : ', empty'
                         }`}
-                        className="absolute inset-0 block rounded"
+                        className={[
+                          'absolute inset-0 block rounded',
+                          landed === `${rackIndex}:${slot}` ? 'tile-snap' : '',
+                        ].join(' ')}
                       >
                         {content && (
                           <>
@@ -470,7 +510,10 @@ export default function PhraseBoard({
       </div>
 
       {/* Tray */}
-      <div className="mx-1.5 mb-1.5 flex shrink-0 flex-col gap-1.5 bg-tray px-4 pb-2 pt-2">
+      <div
+        ref={trayRef}
+        className="mx-1.5 mb-1.5 flex shrink-0 flex-col gap-1.5 bg-tray px-4 pb-2 pt-2"
+      >
         <div>
           <div className="flex justify-between gap-2">
             {state.vowels.map((letter, i) => {
@@ -648,22 +691,24 @@ export default function PhraseBoard({
             Next Puzzle
           </button>
 
-          {/* Reserved below the buttons rather than above them: kept between
-              the rack and the buttons it read as dead space, and the racks
-              should sit tight to the controls. */}
-          <div className="flex h-[18px] items-center justify-center">
-            {state.won ? (
-              <p
-                className="font-tile text-[12px] font-medium uppercase"
-                style={{ color: 'var(--solved)', letterSpacing: '0.1em' }}
-              >
-                Solved · {state.moves} moves
-              </p>
-            ) : showAnswer ? (
-              // The answer is on the board, so there is nothing to print here.
-              <p className="font-tile text-[12px] opacity-60">Solution shown</p>
-            ) : null}
-          </div>
+          {/* Only occupies height when it has something to say. The tray is a
+              fixed band and the board flexes around it, so appearing here
+              costs the board a few pixels rather than pushing the page. */}
+          {(state.won || showAnswer) && (
+            <div className="flex items-center justify-center">
+              {state.won ? (
+                <p
+                  className="font-tile text-[12px] font-medium uppercase"
+                  style={{ color: 'var(--solved)', letterSpacing: '0.1em' }}
+                >
+                  Solved · {state.moves} moves
+                </p>
+              ) : (
+                // The answer is on the board, so there is nothing to print here.
+                <p className="font-tile text-[12px] opacity-60">Solution shown</p>
+              )}
+            </div>
+          )}
 
         </div>
       </div>
