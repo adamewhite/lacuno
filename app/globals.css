@@ -40,7 +40,13 @@
   --ledge: #e98b50;
   --accent: #e98b50;          /* selection and placement rings */
   --accent-text: #f3cd97;
-  --solved: #fef2a0;
+
+  /* Score feedback. These sit outside the warm palette deliberately: a rack
+     hitting its target and a rack going over are the two states a player must
+     read at a glance, and a warm-on-warm signal is not legible enough. */
+  --exact: #7fd68a;           /* total matches the target */
+  --over: #ff6b6b;            /* total exceeds it */
+  --solved: #7fd68a;
 
   --pile-mid: #bc4f4f;
   --pile-back: #5c2222;
@@ -62,6 +68,8 @@
   --color-accent: var(--accent);
   --color-accent-text: var(--accent-text);
   --color-solved: var(--solved);
+  --color-exact: var(--exact);
+  --color-over: var(--over);
   --color-pile-mid: var(--pile-mid);
   --color-pile-back: var(--pile-back);
   /* One family throughout — UI labels and tile letters alike. */

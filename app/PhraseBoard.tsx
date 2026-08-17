@@ -261,7 +261,13 @@ export default function PhraseBoard({
       <div className="flex flex-1 items-center justify-center px-3.5 pb-3 pt-1">
         <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-3">
         {state.racks.map((rack, rackIndex) => {
-          const solved = rack.full && rack.total === rack.target;
+          // Three states, signalled the moment the arithmetic says so rather
+          // than waiting for the rack to fill: under (neutral), exact (green),
+          // over (red). The overshoot is deliberate information — it tells the
+          // player which tiles cannot belong.
+          const exact = rack.total === rack.target;
+          const over = rack.total > rack.target;
+          const solved = rack.full && exact;
 
           return (
             <div
@@ -282,8 +288,19 @@ export default function PhraseBoard({
               <div className="flex items-baseline justify-end gap-px pr-1.5 font-tile font-medium">
                 <span
                   className="text-[14px]"
-                  style={{ color: solved ? 'var(--solved)' : 'var(--text)' }}
+                  style={{
+                    color: over
+                      ? 'var(--over)'
+                      : exact
+                        ? 'var(--exact)'
+                        : 'var(--text)',
+                    fontWeight: exact || over ? 700 : 500,
+                  }}
                 >
+                  {/* Non-colour redundancy, so the state does not depend on
+                      distinguishing green from red (SPEC §3). */}
+                  {exact && <span aria-hidden>✓</span>}
+                  {over && <span aria-hidden>▲</span>}
                   {rack.total}
                 </span>
                 <span className="self-start text-[9px] opacity-50">/{rack.target}</span>
@@ -474,7 +491,11 @@ export default function PhraseBoard({
               tray does not creep upward on every placement. */}
           <div
             data-drop="pool"
-            className="relative mt-1.5 flex min-h-[64px] flex-wrap content-start justify-center gap-1.5 px-1 pb-[9px]"
+            // Reserve exactly one row of tiles plus the ledge padding. A fixed
+            // min-height taller than the tiles left the ledge floating below
+            // them, so the gap did not match the puzzle racks'.
+            style={{ minHeight: handTileHeight + 9 }}
+            className="relative mt-1.5 flex flex-wrap content-start justify-center gap-1.5 px-1 pb-[9px]"
           >
             {/* Same ledge height and gap as the puzzle racks above, so the two
                 surfaces read as the same object. */}
