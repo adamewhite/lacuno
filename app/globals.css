@@ -4,21 +4,26 @@
  * Palette: dark maroon → brick → orange → peach → pale yellow.
  *
  *   #3f1818  dark maroon — page, tray and slot depth
+ *   #5c2222  mid maroon  — the board field, so it reads apart from the frame
  *   #bc4f4f  brick       — frame and shell
  *   #e98b50  orange      — accents, rings, ledges
  *   #f3cd97  peach       — hand and pile faces
  *   #fef2a0  pale yellow — tiles on the board, the brightest thing on it
  *
  * Warm throughout: the board surface carries the colour and the tiles are the
- * light on it. Every value is one of the five given colours — nothing derived.
+ * light on it. One shade (#5c2222) is interpolated between the dark and the
+ * brick so the board field does not merge into the frame around it.
  *
  * Layout tokens (sizes, radii, spacing) still come from the VWL DRP handoff;
  * only the colours have been replaced.
  */
 :root {
+  /* Four stacked surfaces, each a distinct step so they read apart:
+     page (outside the shell) < board field < frame band, with the tray
+     matching the page. Empty slots sit darker still against the field. */
   --page: #3f1818;
-  --shell: #bc4f4f;
-  --frame: #bc4f4f;
+  --shell: #5c2222;      /* the board field the racks sit on */
+  --frame: #bc4f4f;      /* the bright band around it */
   --frame-text: #fef2a0;
   --tray: #3f1818;
   --text: #fef2a0;
@@ -27,7 +32,7 @@
   --tile-face-hand: #f3cd97;  /* hand and piles, a step warmer so the two read apart */
   --tile-text: #3f1818;
 
-  --slot-fill: #3f1818;
+  --slot-fill: #3f1818;       /* darker than the field, so empty slots recede */
   --slot-border: #e98b50;
   --spent-fill: #3f1818;
   --spent-border: #bc4f4f;
@@ -38,7 +43,7 @@
   --solved: #fef2a0;
 
   --pile-mid: #bc4f4f;
-  --pile-back: #3f1818;
+  --pile-back: #5c2222;
 }
 
 @theme inline {
