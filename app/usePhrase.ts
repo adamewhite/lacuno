@@ -45,6 +45,8 @@ export interface PhraseRackState {
 
 export interface PhraseState {
   readonly racks: readonly PhraseRackState[];
+  /** True once the player has given up and the answer is on the board. */
+  readonly revealed: boolean;
   readonly pool: readonly ConsonantTile[];
   readonly selected: { readonly kind: 'consonant'; readonly id: number } | { readonly kind: 'vowel'; readonly letter: string } | null;
   readonly won: boolean;
@@ -65,6 +67,8 @@ export interface PhraseActions {
   backspace: (rack: number, at?: number) => void;
   clearAll: () => void;
   revealHint: () => void;
+  /** Fill the whole board with the answer and empty the rack. */
+  revealSolution: () => void;
 }
 
 /**
@@ -104,22 +108,30 @@ export function usePhrase(
   const [selected, setSelected] = useState<PhraseState['selected']>(null);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [moves, setMoves] = useState(0);
+  const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
     setContents(puzzle.racks.map((r) => new Array<SlotContent>(r.length).fill(null)));
     setSelected(null);
     setHintsUsed(0);
     setMoves(0);
+    setRevealed(false);
   }, [puzzle]);
 
-  /** Slots fixed by a revealed hint. */
+  /** Slots fixed by a revealed hint — or every slot, once the answer is shown. */
   const lockedSlots = useMemo(() => {
     const set = new Set<string>();
+    if (revealed) {
+      puzzle.racks.forEach((rack, rackIndex) => {
+        for (let slot = 0; slot < rack.length; slot++) set.add(`${rackIndex}:${slot}`);
+      });
+      return set;
+    }
     for (const hint of puzzle.hints.slice(0, hintsUsed)) {
       set.add(`${hint.rackIndex}:${hint.slot}`);
     }
     return set;
-  }, [puzzle, hintsUsed]);
+  }, [puzzle, hintsUsed, revealed]);
 
   const usedTileIds = useMemo(() => {
     const set = new Set<number>();
@@ -337,6 +349,38 @@ export function usePhrase(
     setSelected(null);
   }, [puzzle, hintsUsed, tiles]);
 
+  /**
+   * Give up: write the answer onto the board and empty the rack.
+   *
+   * Consonants are matched to real pool tiles so the rack drains exactly as it
+   * would have if the player had placed them; vowels are free, as always. Every
+   * slot then locks, since there is nothing left to change.
+   */
+  const revealSolution = useCallback(() => {
+    const words = puzzle.phrase.split(' ');
+    const taken = new Set<number>();
+
+    setContents(
+      words.map((word) =>
+        [...word].map((letter): SlotContent => {
+          if (isVowel(letter)) return { kind: 'vowel', letter };
+          const tile = tiles.find((t) => t.letter === letter && !taken.has(t.id));
+          if (!tile) return { kind: 'vowel', letter }; // unreachable for a well-formed puzzle
+          taken.add(tile.id);
+          return {
+            kind: 'consonant',
+            tileId: tile.id,
+            letter: tile.letter,
+            value: tile.value,
+          };
+        }),
+      ),
+    );
+
+    setRevealed(true);
+    setSelected(null);
+  }, [puzzle, tiles]);
+
   const selectConsonant = useCallback((id: number) => {
     setSelected((c) => (c?.kind === 'consonant' && c.id === id ? null : { kind: 'consonant', id }));
   }, []);
@@ -354,6 +398,7 @@ export function usePhrase(
       hintsUsed,
       hintsAvailable: puzzle.hints.length,
       moves,
+      revealed,
       vowels: puzzle.vowels,
     },
     {
@@ -367,6 +412,7 @@ export function usePhrase(
       backspace,
       clearAll,
       revealHint,
+      revealSolution,
     },
   ];
 }

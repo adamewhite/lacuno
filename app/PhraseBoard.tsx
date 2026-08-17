@@ -363,13 +363,17 @@ export default function PhraseBoard({
                           }}
                         />
                       )}
-                      {focused && !content && (
+                      {focused && !content && !state.revealed && (
                         <span
                           className="pointer-events-none absolute rounded-[5px]"
                           style={{ inset: '-2px', border: '2px solid var(--accent)' }}
                         />
                       )}
-                      {locked && (
+                      {/* A hint's ring marks a letter the player was given. Once
+                          the whole answer is revealed every slot is "given", so
+                          ringing them all would be noise — and would read as
+                          "correct" on a puzzle that was not solved. */}
+                      {locked && !state.revealed && (
                         <span
                           className="pointer-events-none absolute rounded-[5px]"
                           style={{ inset: '-2px', border: '2px solid var(--solved)' }}
@@ -470,9 +474,11 @@ export default function PhraseBoard({
               tray does not creep upward on every placement. */}
           <div
             data-drop="pool"
-            className="relative mt-1.5 flex min-h-[64px] flex-wrap content-start justify-center gap-1.5 px-1 pb-2.5"
+            className="relative mt-1.5 flex min-h-[64px] flex-wrap content-start justify-center gap-1.5 px-1 pb-[9px]"
           >
-            <span className="absolute bottom-0 left-0 right-0 h-1 rounded-sm bg-ledge" />
+            {/* Same ledge height and gap as the puzzle racks above, so the two
+                surfaces read as the same object. */}
+            <span className="absolute bottom-0 left-0 right-0 h-[5px] rounded-[3px] bg-ledge" />
             {state.pool.map((tile) => {
               const selected =
                 state.selected?.kind === 'consonant' && state.selected.id === tile.id;
@@ -533,7 +539,8 @@ export default function PhraseBoard({
                 Solved · {state.moves} moves
               </p>
             ) : showAnswer ? (
-              <p className="font-tile text-[13px] opacity-80">{puzzle.phrase}</p>
+              // The answer is on the board, so there is nothing to print here.
+              <p className="font-tile text-[13px] opacity-60">Solution shown</p>
             ) : null}
           </div>
 
@@ -547,7 +554,10 @@ export default function PhraseBoard({
               Hint
             </button>
             <button
-              onClick={() => setShowAnswer(true)}
+              onClick={() => {
+                setShowAnswer(true);
+                actions.revealSolution();
+              }}
               disabled={state.won || showAnswer}
               className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
             >
