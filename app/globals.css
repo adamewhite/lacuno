@@ -23,8 +23,8 @@
      matching the page. Empty slots sit darker still against te field. */
   --page: #3f1818;
   --shell: #5c2222;      /* the board field the racks sit on */
-  --frame: #bc4f4f;      /* the bright band around it */
-  --frame-text: #fef2a0;
+  --frame: #be5555;      /* the bright band around it */
+  --frame-text: #fdf1a6;
   --tray: #3f1818;
   --text: #fef2a0;
 

@@ -35,13 +35,37 @@ const seen = new Set<string>();
 const puzzles = [];
 
 /**
+ * Content limits, set by what the board can show legibly on the smallest
+ * supported phone (iPhone SE, 667px) without dropping tiles below ~32px.
+ */
+
+/**
  * Longest word a rack may hold.
  *
  * Rack tiles shrink to keep a word on one line, and past ten letters they get
- * too small to read on a phone. A word broken across rows stops reading as a
- * word, so the limit is on the content rather than the layout.
+ * too small to read. A word broken across rows stops reading as a word, so the
+ * limit is on the content rather than the layout.
  */
 const MAX_WORD_LENGTH = 10;
+
+/**
+ * Most consonants the player's rack can hold.
+ *
+ * The rack is capped at two rows, and past sixteen tiles those two rows only
+ * fit by shrinking below legibility. This binds tighter than the board does —
+ * board rows are comparatively cheap, but the rack is its own constraint.
+ */
+const MAX_CONSONANTS = 16;
+
+/**
+ * Most words a phrase may have, i.e. most racks on the board.
+ *
+ * Rows one to three cost nothing; the fourth forces a step down in tile size,
+ * and the fifth is where a 667px screen runs out. Short words share a row, so
+ * a five-word phrase of small words is usually fine — this is a ceiling on the
+ * pathological case rather than a tight rule.
+ */
+const MAX_WORDS = 5;
 
 for (const { phrase, category } of phrases) {
   if (seen.has(phrase)) {
@@ -50,10 +74,29 @@ for (const { phrase, category } of phrases) {
   }
   seen.add(phrase);
 
-  const tooLong = phrase.split(' ').find((w) => w.length > MAX_WORD_LENGTH);
+  const words = phrase.split(' ');
+
+  const tooLong = words.find((w) => w.length > MAX_WORD_LENGTH);
   if (tooLong) {
     console.warn(
       `  skipping "${phrase}": ${tooLong} is ${tooLong.length} letters, over the ${MAX_WORD_LENGTH} limit`,
+    );
+    continue;
+  }
+
+  if (words.length > MAX_WORDS) {
+    console.warn(
+      `  skipping "${phrase}": ${words.length} words, over the ${MAX_WORDS} limit`,
+    );
+    continue;
+  }
+
+  const consonantCount = [...phrase.replace(/ /g, '')].filter(
+    (c) => !'AEIOU'.includes(c),
+  ).length;
+  if (consonantCount > MAX_CONSONANTS) {
+    console.warn(
+      `  skipping "${phrase}": ${consonantCount} consonants, over the ${MAX_CONSONANTS} limit`,
     );
     continue;
   }
