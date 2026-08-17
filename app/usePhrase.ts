@@ -4,6 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 export interface PhrasePuzzleData {
   readonly id: string;
+  /** Shown under the header as a clue to the kind of answer. */
+  readonly category: string;
   readonly racks: readonly { readonly length: number; readonly target: number }[];
   readonly consonants: readonly string[];
   /** Vowels this phrase uses. Unlimited supply, but only these are offered. */

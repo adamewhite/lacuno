@@ -1,40 +1,45 @@
 @import "tailwindcss";
 
 /**
- * Palette: near-black → deep green → teal → periwinkle.
+ * Palette: pale yellow → peach → orange → brick.
  *
- *   #0b0909  near-black — the page behind the shell
- *   #2e4540  deep green — mid surfaces
- *   #408175  teal       — frame and accent
- *   #b5b9f0  periwinkle — tile faces and highlights
+ *   #fef2a0  pale yellow — tile faces, the brightest thing on the board
+ *   #f3cd97  peach       — hand and pile faces
+ *   #e98b50  orange      — accents, rings, ledges
+ *   #bc4f4f  brick       — frame and shell
+ *
+ * A WARM palette rather than the dark ones before it, so the roles invert:
+ * the board surface carries the colour and the tiles are the light on it.
+ * Darker shades of brick are derived for depth (page, tray, slots) since the
+ * four given colours are all mid-to-light.
  *
  * Layout tokens (sizes, radii, spacing) still come from the VWL DRP handoff;
  * only the colours have been replaced.
  */
 :root {
-  --page: #0b0909;
-  --shell: #14201d;   /* between the near-black and the green, so the shell reads as raised */
-  --frame: #408175;
-  --frame-text: #0b0909;   /* dark on teal: the frame is the bright band, so its text is not */
-  --tray: #0b0909;
-  --text: #b5b9f0;
+  --page: #7a3232;    /* under the brick, so the shell reads as raised */
+  --shell: #bc4f4f;
+  --frame: #bc4f4f;
+  --frame-text: #fef2a0;
+  --tray: #8f3b3b;
+  --text: #fef2a0;
 
-  --tile-face: #b5b9f0;       /* tiles on the board */
-  --tile-face-hand: #cfd2f6;  /* hand and piles, a step lighter so they read as "available" */
-  --tile-text: #0b0909;
+  --tile-face: #fef2a0;       /* tiles on the board */
+  --tile-face-hand: #f3cd97;  /* hand and piles, a step warmer so the two read apart */
+  --tile-text: #7a3232;
 
-  --slot-fill: #2e4540;
-  --slot-border: #47645d;
-  --spent-fill: #1b2926;
-  --spent-border: #2e4540;
+  --slot-fill: #a04444;
+  --slot-border: #e98b50;
+  --spent-fill: #8f3b3b;
+  --spent-border: #a04444;
 
-  --ledge: #2e4540;
-  --accent: #408175;          /* selection and placement rings */
-  --accent-text: #6fb3a5;
-  --solved: #b5b9f0;          /* periwinkle reads as success against the green */
+  --ledge: #e98b50;
+  --accent: #e98b50;          /* selection and placement rings */
+  --accent-text: #f3cd97;
+  --solved: #fef2a0;
 
-  --pile-mid: #2e4540;
-  --pile-back: #1b2926;
+  --pile-mid: #a04444;
+  --pile-back: #8f3b3b;
 }
 
 @theme inline {

@@ -38,6 +38,8 @@ export interface PhrasePuzzle {
   readonly id: string;
   /** The phrase, uppercase, words space-separated. Never sent to the client. */
   readonly phrase: string;
+  /** Shown to the player as a clue to the kind of answer. */
+  readonly category: string;
   /** One rack per word, in reading order. */
   readonly racks: readonly PhraseRack[];
   /** The scarce pool: every consonant in the phrase, sorted. */
@@ -60,6 +62,15 @@ export function isVowelLetter(letter: string): boolean {
   return VOWELS.has(letter);
 }
 
+/** Shown to the player when a line gives no category of its own. */
+export const DEFAULT_CATEGORY = 'Phrase';
+
+export interface ParsedPhraseLine {
+  readonly phrase: string;
+  /** e.g. "Idiom", "People", "Place". Title-cased for display. */
+  readonly category: string;
+}
+
 /**
  * Normalize a raw phrase line: uppercase, collapse whitespace, drop
  * punctuation. Returns null for blanks, comments, and anything that is not
@@ -80,6 +91,34 @@ export function normalizePhrase(raw: string): string | null {
 }
 
 /**
+ * Parse a list line, which may carry a category: `Idiom | Cold feet`.
+ *
+ * The category is a clue about the kind of answer, not part of it. Without one
+ * the puzzle is labelled `Phrase`, so a bare list of phrases still works.
+ */
+export function parsePhraseLine(raw: string): ParsedPhraseLine | null {
+  const trimmed = raw.trim();
+  if (trimmed.length === 0 || trimmed.startsWith('#')) return null;
+
+  const bar = trimmed.indexOf('|');
+  const categoryPart = bar >= 0 ? trimmed.slice(0, bar).trim() : '';
+  const phrasePart = bar >= 0 ? trimmed.slice(bar + 1) : trimmed;
+
+  const phrase = normalizePhrase(phrasePart);
+  if (!phrase) return null;
+
+  // Title-case whatever the curator typed, so "IDIOM" and "idiom" both read
+  // the same on the board.
+  const category = categoryPart
+    ? categoryPart
+        .toLowerCase()
+        .replace(/\b[a-z]/g, (c) => c.toUpperCase())
+    : DEFAULT_CATEGORY;
+
+  return { phrase, category };
+}
+
+/**
  * Build a puzzle from a phrase.
  *
  * Every consonant becomes a tile; vowels do not, since they are unlimited. A
@@ -89,6 +128,7 @@ export function buildPhrasePuzzle(
   phrase: string,
   values: LetterValues,
   id: string,
+  category: string = DEFAULT_CATEGORY,
 ): PhrasePuzzle {
   const words = phrase.split(' ');
 
@@ -113,6 +153,7 @@ export function buildPhrasePuzzle(
   return {
     id,
     phrase,
+    category,
     racks,
     consonants,
     vowels,

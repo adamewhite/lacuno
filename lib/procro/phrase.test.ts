@@ -2,8 +2,10 @@ import { describe, expect, it } from 'vitest';
 
 import {
   buildPhrasePuzzle,
+  DEFAULT_CATEGORY,
   isPhraseSolved,
   normalizePhrase,
+  parsePhraseLine,
   phraseHints,
 } from './phrase';
 import { FLAT_3 } from '../valuation/consonant-schemes';
@@ -31,7 +33,54 @@ describe('normalizePhrase', () => {
   });
 });
 
+describe('parsePhraseLine', () => {
+  it('reads a category prefix', () => {
+    expect(parsePhraseLine('Idiom | Cold feet')).toEqual({
+      phrase: 'COLD FEET',
+      category: 'Idiom',
+    });
+  });
+
+  it('defaults to Phrase when no category is given', () => {
+    // A bare list of phrases still works.
+    expect(parsePhraseLine('Cold feet')).toEqual({
+      phrase: 'COLD FEET',
+      category: DEFAULT_CATEGORY,
+    });
+  });
+
+  it('title-cases whatever the curator typed', () => {
+    expect(parsePhraseLine('IDIOM | cold feet')?.category).toBe('Idiom');
+    expect(parsePhraseLine('idiom | cold feet')?.category).toBe('Idiom');
+    expect(parsePhraseLine('famous people | marie curie')?.category).toBe('Famous People');
+  });
+
+  it('tolerates spacing around the bar', () => {
+    expect(parsePhraseLine('Idiom|Cold feet')?.phrase).toBe('COLD FEET');
+    expect(parsePhraseLine('  Idiom   |   Cold feet  ')?.phrase).toBe('COLD FEET');
+  });
+
+  it('falls back to Phrase when the category is empty', () => {
+    expect(parsePhraseLine('| Cold feet')?.category).toBe(DEFAULT_CATEGORY);
+  });
+
+  it('skips comments and blanks', () => {
+    expect(parsePhraseLine('# Idiom | Cold feet')).toBeNull();
+    expect(parsePhraseLine('   ')).toBeNull();
+  });
+
+  it('rejects a line whose phrase is empty', () => {
+    expect(parsePhraseLine('Idiom |')).toBeNull();
+    expect(parsePhraseLine('Idiom | 123')).toBeNull();
+  });
+});
+
 describe('buildPhrasePuzzle', () => {
+  it('carries the category, defaulting to Phrase', () => {
+    expect(buildPhrasePuzzle('COLD FEET', V, 'p1', 'Idiom').category).toBe('Idiom');
+    expect(buildPhrasePuzzle('COLD FEET', V, 'p1').category).toBe(DEFAULT_CATEGORY);
+  });
+
   it('makes one rack per word, in reading order', () => {
     const puzzle = buildPhrasePuzzle('COLD FEET', V, 'p1');
     expect(puzzle.racks.map((r) => r.length)).toEqual([4, 4]);

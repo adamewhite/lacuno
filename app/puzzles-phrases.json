@@ -31,6 +31,7 @@
   "puzzles": [
     {
       "id": "f1",
+      "category": "Idiom",
       "racks": [
         {
           "length": 4,
@@ -102,6 +103,7 @@
     },
     {
       "id": "f2",
+      "category": "Idiom",
       "racks": [
         {
           "length": 5,
@@ -193,6 +195,7 @@
     },
     {
       "id": "f3",
+      "category": "Idiom",
       "racks": [
         {
           "length": 3,
@@ -300,6 +303,7 @@
     },
     {
       "id": "f4",
+      "category": "Idiom",
       "racks": [
         {
           "length": 4,
@@ -408,6 +412,7 @@
     },
     {
       "id": "f5",
+      "category": "Idiom",
       "racks": [
         {
           "length": 5,
@@ -527,6 +532,7 @@
     },
     {
       "id": "f6",
+      "category": "Idiom",
       "racks": [
         {
           "length": 4,
@@ -647,6 +653,7 @@
     },
     {
       "id": "f7",
+      "category": "Idiom",
       "racks": [
         {
           "length": 4,
@@ -776,6 +783,7 @@
     },
     {
       "id": "f8",
+      "category": "Idiom",
       "racks": [
         {
           "length": 1,
@@ -916,6 +924,7 @@
     },
     {
       "id": "f9",
+      "category": "Idiom",
       "racks": [
         {
           "length": 7,
@@ -1069,6 +1078,7 @@
     },
     {
       "id": "f10",
+      "category": "Idiom",
       "racks": [
         {
           "length": 11,

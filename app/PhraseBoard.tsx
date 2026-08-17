@@ -185,7 +185,7 @@ export default function PhraseBoard({
             both are reachable from a menu once one exists. */}
         <button
           aria-label="Menu"
-          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(11,9,9,0.16)]"
+          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(254,242,160,0.16)]"
         >
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
@@ -193,9 +193,19 @@ export default function PhraseBoard({
         </button>
       </div>
 
+      {/* Category — the kind of answer, centred under the header band. */}
+      <div className="pb-1 pt-3 text-center">
+        <span
+          className="text-[10px] font-semibold uppercase opacity-60"
+          style={{ letterSpacing: '0.18em' }}
+        >
+          {puzzle.category}
+        </span>
+      </div>
+
       {/* Board field — racks wrap in sequence so the phrase reads in order,
           each row centred. */}
-      <div className="flex flex-1 items-center justify-center px-3.5 pb-7 pt-6">
+      <div className="flex flex-1 items-center justify-center px-3.5 pb-7 pt-2">
         <div className="flex flex-wrap content-center justify-center gap-x-3 gap-y-5">
         {state.racks.map((rack, rackIndex) => {
           const solved = rack.full && rack.total === rack.target;
@@ -381,14 +391,14 @@ export default function PhraseBoard({
               <button
                 onClick={actions.revealHint}
                 disabled={state.hintsUsed >= state.hintsAvailable}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(64,129,117,0.16)] disabled:opacity-40"
+                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
               >
                 Hint
               </button>
               <button
                 onClick={() => setShowAnswer(true)}
                 disabled={state.won || showAnswer}
-                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(64,129,117,0.16)] disabled:opacity-40"
+                className="rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
               >
                 Give Up
               </button>

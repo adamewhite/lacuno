@@ -3,6 +3,13 @@
 # One phrase per line, `#` for comments. Case is ignored; letters only, words
 # separated by single spaces.
 #
+# A line may carry a category, shown to the player under the header as a clue
+# to the kind of answer:
+#
+#     Idiom | Cold feet
+#     People | Marie Curie
+#     Cold feet                 <- no category given, shown as "Phrase"
+#
 # Each phrase becomes one puzzle: one rack per word, in order. The player is
 # given every CONSONANT as a scarce tile and an unlimited supply of vowels, and
 # must reconstruct the phrase.
@@ -15,13 +22,13 @@
 # Curate deliberately. This list is the game's content — the generator can no
 # longer manufacture difficulty, so quality here is quality of the puzzle.
 
-Cold feet
-Break the ice
-Cut to the chase
-Wild goose chase
-Throw in the towel
-Once in a blue moon
-Beat around the bush
-A blessing in disguise
-Burning the midnight oil
-Butterflies in your stomach
+Idiom | Cold feet
+Idiom | Break the ice
+Idiom | Cut to the chase
+Idiom | Wild goose chase
+Idiom | Throw in the towel
+Idiom | Once in a blue moon
+Idiom | Beat around the bush
+Idiom | A blessing in disguise
+Idiom | Burning the midnight oil
+Idiom | Butterflies in your stomach

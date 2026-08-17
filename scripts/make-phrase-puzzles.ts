@@ -13,7 +13,7 @@ import { join } from 'node:path';
 
 import {
   buildPhrasePuzzle,
-  normalizePhrase,
+  parsePhraseLine,
   phraseHints,
 } from '../lib/procro/phrase';
 import { FLAT_3 } from '../lib/valuation/consonant-schemes';
@@ -22,7 +22,9 @@ const ROOT = join(import.meta.dirname, '..');
 const VALUES = FLAT_3;
 
 const lines = readFileSync(join(ROOT, 'data', 'phrases.txt'), 'utf8').split('\n');
-const phrases = lines.map(normalizePhrase).filter((p): p is string => p !== null);
+const phrases = lines
+  .map(parsePhraseLine)
+  .filter((p): p is NonNullable<typeof p> => p !== null);
 
 if (phrases.length === 0) {
   console.error('No phrases found in data/phrases.txt');
@@ -32,17 +34,18 @@ if (phrases.length === 0) {
 const seen = new Set<string>();
 const puzzles = [];
 
-for (const phrase of phrases) {
+for (const { phrase, category } of phrases) {
   if (seen.has(phrase)) {
     console.warn(`  skipping duplicate: ${phrase}`);
     continue;
   }
   seen.add(phrase);
 
-  const puzzle = buildPhrasePuzzle(phrase, VALUES, `f${puzzles.length + 1}`);
+  const puzzle = buildPhrasePuzzle(phrase, VALUES, `f${puzzles.length + 1}`, category);
 
   puzzles.push({
     id: puzzle.id,
+    category: puzzle.category,
     racks: puzzle.racks.map((r) => ({ length: r.length, target: r.target })),
     consonants: puzzle.consonants,
     vowels: puzzle.vowels,
@@ -61,14 +64,14 @@ writeFileSync(
 );
 
 console.log(`Wrote ${puzzles.length} phrase puzzles to app/puzzles-phrases.json\n`);
-console.log('phrase'.padEnd(30) + 'racks'.padStart(6) + 'cons'.padStart(6) + '  vowels  targets');
+console.log('category'.padEnd(10) + 'phrase'.padEnd(30) + 'racks'.padStart(6) + 'cons'.padStart(6) + '  targets');
 console.log('-'.repeat(72));
 for (const p of puzzles) {
   console.log(
-    p.phrase.padEnd(30) +
+    p.category.padEnd(10) +
+      p.phrase.padEnd(30) +
       String(p.racks.length).padStart(6) +
       String(p.consonants.length).padStart(6) +
-      '  ' + p.vowels.join('').padEnd(6) +
       '  ' + p.racks.map((r) => r.target).join(' '),
   );
 }
