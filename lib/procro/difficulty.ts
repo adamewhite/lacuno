@@ -4,27 +4,27 @@
  * Every level uses the same puzzles and the same consonant pool. What varies is
  * how much of the vowel work is done for the player:
  *
- *   easiest   every vowel is already on the board; all five piles disabled
- *   easier    one whole vowel pre-filled throughout (every E, say), and the
- *             piles show only the vowels genuinely in play
- *   medium    vowels the phrase never uses are disabled, so the piles show
- *             only what is in play — but nothing is placed for you
- *   hardest   nothing given; all five piles live, whether or not the phrase
- *             uses them
+ *   Standard     every vowel is already on the board; all five piles disabled
+ *   Challenging  one whole vowel pre-filled throughout (every E, say), and the
+ *                piles show only the vowels genuinely in play
+ *   Difficult    vowels the phrase never uses are disabled, so the piles show
+ *                only what is in play — but nothing is placed for you
+ *   Brutal       nothing given; all five piles live, whether or not the phrase
+ *                uses them
  *
- * `hardest` is the shipped behaviour. The other three exist to find out where
- * the puzzle actually lands for a person who is not the author.
+ * Brutal is the original behaviour, and Standard is what a new visitor gets.
+ * Each is a route: /standard, /challenging, /difficult, /brutal.
  */
 
-export const DIFFICULTIES = ['easiest', 'easier', 'medium', 'hardest'] as const;
+export const DIFFICULTIES = ['standard', 'challenging', 'difficult', 'brutal'] as const;
 export type Difficulty = (typeof DIFFICULTIES)[number];
 
 /**
- * What a first-time visitor gets. The easiest level is the friendliest
- * introduction — the puzzle still has to be worked out, but the vowels are not
- * also a guessing game on top of it.
+ * What a first-time visitor gets. Standard is the friendliest introduction —
+ * the puzzle still has to be worked out, but the vowels are not also a guessing
+ * game on top of it.
  */
-export const DEFAULT_DIFFICULTY: Difficulty = 'easiest';
+export const DEFAULT_DIFFICULTY: Difficulty = 'standard';
 
 export interface DifficultyMeta {
   readonly slug: Difficulty;
@@ -35,24 +35,24 @@ export interface DifficultyMeta {
 }
 
 export const DIFFICULTY_META: Record<Difficulty, DifficultyMeta> = {
-  easiest: {
-    slug: 'easiest',
-    label: 'Easiest',
+  standard: {
+    slug: 'standard',
+    label: 'Standard',
     blurb: 'All vowels filled in',
   },
-  easier: {
-    slug: 'easier',
-    label: 'Easier',
+  challenging: {
+    slug: 'challenging',
+    label: 'Challenging',
     blurb: 'One vowel filled in for you',
   },
-  medium: {
-    slug: 'medium',
-    label: 'Medium',
+  difficult: {
+    slug: 'difficult',
+    label: 'Difficult',
     blurb: 'Only the vowels in play are offered',
   },
-  hardest: {
-    slug: 'hardest',
-    label: 'Hardest',
+  brutal: {
+    slug: 'brutal',
+    label: 'Brutal',
     blurb: 'No vowel help',
   },
 };
@@ -92,13 +92,13 @@ export function planVowels(words: readonly string[], difficulty: Difficulty): Vo
   };
 
   switch (difficulty) {
-    case 'easiest': {
+    case 'standard': {
       // Everything given: the puzzle becomes purely about the consonants.
       fill(used);
       return { prefilled, enabled: new Set() };
     }
 
-    case 'easier': {
+    case 'challenging': {
       // Give away the vowel that appears most, so the help is worth something.
       // Ties break by A E I O U order, keeping it predictable across sessions.
       const counts = new Map<string, number>();
@@ -117,13 +117,13 @@ export function planVowels(words: readonly string[], difficulty: Difficulty): Vo
       return { prefilled, enabled };
     }
 
-    case 'medium': {
+    case 'difficult': {
       // Nothing filled, but the piles no longer lie about what is in play:
       // a vowel the phrase never uses is not offered.
       return { prefilled, enabled: used };
     }
 
-    case 'hardest':
+    case 'brutal':
     default:
       // All five live, whether or not the phrase uses them — a disabled pile
       // would reveal that its vowel is absent.

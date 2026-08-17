@@ -272,9 +272,9 @@ export function usePhrase(
       if (target < 0) return false;
 
       if ((ALL_VOWELS as readonly string[]).includes(upper)) {
-        // Only vowels this level offers. At the hardest level that is all
-        // five, so a wrong vowel is accepted and simply leaves the rack
-        // unsolved — rejecting it would reveal that it is absent.
+        // Only vowels this level offers. At Brutal that is all five, so a
+        // wrong vowel is accepted and simply leaves the rack unsolved —
+        // rejecting it would reveal that it is absent.
         if (!vowelPlan.enabled.has(upper)) return false;
         placeVowel(upper, rack, target);
         return true;

@@ -14,37 +14,37 @@ const board = (words: readonly string[], plan: ReturnType<typeof planVowels>) =>
     .join(' ');
 
 describe('planVowels', () => {
-  it('gives away every vowel at the easiest level, and disables all piles', () => {
-    const plan = planVowels(COLD_FEET, 'easiest');
+  it('gives away every vowel at the Standard level, and disables all piles', () => {
+    const plan = planVowels(COLD_FEET, 'standard');
     expect(board(COLD_FEET, plan)).toBe('_O__ _EE_');
     expect(plan.enabled.size).toBe(0);
   });
 
-  it('gives away one whole vowel at the easier level', () => {
+  it('gives away one whole vowel at the Challenging level', () => {
     // E appears twice in FEET and O once in COLD, so E is the one worth giving.
-    const plan = planVowels(COLD_FEET, 'easier');
+    const plan = planVowels(COLD_FEET, 'challenging');
     expect(board(COLD_FEET, plan)).toBe('____ _EE_');
     expect([...plan.enabled]).toEqual(['O']);
   });
 
-  it('gives away nothing at the medium level, but offers only vowels in play', () => {
+  it('gives away nothing at the Difficult level, but offers only vowels in play', () => {
     // The help here is knowing which vowels are absent, not seeing any placed —
-    // less than `easier` hands you, which is why it sits above it.
-    const plan = planVowels(COLD_FEET, 'medium');
+    // less than Challenging hands you, which is why it sits above it.
+    const plan = planVowels(COLD_FEET, 'difficult');
     expect(board(COLD_FEET, plan)).toBe('____ ____');
     expect([...plan.enabled].sort()).toEqual(['E', 'O']);
   });
 
-  it('gives away nothing at the hardest level, and offers all five piles', () => {
+  it('gives away nothing at the Brutal level, and offers all five piles', () => {
     // COLD FEET has no A, I or U — but disabling those piles would say so.
-    const plan = planVowels(COLD_FEET, 'hardest');
+    const plan = planVowels(COLD_FEET, 'brutal');
     expect(board(COLD_FEET, plan)).toBe('____ ____');
     expect([...plan.enabled].sort()).toEqual(['A', 'E', 'I', 'O', 'U']);
   });
 
   it('fills every occurrence of a given vowel, across racks', () => {
     // O appears in ONCE and twice in MOON: all three are filled together.
-    const plan = planVowels(BLUE_MOON, 'easier');
+    const plan = planVowels(BLUE_MOON, 'challenging');
     expect(board(BLUE_MOON, plan)).toBe('O___ __ _ ____ _OO_');
   });
 
@@ -53,9 +53,9 @@ describe('planVowels', () => {
     const counts = DIFFICULTIES.map(
       (d) => planVowels(COLD_FEET, d).prefilled.size,
     );
-    expect(counts[0]).toBeGreaterThanOrEqual(counts[1]); // easiest >= easier
-    expect(counts[1]).toBeGreaterThanOrEqual(counts[2]); // easier  >= medium
-    expect(counts[2]).toBeGreaterThanOrEqual(counts[3]); // medium  >= hardest
+    expect(counts[0]).toBeGreaterThanOrEqual(counts[1]); // Standard    >= Challenging
+    expect(counts[1]).toBeGreaterThanOrEqual(counts[2]); // Challenging >= Difficult
+    expect(counts[2]).toBeGreaterThanOrEqual(counts[3]); // Difficult   >= Brutal
   });
 
   it('never leaves a pile enabled for a vowel it has given away', () => {
@@ -77,12 +77,12 @@ describe('planVowels', () => {
   });
 
   it('handles a phrase with no vowels at all', () => {
-    const plan = planVowels(['MY', 'GYM'], 'easiest');
+    const plan = planVowels(['MY', 'GYM'], 'standard');
     expect(plan.prefilled.size).toBe(0);
     expect(plan.enabled.size).toBe(0);
   });
 
-  it('lands a new visitor on the easiest level', () => {
-    expect(DEFAULT_DIFFICULTY).toBe('easiest');
+  it('lands a new visitor on the Standard level', () => {
+    expect(DEFAULT_DIFFICULTY).toBe('standard');
   });
 });
