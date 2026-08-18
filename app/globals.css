@@ -160,10 +160,40 @@ button {
   animation: tile-solved 620ms ease-out both;
 }
 
+/**
+ * Moving between puzzles. The board is rebuilt wholesale — different racks,
+ * different tiles, often a different tile size — so it fades out and back in
+ * rather than snapping between two unrelated layouts.
+ */
+@keyframes board-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.board-enter {
+  animation: board-in 260ms ease-out both;
+}
+
+.board-leave {
+  opacity: 0;
+  transition: opacity 160ms ease-in;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tile-snap,
-  .tile-solved {
+  .tile-solved,
+  .board-enter {
     animation: none;
+  }
+
+  .board-leave {
+    transition: none;
   }
 
   /* Still mark the win, just without the ripple. */

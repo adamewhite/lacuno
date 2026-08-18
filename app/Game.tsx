@@ -45,13 +45,24 @@ export default function Game({
     if (puzzles.length > 0) setDeck(shuffle(puzzles.length));
   }, [shuffle]);
 
+  /**
+   * Advance with a fade. The next board is a different shape — different
+   * racks, tiles and often tile size — so it fades out before swapping and
+   * fades back in, rather than cutting between two unrelated layouts.
+   */
+  const [leaving, setLeaving] = useState(false);
+
   const next = useCallback(() => {
-    setPosition((current) => {
-      const upcoming = current + 1;
-      if (upcoming < deck.length) return upcoming;
-      setDeck(shuffle(puzzles.length));
-      return 0;
-    });
+    setLeaving(true);
+    setTimeout(() => {
+      setPosition((current) => {
+        const upcoming = current + 1;
+        if (upcoming < deck.length) return upcoming;
+        setDeck(shuffle(puzzles.length));
+        return 0;
+      });
+      setLeaving(false);
+    }, 160); // matches .board-leave
   }, [deck.length, shuffle]);
 
   if (puzzles.length === 0) {
@@ -66,7 +77,10 @@ export default function Game({
 
   return (
     // h-full so the board's own h-full resolves against the fixed body.
-    <main className="h-full">
+    <main
+      key={leaving ? 'leaving' : puzzle.id}
+      className={`h-full ${leaving ? 'board-leave' : 'board-enter'}`}
+    >
       <PhraseBoard
         // Keyed by difficulty too: changing level must rebuild the board, since
         // which vowels are pre-filled changes with it.

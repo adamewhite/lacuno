@@ -418,12 +418,15 @@ export default function PhraseBoard({
    * hit with a thumb, so it gets the bigger target. Capped at 44 (the design's
    * size) and still shrunk to keep the rack within two rows.
    */
+  // Sized against the WIDEST row, since that is the one that has to fit. Using
+  // the average left a 14-consonant rack (7+7) overflowing its container.
+  const widestRow = handCount - Math.floor(handCount / 2) ;
   const handTileWidth = Math.max(
     22,
     Math.min(
       44,
       Math.round(tileWidth * 1.15),
-      Math.floor((HAND_WIDTH - (perRow - 1) * HAND_GAP) / perRow),
+      Math.floor((HAND_WIDTH - (widestRow - 1) * HAND_GAP) / widestRow),
     ),
   );
   const handTileHeight = Math.round(handTileWidth * (52 / 44));
@@ -447,13 +450,20 @@ export default function PhraseBoard({
     ),
   );
   /**
-   * Tiles per row, floored so an odd count puts the extra tile on the BOTTOM
-   * row rather than the top. The bottom row sits nearer the thumb, and a rack
-   * that grows downward reads better than one that hangs over.
+   * Tiles per row. Flooring puts the extra tile of an odd count on the BOTTOM
+   * row — nearer the thumb, and a rack growing downward reads better than one
+   * hanging over.
+   *
+   * The container is then sized to the LONGER row, not this one. Sizing it to
+   * the floor left seven tiles wrapping 3+3+1, spilling a third row over the
+   * buttons; the box has to be wide enough for the row that actually holds the
+   * extra tile.
    */
   const handPerRow = Math.max(1, Math.floor(handCount / handRowCount));
-  /** Width of one balanced row, so the flex box wraps where we intend. */
-  const handRowWidth = handPerRow * handTileWidth + (handPerRow - 1) * HAND_GAP;
+  const handWidestRow = handCount - handPerRow * (handRowCount - 1);
+  /** Width of the longest row, so the flex box wraps where we intend. */
+  const handRowWidth =
+    handWidestRow * handTileWidth + (handWidestRow - 1) * HAND_GAP;
   const handReservedHeight =
     handRowCount * handTileHeight + (handRowCount - 1) * HAND_GAP + 9;
 
