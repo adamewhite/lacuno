@@ -586,7 +586,7 @@ export default function PhraseBoard({
       {/* Category — the kind of answer, centred under the header band. */}
       <div className="shrink-0 pb-0.5 pt-1 text-center">
         <span
-          className="text-[10px] font-semibold uppercase sm:text-[13px]"
+          className="text-[11px] font-semibold uppercase sm:text-[14px]"
           style={{ letterSpacing: '0.18em', color: 'var(--frame-text)' }}
         >
           {puzzle.category}
