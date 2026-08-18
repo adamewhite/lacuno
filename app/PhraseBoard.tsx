@@ -259,6 +259,13 @@ export default function PhraseBoard({
     };
   }, []);
 
+  /**
+   * Largest tile the screen allows. A phone keeps the design's 40px; a tablet
+   * or desktop grows the tiles rather than spreading the same small ones
+   * across a wider board.
+   */
+  const TILE_CAP = shellWidth >= 600 ? 64 : shellWidth >= 480 ? 52 : 40;
+
   const longestWord = Math.max(...state.racks.map((r) => r.length));
   // clientWidth already excludes the 5px border; subtract the field's own
   // 14px horizontal padding.
@@ -304,7 +311,7 @@ export default function PhraseBoard({
    * tile is derived from it, so the two move together.
    */
   const handRowsAt = (boardTile: number): number => {
-    const tile = Math.min(44, Math.round(boardTile * 1.15));
+    const tile = Math.min(TILE_CAP + 4, Math.round(boardTile * 1.15));
     const per = Math.max(1, Math.floor((HAND_WIDTH + HAND_GAP) / (tile + HAND_GAP)));
     return Math.ceil(Math.max(puzzle.consonants.length, 1) / per);
   };
@@ -329,7 +336,7 @@ export default function PhraseBoard({
    * row, and the Next Puzzle bar.
    */
   const trayHeightAt = (tile: number): number => {
-    const handTile = Math.min(44, Math.round(tile * 1.15));
+    const handTile = Math.min(TILE_CAP + 4, Math.round(tile * 1.15));
     const handHeight = Math.round(handTile * (52 / 44));
     const rows = handRowsAt(tile);
 
@@ -369,7 +376,7 @@ export default function PhraseBoard({
    * rows and overflows downward. Most puzzles never enter this loop — a short
    * phrase keeps the full-size tile.
    */
-  let fitted = Math.min(40, widthLimit);
+  let fitted = Math.min(TILE_CAP, widthLimit);
   while (
     fitted > 22 &&
     (rowsAtWidth(fitted) > MAX_BOARD_ROWS ||
@@ -424,7 +431,7 @@ export default function PhraseBoard({
   const handTileWidth = Math.max(
     22,
     Math.min(
-      44,
+      TILE_CAP + 4,
       Math.round(tileWidth * 1.15),
       Math.floor((HAND_WIDTH - (widestRow - 1) * HAND_GAP) / widestRow),
     ),
@@ -490,7 +497,10 @@ export default function PhraseBoard({
         // h-full, not 100svh: the body is fixed to the viewport, so the shell
         // fills its parent. svh units would still track the address bar and
         // reintroduce the shifting this is meant to stop.
-        'mx-auto flex h-full w-full min-w-[320px] max-w-[430px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
+        // Fills the viewport up to a comfortable reading width, so the frame
+        // encases the screen on a tablet or desktop rather than floating a
+        // phone-sized card in the middle of it.
+        'mx-auto flex h-full w-full min-w-[320px] max-w-[720px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
         dragging ? 'select-none' : '',
       ].join(' ')}
       ref={shellRef}
@@ -498,10 +508,10 @@ export default function PhraseBoard({
     >
       {/* Header band and category: one fixed measurement block. */}
       <div ref={headerRef} className="shrink-0">
-      <div className="relative mx-1.5 mt-1.5 flex shrink-0 items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
+      <div className="relative mx-1.5 mt-1.5 flex shrink-0 items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text sm:mx-2 sm:mt-2 sm:px-7 sm:pb-4 sm:pt-4">
         <div>
           <div
-            className="font-tile text-[28px] font-normal leading-[1.1]"
+            className="font-tile text-[28px] font-normal leading-[1.1] sm:text-[38px]"
             style={{ letterSpacing: '0.14em' }}
           >
             LACUNO
@@ -513,11 +523,11 @@ export default function PhraseBoard({
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Menu"
           aria-expanded={menuOpen}
-          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(242,211,192,0.18)]"
+          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(242,211,192,0.18)] sm:h-[44px] sm:w-[44px] sm:gap-[6px]"
         >
-          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
-          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
-          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
+          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
+          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
+          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
         </button>
 
         {/* Difficulty menu, dropping from the nav bar. Absolutely positioned
@@ -568,7 +578,7 @@ export default function PhraseBoard({
       {/* Category — the kind of answer, centred under the header band. */}
       <div className="shrink-0 pb-0.5 pt-1 text-center">
         <span
-          className="text-[10px] font-semibold uppercase"
+          className="text-[10px] font-semibold uppercase sm:text-[13px]"
           style={{ letterSpacing: '0.18em', color: 'var(--frame-text)' }}
         >
           {puzzle.category}
@@ -615,7 +625,7 @@ export default function PhraseBoard({
               {/* Score superscript, right-aligned above the rack */}
               <div className="flex items-baseline justify-end gap-px pr-1.5 font-tile font-medium">
                 <span
-                  className="text-[14px]"
+                  className="text-[14px] sm:text-[19px]"
                   style={{
                     color: over
                       ? 'var(--over)'
@@ -634,7 +644,9 @@ export default function PhraseBoard({
                 {/* The target is what the player is aiming at, so it is set
                     larger and lighter than it was — at 9px and half opacity it
                     was the least legible number on the board. */}
-                <span className="self-start text-[12px] opacity-85">/{rack.target}</span>
+                <span className="self-start text-[12px] opacity-85 sm:text-[16px]">
+                  /{rack.target}
+                </span>
               </div>
 
               {/* Rack body with its ledge */}
@@ -889,7 +901,7 @@ export default function PhraseBoard({
             <button
               onClick={actions.revealHint}
               disabled={state.hintsUsed >= state.hintsAvailable}
-              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40"
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40 sm:py-2.5 sm:text-[15px]"
             >
               Hint
             </button>
@@ -899,7 +911,7 @@ export default function PhraseBoard({
                 actions.revealSolution();
               }}
               disabled={state.won || showAnswer}
-              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40"
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40 sm:py-2.5 sm:text-[15px]"
             >
               Give Up
             </button>
@@ -911,7 +923,7 @@ export default function PhraseBoard({
             onClick={onNext}
             disabled={!canAdvance}
             title={canAdvance ? undefined : 'Solve it or give up first'}
-            className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30"
+            className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30 sm:py-3 sm:text-[15px]"
             style={{ letterSpacing: '0.12em' }}
           >
             Next Puzzle

@@ -86,13 +86,13 @@ function Step({
 }) {
   return (
     <li className="flex flex-col gap-2">
-      <p className="text-[15px] font-semibold">
+      <p className="text-[15px] font-semibold sm:text-[18px]">
         <span className="opacity-50">{n}.</span> {title}
       </p>
       <div className="flex flex-wrap items-end gap-2 rounded-md p-3" style={{ background: 'var(--slot-fill)' }}>
         {figure}
       </div>
-      <p className="text-[13px] leading-snug opacity-75">{children}</p>
+      <p className="text-[13px] leading-snug opacity-75 sm:text-[15px]">{children}</p>
     </li>
   );
 }
@@ -102,11 +102,14 @@ export default function HowToPlay() {
     <main
       // The body is fixed to the viewport, so this scrolls itself rather than
       // scrolling the page.
-      className="mx-auto flex h-full w-full min-w-[320px] max-w-[430px] flex-col overflow-y-auto border-[5px] border-frame"
+      className="mx-auto flex h-full w-full min-w-[320px] max-w-[720px] flex-col overflow-y-auto border-[5px] border-frame"
       style={{ background: 'var(--shell)', boxSizing: 'border-box' }}
     >
-      <header className="mx-1.5 mt-1.5 flex items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text">
-        <span className="text-[22px] font-normal" style={{ letterSpacing: '0.14em' }}>
+      <header className="mx-1.5 mt-1.5 flex items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text sm:mx-2 sm:mt-2 sm:px-7 sm:pb-4 sm:pt-4">
+        <span
+          className="text-[22px] font-normal sm:text-[30px]"
+          style={{ letterSpacing: '0.14em' }}
+        >
           HOW TO PLAY
         </span>
         <Link
@@ -118,7 +121,7 @@ export default function HowToPlay() {
         </Link>
       </header>
 
-      <ol className="flex flex-col gap-5 px-4 py-5">
+      <ol className="flex flex-col gap-5 px-4 py-5 sm:gap-7 sm:px-8 sm:py-7">
         <Step
           n={1}
           title="Fill the racks to spell a phrase"
