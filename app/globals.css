@@ -160,6 +160,23 @@ button {
   animation: tile-solved 620ms ease-out both;
 }
 
+/** The difficulty menu dropping from the nav bar. */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.menu-enter {
+  animation: menu-in 180ms ease-out both;
+  transform-origin: top;
+}
+
 /**
  * Moving between puzzles. The board is rebuilt wholesale — different racks,
  * different tiles, often a different tile size — so it fades out and back in
@@ -188,7 +205,8 @@ button {
 @media (prefers-reduced-motion: reduce) {
   .tile-snap,
   .tile-solved,
-  .board-enter {
+  .board-enter,
+  .menu-enter {
     animation: none;
   }
 

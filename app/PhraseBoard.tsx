@@ -271,6 +271,9 @@ export default function PhraseBoard({
   const TILE_CAP =
     shellWidth >= 900 ? 66 : shellWidth >= 600 ? 60 : shellWidth >= 480 ? 52 : 40;
 
+  /** Distance the outer hamburger bars sit from the centre, by breakpoint. */
+  const barOffset = shellWidth >= 640 ? 9 : 7;
+
   const longestWord = Math.max(...state.racks.map((r) => r.length));
   // clientWidth already excludes the 5px border; subtract the field's own
   // 14px horizontal padding.
@@ -534,17 +537,37 @@ export default function PhraseBoard({
           // Nudged outward by the button's own inset, so the BARS line up with
           // the wordmark's left edge rather than the invisible box around
           // them. The tap target keeps its full size.
-          className="-mr-[9px] flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md bg-transparent transition-colors hover:bg-[rgba(242,211,192,0.18)] sm:-mr-[12px] sm:h-[44px] sm:w-[44px] sm:gap-[6px]"
+          className="-mr-[9px] relative h-[34px] w-[34px] rounded-md bg-transparent transition-colors hover:bg-[rgba(242,211,192,0.18)] sm:-mr-[12px] sm:h-[44px] sm:w-[44px]"
         >
-          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
-          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
-          <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
+          {/* Three bars that morph into an X: the outer two converge on the
+              centre and cross, the middle one fades. Absolutely positioned so
+              they can travel — a flex column cannot overlap them.
+
+              `open:` styles are applied via the data attribute so both states
+              are declared in one place rather than as two class strings. */}
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              aria-hidden
+              className="absolute left-1/2 block h-[2px] w-[16px] -translate-x-1/2 rounded-full bg-frame-text transition-transform duration-200 ease-out sm:h-[3px] sm:w-[21px]"
+              style={{
+                top: '50%',
+                // Bars sit at -7 / 0 / +7 when closed (-9 / 0 / +9 at sm);
+                // the outer two travel to the centre and rotate when open.
+                transform: menuOpen
+                  ? `translate(-50%, -50%) rotate(${i === 0 ? 45 : i === 2 ? -45 : 0}deg)`
+                  : `translate(-50%, calc(-50% + ${(i - 1) * barOffset}px))`,
+                opacity: menuOpen && i === 1 ? 0 : 1,
+                transitionProperty: 'transform, opacity',
+              }}
+            />
+          ))}
         </button>
 
         {/* Difficulty menu, dropping from the nav bar. Absolutely positioned
               so opening it costs the board no height. */}
         {menuOpen && (
-          <div className="absolute left-0 right-0 top-full z-40 rounded-b-md border-x border-b border-frame bg-tray p-3 shadow-xl">
+          <div className="menu-enter absolute left-0 right-0 top-full z-40 rounded-b-md border-x border-b border-frame bg-tray p-3 shadow-xl">
               <p
                 className="mb-2 text-[10px] font-semibold uppercase opacity-60"
                 style={{ letterSpacing: '0.14em' }}
