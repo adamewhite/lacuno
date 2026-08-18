@@ -48,7 +48,7 @@ Idiom | Burning the midnight oil
 Idiom | Bite the bullet
 
 Place | Paris France
-Place | Farmers Market
+Place | Trafalgar Square
 Place | Times Square
 Place | Golden Gate Bridge
 Place | Grand Canyon
@@ -107,7 +107,7 @@ Object | Rocking Chair
 Object | Paper Airplane
 Object | Fire Escape
 Object | Coffee Table
-Object | Message Bottle
+Object | Message In A Bottle
 Object | Weather Vane
 
 Movie | Jurassic Park
@@ -130,3 +130,129 @@ Movie | Mary Poppins
 Movie | Citizen Kane
 Movie | Blade Runner
 Movie | Top Gun
+
+Idiom | Piece Of Cake
+Idiom | Under The Weather
+Idiom | Spill The Beans
+Idiom | Hit The Hay
+Idiom | Call It A Day
+Idiom | Pull Some Strings
+Idiom | Miss The Boat
+Idiom | On Thin Ice
+Idiom | Kick The Bucket
+Idiom | Bury The Hatchet
+Idiom | Face The Music
+Idiom | Let The Cat Out
+Idiom | Costs An Arm
+Idiom | Cry Over Milk
+Idiom | Jump The Gun
+Idiom | Raining Cats And Dogs
+Idiom | Best Of Both Worlds
+Idiom | Barking Up A Tree
+Idiom | Cross That Bridge
+Idiom | Steal The Show
+
+Place | Eiffel Tower
+Place | Sydney Harbor
+Place | Vatican City
+Place | Mount Fuji
+Place | Red Square
+Place | Bourbon Street
+Place | Lake Tahoe
+Place | Ellis Island
+Place | Rio Grande
+Place | Santa Fe
+Place | Loch Ness
+Place | Isle Of Skye
+Place | Cape Horn
+Place | Fifth Avenue
+Place | Ancient Rome
+Place | Table Mountain
+Place | Black Forest
+Place | Bering Strait
+Place | Salt Flats
+Place | Easter Island
+
+Person | Albert Einstein
+Person | Cleopatra
+Person | Abraham Lincoln
+Person | Virginia Woolf
+Person | Louis Pasteur
+Person | Winston Churchill
+Person | Ada Lovelace
+Person | Pablo Picasso
+Person | Joan Of Arc
+Person | Isaac Newton
+Person | Maya Angelou
+Person | Genghis Khan
+Person | Bob Marley
+Person | Grace Hopper
+Person | Audrey Hepburn
+Person | Duke Ellington
+Person | Sally Ride
+Person | Alan Turing
+Person | Billie Holiday
+Person | Anne Frank
+
+Animal | Blue Whale
+Animal | Red Panda
+Animal | Arctic Fox
+Animal | Sperm Whale
+Animal | Barn Owl
+Animal | Komodo Dragon
+Animal | Honey Badger
+Animal | Mountain Goat
+Animal | Emperor Penguin
+Animal | Giant Squid
+Animal | Fruit Bat
+Animal | Sea Otter
+Animal | Bull Shark
+Animal | Desert Tortoise
+Animal | Howler Monkey
+Animal | Poison Frog
+Animal | Star Fish
+Animal | Wild Boar
+Animal | Gray Wolf
+Animal | Green Iguana
+
+Object | Traffic Light
+Object | Compass Rose
+Object | Piggy Bank
+Object | Rolling Pin
+Object | Light Bulb
+Object | Park Bench
+Object | Fire Hydrant
+Object | Music Box
+Object | Wedding Ring
+Object | Wind Chime
+Object | Kitchen Sink
+Object | Barber Pole
+Object | Sewing Needle
+Object | Picture Frame
+Object | Ice Cube
+Object | Coat Hanger
+Object | Rubber Band
+Object | Soup Spoon
+Object | Bird Cage
+Object | Salad Bowl
+
+Movie | The Wizard Of Oz
+Movie | Singing In The Rain
+Movie | Raiders Of The Ark
+Movie | Some Like It Hot
+Movie | Gone With The Wind
+Movie | The Big Sleep
+Movie | Rear Window
+Movie | The Great Escape
+Movie | Twelve Angry Men
+Movie | North By Northwest
+Movie | Its A Wonderful Life
+Movie | The Third Man
+Movie | Doctor Zhivago
+Movie | West Side Story
+Movie | The Maltese Falcon
+Movie | The Odd Couple
+Movie | A Star Is Born
+Movie | The Birds
+Movie | Dead Poets Society
+Movie | Full Metal Jacket
