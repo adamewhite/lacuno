@@ -30,6 +30,15 @@ import {
 /** Vowel drag ids sit past any tile id so one channel carries both. */
 const VOWEL_DRAG_BASE = 10_000;
 
+/**
+ * Ceiling on the measured overflow correction — roughly one tile step.
+ *
+ * Each shrink triggers a resize, which re-measures; without a cap the
+ * correction compounds until the board is small enough that its rows collapse
+ * into each other, which is what turned four-row puzzles into three.
+ */
+const MAX_OVERFLOW = 24;
+
 export default function PhraseBoard({
   puzzle,
   values,
@@ -201,7 +210,9 @@ export default function PhraseBoard({
    * being exactly right.
    *
    * It cannot oscillate: overflow only ever shrinks the tile, and a tile that
-   * fits reports zero overflow, which leaves it where it is.
+   * fits reports zero overflow, which leaves it where it is. It is capped so a
+   * correction that keeps firing cannot compound into a board so small its
+   * rows collapse together.
    */
   const [overflow, setOverflow] = useState(0);
   /**
@@ -225,8 +236,14 @@ export default function PhraseBoard({
       const board = boardRef.current;
       if (board) {
         const spill = board.scrollHeight - board.clientHeight;
-        // Only ever tighten; a fitting board reports zero and stays put.
-        if (spill > 0) setOverflow((current) => current + spill);
+        if (spill > 0) {
+          // Accumulate, but only up to one tile step. Each shrink triggers a
+          // resize, which re-measures — adding the full spill every time
+          // compounds the correction until the board over-shrinks and its rows
+          // collapse into each other. One step is enough to clear a model that
+          // is a few pixels out, and the loop re-runs if it is not.
+          setOverflow((current) => Math.min(current + spill, MAX_OVERFLOW));
+        }
       }
     };
 
