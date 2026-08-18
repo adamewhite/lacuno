@@ -1,55 +1,54 @@
 @import "tailwindcss";
 
 /**
- * Palette: dark maroon → brick → orange → peach → pale yellow.
+ * Palette: deep teal → slate → clay → terracotta.
  *
- *   #3f1818  dark maroon — page, tray and slot depth
- *   #5c2222  mid maroon  — the board field, so it reads apart from the frame
- *   #bc4f4f  brick       — frame and shell
- *   #e98b50  orange      — accents, rings, ledges
- *   #f3cd97  peach       — hand and pile faces
- *   #fef2a0  pale yellow — tiles on the board, the brightest thing on it
+ *   #0f3040  deep teal   — page, tray and slot depth
+ *   #1b3f52  mid teal    — the board field, so it reads apart from the frame
+ *   #464858  slate       — pile layers and muted surfaces
+ *   #a56f63  clay        — frame and shell
+ *   #d99b7f  terracotta  — accents, rings, ledges, and tile faces
  *
- * Warm throughout: the board surface carries the colour and the tiles are the
- * light on it. One shade (#5c2222) is interpolated between the dark and the
- * brick so the board field does not merge into the frame around it.
+ * Cool ground with warm tiles: the board sits back and the letters come
+ * forward. One shade (#1b3f52) is interpolated between the two given darks so
+ * the board field does not merge into the frame around it.
  *
- * Layout tokens (sizes, radii, spacing) still come from the VWL DRP handoff;
+ * Layout tokens (sizes, radii, spacing) still come from the design handoff;
  * only the colours have been replaced.
  */
 :root {
   /* Four stacked surfaces, each a distinct step so they read apart:
      page (outside the shell) < board field < frame band, with the tray
-     matching the page. Empty slots sit darker still against te field. */
-  --page: #3f1818;
-  --shell: #5c2222;      /* the board field the racks sit on */
-  --frame: #be5555;      /* the bright band around it */
-  --frame-text: #fdf1a6;
-  --tray: #3f1818;
-  --text: #fef2a0;
+     matching the page. Empty slots sit darker still against the field. */
+  --page: #0f3040;
+  --shell: #1b3f52;      /* the board field the racks sit on */
+  --frame: #a56f63;      /* the bright band around it */
+  --frame-text: #0f3040;
+  --tray: #0f3040;
+  --text: #d99b7f;
 
-  --tile-face: #fef2a0;       /* tiles on the board */
-  --tile-face-hand: #f3cd97;  /* hand and piles, a step warmer so the two read apart */
-  --tile-text: #3f1818;
+  --tile-face: #d99b7f;       /* tiles on the board */
+  --tile-face-hand: #e8b499;  /* hand and piles, a step lighter so they read apart */
+  --tile-text: #0f3040;
 
-  --slot-fill: #3f1818;       /* darker than the field, so empty slots recede */
-  --slot-border: #e98b50;
-  --spent-fill: #3f1818;
-  --spent-border: #bc4f4f;
+  --slot-fill: #0f3040;       /* darker than the field, so empty slots recede */
+  --slot-border: #a56f63;
+  --spent-fill: #0f3040;
+  --spent-border: #464858;
 
-  --ledge: #e98b50;
-  --accent: #e98b50;          /* selection and placement rings */
-  --accent-text: #f3cd97;
+  --ledge: #a56f63;
+  --accent: #d99b7f;          /* selection and placement rings */
+  --accent-text: #d99b7f;
 
-  /* Score feedback. These sit outside the warm palette deliberately: a rack
-     hitting its target and a rack going over are the two states a player must
-     read at a glance, and a warm-on-warm signal is not legible enough. */
+  /* Score feedback. These sit outside the palette deliberately: a rack hitting
+     its target and a rack going over are the two states a player must read at
+     a glance, and the palette has no colour that carries either. */
   --exact: #7fd68a;           /* total matches the target */
   --over: #ff6b6b;            /* total exceeds it */
   --solved: #7fd68a;
 
-  --pile-mid: #bc4f4f;
-  --pile-back: #5c2222;
+  --pile-mid: #464858;
+  --pile-back: #0f3040;
 }
 
 @theme inline {
@@ -140,13 +139,13 @@ button {
  */
 @keyframes tile-solved {
   0% {
-    box-shadow: 0 0 0 0 rgba(254, 242, 160, 0);
+    box-shadow: 0 0 0 0 rgba(217, 155, 127, 0);
   }
   40% {
-    box-shadow: 0 0 14px 3px rgba(254, 242, 160, 0.9);
+    box-shadow: 0 0 14px 3px rgba(217, 155, 127, 0.9);
   }
   100% {
-    box-shadow: 0 0 7px 1px rgba(254, 242, 160, 0.55);
+    box-shadow: 0 0 7px 1px rgba(217, 155, 127, 0.55);
   }
 }
 
@@ -162,6 +161,6 @@ button {
 
   /* Still mark the win, just without the ripple. */
   .tile-solved {
-    box-shadow: 0 0 7px 1px rgba(254, 242, 160, 0.55);
+    box-shadow: 0 0 7px 1px rgba(217, 155, 127, 0.55);
   }
 }

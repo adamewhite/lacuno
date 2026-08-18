@@ -33,17 +33,11 @@
 #
 # A phrase over any limit is skipped at build time with a warning.
 #
-# TEMPORARY: every phrase that lays out in one or two board rows is commented
-# out, leaving only the three- and four-row ones, so the tall layouts can be
-# checked without cycling past short puzzles. The full list is preserved at
-# data/phrases.full.txt — restore with:
-#     cp data/phrases.full.txt data/phrases.txt && npm run build:puzzles
-#
 # Curate deliberately. This list is the game's content — the generator can no
 # longer manufacture difficulty, so quality here is quality of the puzzle.
 
-# Idiom | Cold feet
-# Idiom | Break the ice
+Idiom | Cold feet
+Idiom | Break the ice
 Idiom | Cut to the chase
 Idiom | Wild goose chase
 Idiom | Throw in the towel
@@ -51,88 +45,88 @@ Idiom | Once in a blue moon
 Idiom | Beat around the bush
 Idiom | A blessing in disguise
 Idiom | Burning the midnight oil
-# Idiom | Bite the bullet
+Idiom | Bite the bullet
 
-# Place | Paris France
-# Place | Farmers Market
-# Place | Times Square
+Place | Paris France
+Place | Farmers Market
+Place | Times Square
 Place | Golden Gate Bridge
-# Place | Grand Canyon
-# Place | New York City
-# Place | Niagara Falls
-# Place | Mount Everest
-# Place | Sahara Desert
-# Place | Buenos Aires
-# Place | Machu Picchu
+Place | Grand Canyon
+Place | New York City
+Place | Niagara Falls
+Place | Mount Everest
+Place | Sahara Desert
+Place | Buenos Aires
+Place | Machu Picchu
 Place | Great Barrier Reef
-# Place | Rocky Mountains
-# Place | Death Valley
-# Place | Central Park
-# Place | Amazon River
-# Place | Hong Kong
-# Place | Cape Town
-# Place | Costa Rica
-# Place | Silicon Valley
+Place | Rocky Mountains
+Place | Death Valley
+Place | Central Park
+Place | Amazon River
+Place | Hong Kong
+Place | Cape Town
+Place | Costa Rica
+Place | Silicon Valley
 
-# Person | Ronald Reagan
-# Person | Harry Potter
-# Person | Marie Curie
-# Person | Sherlock Holmes
-# Person | Amelia Earhart
-# Person | Nelson Mandela
-# Person | Rosa Parks
-# Person | Walt Disney
-# Person | Mark Twain
-# Person | Jane Austen
-# Person | Vincent Van Gogh
-# Person | Serena Williams
-# Person | Neil Armstrong
-# Person | Frida Kahlo
-# Person | Dolly Parton
-# Person | Julia Child
-# Person | Steve Jobs
-# Person | Muhammad Ali
-# Person | Emily Dickinson
-# Person | Charlie Chaplin
+Person | Ronald Reagan
+Person | Harry Potter
+Person | Marie Curie
+Person | Sherlock Holmes
+Person | Amelia Earhart
+Person | Nelson Mandela
+Person | Rosa Parks
+Person | Walt Disney
+Person | Mark Twain
+Person | Jane Austen
+Person | Vincent Van Gogh
+Person | Serena Williams
+Person | Neil Armstrong
+Person | Frida Kahlo
+Person | Dolly Parton
+Person | Julia Child
+Person | Steve Jobs
+Person | Muhammad Ali
+Person | Emily Dickinson
+Person | Charlie Chaplin
 
-# Animal | Polar Bear
-# Animal | Bald Eagle
-# Animal | Praying Mantis
-# Animal | Sea Turtle
-# Animal | King Cobra
-# Animal | Monarch Butterfly
-# Animal | Grizzly Bear
-# Animal | Snow Leopard
-# Animal | Hermit Crab
+Animal | Polar Bear
+Animal | Bald Eagle
+Animal | Praying Mantis
+Animal | Sea Turtle
+Animal | King Cobra
+Animal | Monarch Butterfly
+Animal | Grizzly Bear
+Animal | Snow Leopard
+Animal | Hermit Crab
 Animal | Great White Shark
-# Object | Chess Board
-# Object | Rubber Duck
-# Object | Pocket Watch
-# Object | Ferris Wheel
-# Object | Rocking Chair
-# Object | Paper Airplane
-# Object | Fire Escape
-# Object | Coffee Table
-# Object | Message Bottle
-# Object | Weather Vane
+Object | Chess Board
+Object | Rubber Duck
+Object | Pocket Watch
+Object | Ferris Wheel
+Object | Rocking Chair
+Object | Paper Airplane
+Object | Fire Escape
+Object | Coffee Table
+Object | Message Bottle
+Object | Weather Vane
 
-# Movie | Jurassic Park
-# Movie | The Godfather
-# Movie | Star Wars
-# Movie | Home Alone
-# Movie | Pulp Fiction
-# Movie | Jaws
+Movie | Jurassic Park
+Movie | The Godfather
+Movie | Star Wars
+Movie | Home Alone
+Movie | Pulp Fiction
+Movie | Jaws
 Movie | The Sound Of Music
-# Movie | Toy Story
-# Movie | The Matrix
-# Movie | Forrest Gump
-# Movie | Rocky
-# Movie | Titanic
+Movie | Toy Story
+Movie | The Matrix
+Movie | Forrest Gump
+Movie | Rocky
+Movie | Titanic
 Movie | Back To The Future
-# Movie | Finding Nemo
-# Movie | Groundhog Day
-# Movie | The Lion King
-# Movie | Mary Poppins
-# Movie | Citizen Kane
-# Movie | Blade Runner
-# Movie | Top Gun
+Movie | Finding Nemo
+Movie | Groundhog Day
+Movie | The Lion King
+Movie | Mary Poppins
+Movie | Citizen Kane
+Movie | Blade Runner
+Movie | Top Gun

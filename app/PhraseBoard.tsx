@@ -498,7 +498,7 @@ export default function PhraseBoard({
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Menu"
           aria-expanded={menuOpen}
-          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(254,242,160,0.16)]"
+          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(15,48,64,0.16)]"
         >
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
@@ -528,7 +528,7 @@ export default function PhraseBoard({
                         'flex items-baseline justify-between gap-3 rounded px-2 py-1.5 transition-colors',
                         current
                           ? 'bg-frame text-frame-text'
-                          : 'hover:bg-[rgba(254,242,160,0.1)]',
+                          : 'hover:bg-[rgba(217,155,127,0.12)]',
                       ].join(' ')}
                     >
                       <span className="text-[13px] font-semibold">{meta.label}</span>
@@ -871,7 +871,7 @@ export default function PhraseBoard({
             <button
               onClick={actions.revealHint}
               disabled={state.hintsUsed >= state.hintsAvailable}
-              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40"
             >
               Hint
             </button>
@@ -881,7 +881,7 @@ export default function PhraseBoard({
                 actions.revealSolution();
               }}
               disabled={state.won || showAnswer}
-              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(233,139,80,0.2)] disabled:opacity-40"
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40"
             >
               Give Up
             </button>

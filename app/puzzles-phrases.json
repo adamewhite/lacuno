@@ -34,6 +34,170 @@
       "category": "Idiom",
       "racks": [
         {
+          "length": 4,
+          "target": 7
+        },
+        {
+          "length": 4,
+          "target": 6
+        }
+      ],
+      "consonants": [
+        "C",
+        "D",
+        "F",
+        "L",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 8,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "COLD FEET"
+    },
+    {
+      "id": "f2",
+      "category": "Idiom",
+      "racks": [
+        {
+          "length": 5,
+          "target": 10
+        },
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 3,
+          "target": 3
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "H",
+        "K",
+        "R",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "BREAK THE ICE"
+    },
+    {
+      "id": "f3",
+      "category": "Idiom",
+      "racks": [
+        {
           "length": 3,
           "target": 4
         },
@@ -138,7 +302,7 @@
       "phrase": "CUT TO THE CHASE"
     },
     {
-      "id": "f2",
+      "id": "f4",
       "category": "Idiom",
       "racks": [
         {
@@ -247,7 +411,7 @@
       "phrase": "WILD GOOSE CHASE"
     },
     {
-      "id": "f3",
+      "id": "f5",
       "category": "Idiom",
       "racks": [
         {
@@ -367,7 +531,7 @@
       "phrase": "THROW IN THE TOWEL"
     },
     {
-      "id": "f4",
+      "id": "f6",
       "category": "Idiom",
       "racks": [
         {
@@ -488,7 +652,7 @@
       "phrase": "ONCE IN A BLUE MOON"
     },
     {
-      "id": "f5",
+      "id": "f7",
       "category": "Idiom",
       "racks": [
         {
@@ -618,7 +782,7 @@
       "phrase": "BEAT AROUND THE BUSH"
     },
     {
-      "id": "f6",
+      "id": "f8",
       "category": "Idiom",
       "racks": [
         {
@@ -759,7 +923,7 @@
       "phrase": "A BLESSING IN DISGUISE"
     },
     {
-      "id": "f7",
+      "id": "f9",
       "category": "Idiom",
       "racks": [
         {
@@ -913,7 +1077,389 @@
       "phrase": "BURNING THE MIDNIGHT OIL"
     },
     {
-      "id": "f8",
+      "id": "f10",
+      "category": "Idiom",
+      "racks": [
+        {
+          "length": 4,
+          "target": 5
+        },
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 6,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "B",
+        "B",
+        "H",
+        "L",
+        "L",
+        "T",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 5,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "BITE THE BULLET"
+    },
+    {
+      "id": "f11",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 5
+        },
+        {
+          "length": 6,
+          "target": 11
+        }
+      ],
+      "consonants": [
+        "C",
+        "F",
+        "N",
+        "P",
+        "R",
+        "R",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "I"
+        }
+      ],
+      "phrase": "PARIS FRANCE"
+    },
+    {
+      "id": "f12",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 7,
+          "target": 11
+        },
+        {
+          "length": 6,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "F",
+        "K",
+        "M",
+        "M",
+        "R",
+        "R",
+        "R",
+        "S",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        }
+      ],
+      "phrase": "FARMERS MARKET"
+    },
+    {
+      "id": "f13",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 5
+        },
+        {
+          "length": 6,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "M",
+        "Q",
+        "R",
+        "S",
+        "S",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "Q"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "TIMES SQUARE"
+    },
+    {
+      "id": "f14",
       "category": "Place",
       "racks": [
         {
@@ -1034,7 +1580,649 @@
       "phrase": "GOLDEN GATE BRIDGE"
     },
     {
-      "id": "f9",
+      "id": "f15",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 8
+        },
+        {
+          "length": 6,
+          "target": 11
+        }
+      ],
+      "consonants": [
+        "C",
+        "D",
+        "G",
+        "N",
+        "N",
+        "N",
+        "R",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        }
+      ],
+      "phrase": "GRAND CANYON"
+    },
+    {
+      "id": "f16",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 3,
+          "target": 7
+        },
+        {
+          "length": 4,
+          "target": 10
+        },
+        {
+          "length": 4,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "C",
+        "K",
+        "N",
+        "R",
+        "T",
+        "W",
+        "Y",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        }
+      ],
+      "phrase": "NEW YORK CITY"
+    },
+    {
+      "id": "f17",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 7,
+          "target": 6
+        },
+        {
+          "length": 5,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "F",
+        "G",
+        "L",
+        "L",
+        "N",
+        "R",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "NIAGARA FALLS"
+    },
+    {
+      "id": "f18",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 6
+        },
+        {
+          "length": 7,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "M",
+        "N",
+        "R",
+        "S",
+        "T",
+        "T",
+        "V"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "U"
+        }
+      ],
+      "phrase": "MOUNT EVEREST"
+    },
+    {
+      "id": "f19",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 6,
+          "target": 6
+        },
+        {
+          "length": 6,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "D",
+        "H",
+        "R",
+        "R",
+        "S",
+        "S",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "SAHARA DESERT"
+    },
+    {
+      "id": "f20",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 6,
+          "target": 7
+        },
+        {
+          "length": 5,
+          "target": 2
+        }
+      ],
+      "consonants": [
+        "B",
+        "N",
+        "R",
+        "S",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "BUENOS AIRES"
+    },
+    {
+      "id": "f21",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 10
+        },
+        {
+          "length": 6,
+          "target": 13
+        }
+      ],
+      "consonants": [
+        "C",
+        "C",
+        "C",
+        "H",
+        "H",
+        "M",
+        "P"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "U"
+        }
+      ],
+      "phrase": "MACHU PICCHU"
+    },
+    {
+      "id": "f22",
       "category": "Place",
       "racks": [
         {
@@ -1154,7 +2342,3337 @@
       "phrase": "GREAT BARRIER REEF"
     },
     {
-      "id": "f10",
+      "id": "f23",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 13
+        },
+        {
+          "length": 9,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "C",
+        "K",
+        "M",
+        "N",
+        "N",
+        "R",
+        "S",
+        "T",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 14,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 8,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "ROCKY MOUNTAINS"
+    },
+    {
+      "id": "f24",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 7
+        },
+        {
+          "length": 6,
+          "target": 14
+        }
+      ],
+      "consonants": [
+        "D",
+        "H",
+        "L",
+        "L",
+        "T",
+        "V",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        }
+      ],
+      "phrase": "DEATH VALLEY"
+    },
+    {
+      "id": "f25",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 7,
+          "target": 9
+        },
+        {
+          "length": 4,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "C",
+        "K",
+        "L",
+        "N",
+        "P",
+        "R",
+        "R",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "CENTRAL PARK"
+    },
+    {
+      "id": "f26",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 6,
+          "target": 11
+        },
+        {
+          "length": 5,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "M",
+        "N",
+        "R",
+        "R",
+        "V",
+        "Z"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "Z"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "AMAZON RIVER"
+    },
+    {
+      "id": "f27",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 4,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "G",
+        "G",
+        "H",
+        "K",
+        "N",
+        "N"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 8,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "HONG KONG"
+    },
+    {
+      "id": "f28",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 4,
+          "target": 6
+        },
+        {
+          "length": 4,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "C",
+        "N",
+        "P",
+        "T",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 8,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "CAPE TOWN"
+    },
+    {
+      "id": "f29",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 5,
+          "target": 5
+        },
+        {
+          "length": 4,
+          "target": 4
+        }
+      ],
+      "consonants": [
+        "C",
+        "C",
+        "R",
+        "S",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "A"
+        }
+      ],
+      "phrase": "COSTA RICA"
+    },
+    {
+      "id": "f30",
+      "category": "Place",
+      "racks": [
+        {
+          "length": 7,
+          "target": 8
+        },
+        {
+          "length": 6,
+          "target": 14
+        }
+      ],
+      "consonants": [
+        "C",
+        "L",
+        "L",
+        "L",
+        "N",
+        "S",
+        "V",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        }
+      ],
+      "phrase": "SILICON VALLEY"
+    },
+    {
+      "id": "f31",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 6,
+          "target": 7
+        },
+        {
+          "length": 6,
+          "target": 6
+        }
+      ],
+      "consonants": [
+        "D",
+        "G",
+        "L",
+        "N",
+        "N",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "A"
+        }
+      ],
+      "phrase": "RONALD REAGAN"
+    },
+    {
+      "id": "f32",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 5,
+          "target": 10
+        },
+        {
+          "length": 6,
+          "target": 6
+        }
+      ],
+      "consonants": [
+        "H",
+        "P",
+        "R",
+        "R",
+        "R",
+        "T",
+        "T",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "HARRY POTTER"
+    },
+    {
+      "id": "f33",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 5,
+          "target": 4
+        },
+        {
+          "length": 5,
+          "target": 4
+        }
+      ],
+      "consonants": [
+        "C",
+        "M",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        }
+      ],
+      "phrase": "MARIE CURIE"
+    },
+    {
+      "id": "f34",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 8,
+          "target": 16
+        },
+        {
+          "length": 6,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "C",
+        "H",
+        "H",
+        "K",
+        "L",
+        "L",
+        "M",
+        "R",
+        "S",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 14,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 7,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        }
+      ],
+      "phrase": "SHERLOCK HOLMES"
+    },
+    {
+      "id": "f35",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 6,
+          "target": 5
+        },
+        {
+          "length": 7,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "H",
+        "L",
+        "M",
+        "R",
+        "R",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "A"
+        }
+      ],
+      "phrase": "AMELIA EARHART"
+    },
+    {
+      "id": "f36",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 6,
+          "target": 7
+        },
+        {
+          "length": 7,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "D",
+        "L",
+        "L",
+        "M",
+        "N",
+        "N",
+        "N",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "O"
+        }
+      ],
+      "phrase": "NELSON MANDELA"
+    },
+    {
+      "id": "f37",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 4,
+          "target": 2
+        },
+        {
+          "length": 5,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "K",
+        "P",
+        "R",
+        "R",
+        "S",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        }
+      ],
+      "phrase": "ROSA PARKS"
+    },
+    {
+      "id": "f38",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 4,
+          "target": 8
+        },
+        {
+          "length": 6,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "D",
+        "L",
+        "N",
+        "S",
+        "T",
+        "W",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "WALT DISNEY"
+    },
+    {
+      "id": "f39",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 5,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "K",
+        "M",
+        "N",
+        "R",
+        "T",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "MARK TWAIN"
+    },
+    {
+      "id": "f40",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 4,
+          "target": 9
+        },
+        {
+          "length": 6,
+          "target": 4
+        }
+      ],
+      "consonants": [
+        "J",
+        "N",
+        "N",
+        "S",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "J"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "JANE AUSTEN"
+    },
+    {
+      "id": "f41",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 7,
+          "target": 14
+        },
+        {
+          "length": 3,
+          "target": 8
+        },
+        {
+          "length": 4,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "C",
+        "G",
+        "G",
+        "H",
+        "N",
+        "N",
+        "N",
+        "T",
+        "V",
+        "V"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 14,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "VINCENT VAN GOGH"
+    },
+    {
+      "id": "f42",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 6,
+          "target": 4
+        },
+        {
+          "length": 8,
+          "target": 13
+        }
+      ],
+      "consonants": [
+        "L",
+        "L",
+        "M",
+        "N",
+        "R",
+        "S",
+        "S",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 14,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "A"
+        }
+      ],
+      "phrase": "SERENA WILLIAMS"
+    },
+    {
+      "id": "f43",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 4,
+          "target": 4
+        },
+        {
+          "length": 9,
+          "target": 12
+        }
+      ],
+      "consonants": [
+        "G",
+        "L",
+        "M",
+        "N",
+        "N",
+        "R",
+        "R",
+        "S",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 8,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "I"
+        }
+      ],
+      "phrase": "NEIL ARMSTRONG"
+    },
+    {
+      "id": "f44",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 5,
+          "target": 8
+        },
+        {
+          "length": 5,
+          "target": 11
+        }
+      ],
+      "consonants": [
+        "D",
+        "F",
+        "H",
+        "K",
+        "L",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "O"
+        }
+      ],
+      "phrase": "FRIDA KAHLO"
+    },
+    {
+      "id": "f45",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 5,
+          "target": 10
+        },
+        {
+          "length": 6,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "D",
+        "L",
+        "L",
+        "N",
+        "P",
+        "R",
+        "T",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "DOLLY PARTON"
+    },
+    {
+      "id": "f46",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 5,
+          "target": 9
+        },
+        {
+          "length": 5,
+          "target": 11
+        }
+      ],
+      "consonants": [
+        "C",
+        "D",
+        "H",
+        "J",
+        "L",
+        "L"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "J"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "I"
+        }
+      ],
+      "phrase": "JULIA CHILD"
+    },
+    {
+      "id": "f47",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 5,
+          "target": 8
+        },
+        {
+          "length": 4,
+          "target": 12
+        }
+      ],
+      "consonants": [
+        "B",
+        "J",
+        "S",
+        "S",
+        "T",
+        "V"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "J"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "STEVE JOBS"
+    },
+    {
+      "id": "f48",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 8,
+          "target": 15
+        },
+        {
+          "length": 3,
+          "target": 2
+        }
+      ],
+      "consonants": [
+        "D",
+        "H",
+        "L",
+        "M",
+        "M",
+        "M"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 7,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "I"
+        }
+      ],
+      "phrase": "MUHAMMAD ALI"
+    },
+    {
+      "id": "f49",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 5,
+          "target": 9
+        },
+        {
+          "length": 9,
+          "target": 15
+        }
+      ],
+      "consonants": [
+        "C",
+        "D",
+        "K",
+        "L",
+        "M",
+        "N",
+        "N",
+        "S",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 14,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 8,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "I"
+        }
+      ],
+      "phrase": "EMILY DICKINSON"
+    },
+    {
+      "id": "f50",
+      "category": "Person",
+      "racks": [
+        {
+          "length": 7,
+          "target": 10
+        },
+        {
+          "length": 7,
+          "target": 14
+        }
+      ],
+      "consonants": [
+        "C",
+        "C",
+        "H",
+        "H",
+        "L",
+        "L",
+        "N",
+        "P",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 14,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "I"
+        }
+      ],
+      "phrase": "CHARLIE CHAPLIN"
+    },
+    {
+      "id": "f51",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 5,
+          "target": 6
+        },
+        {
+          "length": 4,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "B",
+        "L",
+        "P",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        }
+      ],
+      "phrase": "POLAR BEAR"
+    },
+    {
+      "id": "f52",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 4,
+          "target": 8
+        },
+        {
+          "length": 5,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "B",
+        "D",
+        "G",
+        "L",
+        "L"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "BALD EAGLE"
+    },
+    {
+      "id": "f53",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 7,
+          "target": 13
+        },
+        {
+          "length": 6,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "G",
+        "M",
+        "N",
+        "N",
+        "P",
+        "R",
+        "S",
+        "T",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "I"
+        }
+      ],
+      "phrase": "PRAYING MANTIS"
+    },
+    {
+      "id": "f54",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 3,
+          "target": 1
+        },
+        {
+          "length": 6,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "L",
+        "R",
+        "S",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        }
+      ],
+      "phrase": "SEA TURTLE"
+    },
+    {
+      "id": "f55",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 4,
+          "target": 10
+        },
+        {
+          "length": 5,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "G",
+        "K",
+        "N",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        }
+      ],
+      "phrase": "KING COBRA"
+    },
+    {
+      "id": "f56",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 7,
+          "target": 13
+        },
+        {
+          "length": 9,
+          "target": 18
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "F",
+        "H",
+        "L",
+        "M",
+        "N",
+        "R",
+        "R",
+        "T",
+        "T",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 16,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 8,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        }
+      ],
+      "phrase": "MONARCH BUTTERFLY"
+    },
+    {
+      "id": "f57",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 7,
+          "target": 22
+        },
+        {
+          "length": 4,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "B",
+        "G",
+        "L",
+        "R",
+        "R",
+        "Y",
+        "Z",
+        "Z"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "Z"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "Z"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        }
+      ],
+      "phrase": "GRIZZLY BEAR"
+    },
+    {
+      "id": "f58",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 4,
+          "target": 8
+        },
+        {
+          "length": 7,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "D",
+        "L",
+        "N",
+        "P",
+        "R",
+        "S",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "O"
+        }
+      ],
+      "phrase": "SNOW LEOPARD"
+    },
+    {
+      "id": "f59",
+      "category": "Animal",
+      "racks": [
+        {
+          "length": 6,
+          "target": 9
+        },
+        {
+          "length": 4,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "H",
+        "M",
+        "R",
+        "R",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        }
+      ],
+      "phrase": "HERMIT CRAB"
+    },
+    {
+      "id": "f60",
       "category": "Animal",
       "racks": [
         {
@@ -1270,7 +5788,1380 @@
       "phrase": "GREAT WHITE SHARK"
     },
     {
-      "id": "f11",
+      "id": "f61",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 5,
+          "target": 9
+        },
+        {
+          "length": 5,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "D",
+        "H",
+        "R",
+        "S",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        }
+      ],
+      "phrase": "CHESS BOARD"
+    },
+    {
+      "id": "f62",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 6,
+          "target": 10
+        },
+        {
+          "length": 4,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "B",
+        "B",
+        "C",
+        "D",
+        "K",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        }
+      ],
+      "phrase": "RUBBER DUCK"
+    },
+    {
+      "id": "f63",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 6,
+          "target": 12
+        },
+        {
+          "length": 5,
+          "target": 13
+        }
+      ],
+      "consonants": [
+        "C",
+        "C",
+        "H",
+        "K",
+        "P",
+        "T",
+        "T",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "POCKET WATCH"
+    },
+    {
+      "id": "f64",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 6,
+          "target": 8
+        },
+        {
+          "length": 5,
+          "target": 11
+        }
+      ],
+      "consonants": [
+        "F",
+        "H",
+        "L",
+        "R",
+        "R",
+        "S",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "FERRIS WHEEL"
+    },
+    {
+      "id": "f65",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 7,
+          "target": 14
+        },
+        {
+          "length": 5,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "C",
+        "C",
+        "G",
+        "H",
+        "K",
+        "N",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "I"
+        }
+      ],
+      "phrase": "ROCKING CHAIR"
+    },
+    {
+      "id": "f66",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 5,
+          "target": 7
+        },
+        {
+          "length": 8,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "L",
+        "N",
+        "P",
+        "P",
+        "P",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "PAPER AIRPLANE"
+    },
+    {
+      "id": "f67",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 4,
+          "target": 6
+        },
+        {
+          "length": 6,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "C",
+        "F",
+        "P",
+        "R",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 10,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "FIRE ESCAPE"
+    },
+    {
+      "id": "f68",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 6,
+          "target": 13
+        },
+        {
+          "length": 5,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "B",
+        "C",
+        "F",
+        "F",
+        "L",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        }
+      ],
+      "phrase": "COFFEE TABLE"
+    },
+    {
+      "id": "f69",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 7,
+          "target": 8
+        },
+        {
+          "length": 6,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "B",
+        "G",
+        "L",
+        "M",
+        "S",
+        "S",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 13,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "E"
+        }
+      ],
+      "phrase": "MESSAGE BOTTLE"
+    },
+    {
+      "id": "f70",
+      "category": "Object",
+      "racks": [
+        {
+          "length": 7,
+          "target": 11
+        },
+        {
+          "length": 4,
+          "target": 8
+        }
+      ],
+      "consonants": [
+        "H",
+        "N",
+        "R",
+        "T",
+        "V",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "V"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "WEATHER VANE"
+    },
+    {
+      "id": "f71",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 8,
+          "target": 13
+        },
+        {
+          "length": 4,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "C",
+        "J",
+        "K",
+        "P",
+        "R",
+        "R",
+        "S",
+        "S"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "J"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 7,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "JURASSIC PARK"
+    },
+    {
+      "id": "f72",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 9,
+          "target": 16
+        }
+      ],
+      "consonants": [
+        "D",
+        "F",
+        "G",
+        "H",
+        "H",
+        "R",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 8,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 7,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "THE GODFATHER"
+    },
+    {
+      "id": "f73",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 4,
+          "target": 3
+        },
+        {
+          "length": 4,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "R",
+        "R",
+        "S",
+        "S",
+        "T",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 8,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "STAR WARS"
+    },
+    {
+      "id": "f74",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 4,
+          "target": 7
+        },
+        {
+          "length": 5,
+          "target": 4
+        }
+      ],
+      "consonants": [
+        "H",
+        "L",
+        "M",
+        "N"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "HOME ALONE"
+    },
+    {
+      "id": "f75",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 4,
+          "target": 8
+        },
+        {
+          "length": 7,
+          "target": 11
+        }
+      ],
+      "consonants": [
+        "C",
+        "F",
+        "L",
+        "N",
+        "P",
+        "P",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "U"
+        }
+      ],
+      "phrase": "PULP FICTION"
+    },
+    {
+      "id": "f76",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 4,
+          "target": 13
+        }
+      ],
+      "consonants": [
+        "J",
+        "S",
+        "W"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 4,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "J"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "W"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "JAWS"
+    },
+    {
+      "id": "f77",
       "category": "Movie",
       "racks": [
         {
@@ -1389,7 +7280,362 @@
       "phrase": "THE SOUND OF MUSIC"
     },
     {
-      "id": "f12",
+      "id": "f78",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 5,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "R",
+        "S",
+        "T",
+        "T",
+        "Y",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 8,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "TOY STORY"
+    },
+    {
+      "id": "f79",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 6,
+          "target": 11
+        }
+      ],
+      "consonants": [
+        "H",
+        "M",
+        "R",
+        "T",
+        "T",
+        "X"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 9,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "X"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "THE MATRIX"
+    },
+    {
+      "id": "f80",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 7,
+          "target": 9
+        },
+        {
+          "length": 4,
+          "target": 9
+        }
+      ],
+      "consonants": [
+        "F",
+        "G",
+        "M",
+        "P",
+        "R",
+        "R",
+        "S",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        }
+      ],
+      "phrase": "FORREST GUMP"
+    },
+    {
+      "id": "f81",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 5,
+          "target": 13
+        }
+      ],
+      "consonants": [
+        "C",
+        "K",
+        "R",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 5,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        }
+      ],
+      "phrase": "ROCKY"
+    },
+    {
+      "id": "f82",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 7,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "C",
+        "N",
+        "T",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 7,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "I"
+        }
+      ],
+      "phrase": "TITANIC"
+    },
+    {
+      "id": "f83",
       "category": "Movie",
       "racks": [
         {
@@ -1506,6 +7752,611 @@
         }
       ],
       "phrase": "BACK TO THE FUTURE"
+    },
+    {
+      "id": "f84",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 7,
+          "target": 14
+        },
+        {
+          "length": 4,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "D",
+        "F",
+        "G",
+        "M",
+        "N",
+        "N",
+        "N"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "F"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "O"
+        }
+      ],
+      "phrase": "FINDING NEMO"
+    },
+    {
+      "id": "f85",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 9,
+          "target": 15
+        },
+        {
+          "length": 3,
+          "target": 6
+        }
+      ],
+      "consonants": [
+        "D",
+        "D",
+        "G",
+        "G",
+        "H",
+        "N",
+        "R",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 12,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 8,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 7,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "GROUNDHOG DAY"
+    },
+    {
+      "id": "f86",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 3,
+          "target": 5
+        },
+        {
+          "length": 4,
+          "target": 4
+        },
+        {
+          "length": 4,
+          "target": 10
+        }
+      ],
+      "consonants": [
+        "G",
+        "H",
+        "K",
+        "L",
+        "N",
+        "N",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 0,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 3,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "H"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 2,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "E"
+        }
+      ],
+      "phrase": "THE LION KING"
+    },
+    {
+      "id": "f87",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 4,
+          "target": 8
+        },
+        {
+          "length": 7,
+          "target": 12
+        }
+      ],
+      "consonants": [
+        "M",
+        "N",
+        "P",
+        "P",
+        "P",
+        "R",
+        "S",
+        "Y"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 6,
+          "letter": "S"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "M"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "Y"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "A"
+        }
+      ],
+      "phrase": "MARY POPPINS"
+    },
+    {
+      "id": "f88",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 7,
+          "target": 12
+        },
+        {
+          "length": 4,
+          "target": 7
+        }
+      ],
+      "consonants": [
+        "C",
+        "K",
+        "N",
+        "N",
+        "T",
+        "Z"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "C"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "Z"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 6,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "K"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "I"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 5,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "E"
+        }
+      ],
+      "phrase": "CITIZEN KANE"
+    },
+    {
+      "id": "f89",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 5,
+          "target": 8
+        },
+        {
+          "length": 6,
+          "target": 6
+        }
+      ],
+      "consonants": [
+        "B",
+        "D",
+        "L",
+        "N",
+        "N",
+        "R",
+        "R"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 11,
+      "hints": [
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 3,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 5,
+          "letter": "R"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "B"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "L"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 3,
+          "letter": "D"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 4,
+          "letter": "E"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "A"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 4,
+          "letter": "E"
+        }
+      ],
+      "phrase": "BLADE RUNNER"
+    },
+    {
+      "id": "f90",
+      "category": "Movie",
+      "racks": [
+        {
+          "length": 3,
+          "target": 4
+        },
+        {
+          "length": 3,
+          "target": 5
+        }
+      ],
+      "consonants": [
+        "G",
+        "N",
+        "P",
+        "T"
+      ],
+      "vowels": [
+        "A",
+        "E",
+        "I",
+        "O",
+        "U"
+      ],
+      "letterCount": 6,
+      "hints": [
+        {
+          "rackIndex": 0,
+          "slot": 0,
+          "letter": "T"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 2,
+          "letter": "P"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 0,
+          "letter": "G"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 2,
+          "letter": "N"
+        },
+        {
+          "rackIndex": 0,
+          "slot": 1,
+          "letter": "O"
+        },
+        {
+          "rackIndex": 1,
+          "slot": 1,
+          "letter": "U"
+        }
+      ],
+      "phrase": "TOP GUN"
     }
   ]
 }
