@@ -531,7 +531,10 @@ export default function PhraseBoard({
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Menu"
           aria-expanded={menuOpen}
-          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md bg-transparent transition-colors hover:bg-[rgba(242,211,192,0.18)] sm:h-[44px] sm:w-[44px] sm:gap-[6px]"
+          // Nudged outward by the button's own inset, so the BARS line up with
+          // the wordmark's left edge rather than the invisible box around
+          // them. The tap target keeps its full size.
+          className="-mr-[9px] flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md bg-transparent transition-colors hover:bg-[rgba(242,211,192,0.18)] sm:-mr-[12px] sm:h-[44px] sm:w-[44px] sm:gap-[6px]"
         >
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text sm:h-[3px] sm:w-[21px]" />
