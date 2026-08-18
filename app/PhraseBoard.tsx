@@ -446,7 +446,12 @@ export default function PhraseBoard({
       ),
     ),
   );
-  const handPerRow = Math.ceil(handCount / handRowCount);
+  /**
+   * Tiles per row, floored so an odd count puts the extra tile on the BOTTOM
+   * row rather than the top. The bottom row sits nearer the thumb, and a rack
+   * that grows downward reads better than one that hangs over.
+   */
+  const handPerRow = Math.max(1, Math.floor(handCount / handRowCount));
   /** Width of one balanced row, so the flex box wraps where we intend. */
   const handRowWidth = handPerRow * handTileWidth + (handPerRow - 1) * HAND_GAP;
   const handReservedHeight =
@@ -553,8 +558,8 @@ export default function PhraseBoard({
       {/* Category — the kind of answer, centred under the header band. */}
       <div className="shrink-0 pb-0.5 pt-1 text-center">
         <span
-          className="text-[10px] font-semibold uppercase opacity-60"
-          style={{ letterSpacing: '0.18em' }}
+          className="text-[10px] font-semibold uppercase"
+          style={{ letterSpacing: '0.18em', color: 'var(--frame-text)' }}
         >
           {puzzle.category}
         </span>
