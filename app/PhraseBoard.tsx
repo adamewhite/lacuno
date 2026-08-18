@@ -260,16 +260,23 @@ export default function PhraseBoard({
   }, []);
 
   /**
-   * Largest tile the screen allows. A phone keeps the design's 40px; a tablet
-   * or desktop grows the tiles rather than spreading the same small ones
-   * across a wider board.
+   * Largest tile the screen allows. A phone keeps the design's 40px; wider
+   * screens grow the tiles somewhat rather than spreading the same small ones
+   * apart.
+   *
+   * The ceiling is deliberately modest. A tile is a letter, not a card — past
+   * about 60px the board reads as a wall of squares and the phrase stops
+   * scanning as a phrase.
    */
-  const TILE_CAP = shellWidth >= 600 ? 64 : shellWidth >= 480 ? 52 : 40;
+  const TILE_CAP =
+    shellWidth >= 900 ? 60 : shellWidth >= 600 ? 54 : shellWidth >= 480 ? 48 : 40;
 
   const longestWord = Math.max(...state.racks.map((r) => r.length));
   // clientWidth already excludes the 5px border; subtract the field's own
   // 14px horizontal padding.
-  const BOARD_WIDTH = Math.max(160, shellWidth - 28);
+  // Capped to match the racks' own max-width: sizing tiles against the full
+  // shell would overflow the narrower box they actually sit in.
+  const BOARD_WIDTH = Math.min(680, Math.max(160, shellWidth - 28));
   const GAP = 5;
 
   // How many rows the racks will wrap into at full size. A phrase of many
@@ -303,7 +310,8 @@ export default function PhraseBoard({
   const MAX_HAND_ROWS = 2;
 
   // Tray margin (6px each side) and padding (16px each side).
-  const HAND_WIDTH = Math.max(160, shellWidth - 44);
+  // Matches the tray's capped inner column, not the full shell.
+  const HAND_WIDTH = Math.min(560, Math.max(160, shellWidth - 44));
   const HAND_GAP = 6;
 
   /**
@@ -497,10 +505,10 @@ export default function PhraseBoard({
         // h-full, not 100svh: the body is fixed to the viewport, so the shell
         // fills its parent. svh units would still track the address bar and
         // reintroduce the shifting this is meant to stop.
-        // Fills the viewport up to a comfortable reading width, so the frame
-        // encases the screen on a tablet or desktop rather than floating a
-        // phone-sized card in the middle of it.
-        'mx-auto flex h-full w-full min-w-[320px] max-w-[720px] flex-col overflow-hidden border-[5px] border-frame bg-shell',
+        // Full bleed: the frame encases whatever screen it is on. The board
+        // inside is centred, so a very wide window gets margin around the
+        // racks rather than racks stretched across it.
+        'mx-auto flex h-full w-full min-w-[320px] flex-col overflow-hidden border-[5px] border-frame bg-shell sm:border-[8px]',
         dragging ? 'select-none' : '',
       ].join(' ')}
       ref={shellRef}
@@ -597,7 +605,7 @@ export default function PhraseBoard({
         className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5"
         style={{ paddingTop: 4, paddingBottom: BOARD_PADDING - 4 }}
       >
-        <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-2">
+        <div className="mx-auto flex w-full max-w-[680px] flex-wrap content-center justify-center gap-x-2 gap-y-2">
         {state.racks.map((rack, rackIndex) => {
           // Three states, signalled the moment the arithmetic says so rather
           // than waiting for the rack to fill: under (neutral), exact (green),
@@ -762,7 +770,11 @@ export default function PhraseBoard({
       </div>
 
       {/* Tray */}
-      <div className="mx-1.5 mb-1.5 flex shrink-0 flex-col gap-1.5 bg-tray px-4 pb-2 pt-2">
+      {/* The tray band spans the shell, but its contents are capped and
+          centred: a full-width button row reads as a toolbar on a desktop, not
+          as part of the game. */}
+      <div className="mx-1.5 mb-1.5 shrink-0 bg-tray px-4 pb-2 pt-2 sm:mx-2 sm:mb-2 sm:px-8 sm:pb-4 sm:pt-4">
+        <div className="mx-auto flex w-full max-w-[560px] flex-col gap-1.5 sm:gap-4">
         <div>
           <div className="flex justify-between gap-2">
             {state.vowels.map((letter, i) => {
@@ -897,11 +909,11 @@ export default function PhraseBoard({
           </div>
 
           {/* Hint and Give Up split the width, directly above Next Puzzle. */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 sm:gap-4">
             <button
               onClick={actions.revealHint}
               disabled={state.hintsUsed >= state.hintsAvailable}
-              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40 sm:py-2.5 sm:text-[15px]"
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40 sm:py-3 sm:text-[15px]"
             >
               Hint
             </button>
@@ -911,7 +923,7 @@ export default function PhraseBoard({
                 actions.revealSolution();
               }}
               disabled={state.won || showAnswer}
-              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40 sm:py-2.5 sm:text-[15px]"
+              className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40 sm:py-3 sm:text-[15px]"
             >
               Give Up
             </button>
@@ -923,14 +935,12 @@ export default function PhraseBoard({
             onClick={onNext}
             disabled={!canAdvance}
             title={canAdvance ? undefined : 'Solve it or give up first'}
-            className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30 sm:py-3 sm:text-[15px]"
+            className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30 sm:py-3.5 sm:text-[15px]"
             style={{ letterSpacing: '0.12em' }}
           >
             Next Puzzle
           </button>
-
-
-
+        </div>
         </div>
       </div>
 

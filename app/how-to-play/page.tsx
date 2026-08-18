@@ -102,7 +102,7 @@ export default function HowToPlay() {
     <main
       // The body is fixed to the viewport, so this scrolls itself rather than
       // scrolling the page.
-      className="mx-auto flex h-full w-full min-w-[320px] max-w-[720px] flex-col overflow-y-auto border-[5px] border-frame"
+      className="mx-auto flex h-full w-full min-w-[320px] flex-col overflow-y-auto border-[5px] border-frame sm:border-[8px]"
       style={{ background: 'var(--shell)', boxSizing: 'border-box' }}
     >
       <header className="mx-1.5 mt-1.5 flex items-center justify-between gap-3 bg-frame px-5 pb-2.5 pt-2.5 text-frame-text sm:mx-2 sm:mt-2 sm:px-7 sm:pb-4 sm:pt-4">
@@ -121,7 +121,7 @@ export default function HowToPlay() {
         </Link>
       </header>
 
-      <ol className="flex flex-col gap-5 px-4 py-5 sm:gap-7 sm:px-8 sm:py-7">
+      <ol className="mx-auto flex w-full max-w-[640px] flex-col gap-5 px-4 py-5 sm:gap-7 sm:px-8 sm:py-7">
         <Step
           n={1}
           title="Fill the racks to spell a phrase"
@@ -182,7 +182,7 @@ export default function HowToPlay() {
         </Step>
       </ol>
 
-      <div className="mt-auto px-4 pb-5">
+      <div className="mx-auto mt-auto w-full max-w-[640px] px-4 pb-5 sm:px-8">
         <p className="mb-3 text-[13px] leading-snug opacity-75">
           Stuck? <strong>Hint</strong> reveals a letter. <strong>Give Up</strong>{' '}
           fills in the answer.
