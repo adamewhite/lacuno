@@ -11,7 +11,7 @@ import {
   DIFFICULTIES,
   DIFFICULTY_META,
   type Difficulty,
-} from '../lib/procro/difficulty';
+} from '../lib/lacuno/difficulty';
 
 /**
  * Phrase board, styled from the design handoff.

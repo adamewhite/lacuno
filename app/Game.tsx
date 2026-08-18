@@ -5,7 +5,7 @@ import { useCallback, useEffect, useState } from 'react';
 import PhraseBoard from './PhraseBoard';
 import phraseData from './puzzles-phrases.json';
 import type { PhrasePuzzleData } from './usePhrase';
-import { DEFAULT_DIFFICULTY, type Difficulty } from '../lib/procro/difficulty';
+import { DEFAULT_DIFFICULTY, type Difficulty } from '../lib/lacuno/difficulty';
 
 /**
  * Phrase puzzles: one rack per word of a phrase, consonants scarce, vowels

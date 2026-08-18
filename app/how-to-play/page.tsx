@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { TILE_VALUES } from '../../lib/procro/letter-values';
+import { TILE_VALUES } from '../../lib/lacuno/letter-values';
 
 /**
  * How to play.

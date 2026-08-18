@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 
 import Game from '../Game';
-import { DIFFICULTIES, type Difficulty } from '../../lib/procro/difficulty';
+import { DIFFICULTIES, type Difficulty } from '../../lib/lacuno/difficulty';
 
 /** One static route per level, so each is directly linkable for playtesting. */
 export function generateStaticParams() {

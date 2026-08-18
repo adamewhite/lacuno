@@ -15,8 +15,8 @@ import {
   buildPhrasePuzzle,
   parsePhraseLine,
   phraseHints,
-} from '../lib/procro/phrase';
-import { TILE_VALUES } from '../lib/procro/letter-values';
+} from '../lib/lacuno/phrase';
+import { TILE_VALUES } from '../lib/lacuno/letter-values';
 
 const ROOT = join(import.meta.dirname, '..');
 const VALUES = TILE_VALUES;

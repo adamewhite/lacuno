@@ -6,7 +6,7 @@ import {
   DEFAULT_DIFFICULTY,
   planVowels,
   type Difficulty,
-} from '../lib/procro/difficulty';
+} from '../lib/lacuno/difficulty';
 
 export interface PhrasePuzzleData {
   readonly id: string;

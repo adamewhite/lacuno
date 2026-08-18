@@ -1,5 +1,5 @@
 import Game from './Game';
-import { DEFAULT_DIFFICULTY } from '../lib/procro/difficulty';
+import { DEFAULT_DIFFICULTY } from '../lib/lacuno/difficulty';
 
 /**
  * The landing page plays the default level. Every level is also directly
