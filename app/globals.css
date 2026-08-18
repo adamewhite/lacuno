@@ -177,6 +177,24 @@ button {
   transform-origin: top;
 }
 
+/** Reverse of menu-in, played while the panel is on its way out. */
+@keyframes menu-out {
+  from {
+    opacity: 1;
+    transform: none;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+.menu-leave {
+  animation: menu-out 150ms ease-in both;
+  transform-origin: top;
+  pointer-events: none;
+}
+
 /**
  * Moving between puzzles. The board is rebuilt wholesale — different racks,
  * different tiles, often a different tile size — so it fades out and back in
@@ -206,7 +224,8 @@ button {
   .tile-snap,
   .tile-solved,
   .board-enter,
-  .menu-enter {
+  .menu-enter,
+  .menu-leave {
     animation: none;
   }
 

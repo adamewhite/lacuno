@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -52,6 +52,21 @@ export default function PhraseBoard({
 }) {
   const [state, actions] = usePhrase(puzzle, values, difficulty);
   const [menuOpen, setMenuOpen] = useState(false);
+  /**
+   * Kept mounted while the menu animates out. Unmounting on close would skip
+   * the exit entirely — the panel would simply vanish.
+   */
+  const [menuClosing, setMenuClosing] = useState(false);
+
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((open) => {
+      if (open) {
+        setMenuClosing(true);
+        setTimeout(() => setMenuClosing(false), 150); // matches .menu-leave
+      }
+      return !open;
+    });
+  }, []);
   const [showAnswer, setShowAnswer] = useState(false);
   const [focusedRack, setFocusedRack] = useState<number | null>(null);
   const [caret, setCaret] = useState(0);
@@ -531,7 +546,7 @@ export default function PhraseBoard({
         {/* Menu placeholder. The solved counter and reset control lived here;
             both are reachable from a menu once one exists. */}
         <button
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={toggleMenu}
           aria-label="Menu"
           aria-expanded={menuOpen}
           // Nudged outward by the button's own inset, so the BARS line up with
@@ -566,8 +581,13 @@ export default function PhraseBoard({
 
         {/* Difficulty menu, dropping from the nav bar. Absolutely positioned
               so opening it costs the board no height. */}
-        {menuOpen && (
-          <div className="menu-enter absolute left-0 right-0 top-full z-40 rounded-b-md border-x border-b border-frame bg-tray p-3 shadow-xl">
+        {(menuOpen || menuClosing) && (
+          <div
+            className={[
+              'absolute left-0 right-0 top-full z-40 rounded-b-md border-x border-b border-frame bg-tray p-3 shadow-xl',
+              menuClosing ? 'menu-leave' : 'menu-enter',
+            ].join(' ')}
+          >
               <p
                 className="mb-2 text-[10px] font-semibold uppercase opacity-60"
                 style={{ letterSpacing: '0.14em' }}
