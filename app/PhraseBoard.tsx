@@ -265,12 +265,20 @@ export default function PhraseBoard({
     return Math.ceil(Math.max(puzzle.consonants.length, 1) / per);
   };
 
-  /** Height the racks need at a given tile size, inside the board region. */
+  /**
+   * Height the racks need at a given tile size, inside the board region.
+   *
+   * Per row: the score superscript (14px), its 3px gap, the tile, and the 9px
+   * ledge padding beneath it. Rows are separated by ROW_GAP.
+   */
+  const ROW_GAP = 8;
+  const RACK_OVERHEAD = 14 + 3 + 9;
+  /** The field's own vertical padding, which comes out of the same budget. */
+  const BOARD_PADDING = 18;
   const boardHeightAt = (tile: number): number => {
     const h = Math.round(tile * (52 / 44));
     const rows = rowsAtWidth(tile);
-    // Each row is its score superscript plus the tile and its ledge padding.
-    return rows * (25 + h) + (rows - 1) * 12;
+    return rows * (RACK_OVERHEAD + h) + (rows - 1) * ROW_GAP;
   };
 
   /**
@@ -286,7 +294,11 @@ export default function PhraseBoard({
     fitted > 22 &&
     (rowsAtWidth(fitted) > MAX_BOARD_ROWS ||
       handRowsAt(fitted) > MAX_HAND_ROWS ||
-      (available > 0 && boardHeightAt(fitted) > available))
+      // The field's own vertical padding comes out of the same budget, so the
+      // racks must fit what is left after it — otherwise a tall board spills
+      // past both ends, hiding the first row's score under the header and
+      // cutting the last row off against the tray.
+      (available > 0 && boardHeightAt(fitted) > available - BOARD_PADDING))
   ) {
     fitted -= 2;
   }
@@ -475,12 +487,9 @@ export default function PhraseBoard({
           space comes from above rather than from the board itself. */}
       <div
         className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5"
-        style={{
-          paddingTop: 2,
-          paddingBottom: boardRowCount >= 3 ? 18 : 10,
-        }}
+        style={{ paddingTop: 4, paddingBottom: BOARD_PADDING - 4 }}
       >
-        <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-3">
+        <div className="flex flex-wrap content-center justify-center gap-x-2 gap-y-2">
         {state.racks.map((rack, rackIndex) => {
           // Three states, signalled the moment the arithmetic says so rather
           // than waiting for the rack to fill: under (neutral), exact (green),
