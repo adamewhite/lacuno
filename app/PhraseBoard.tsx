@@ -60,6 +60,7 @@ export default function PhraseBoard({
     setShowAnswer(false);
     setFocusedRack(null);
     setCaret(0);
+    setOverflow(0);
   }, [puzzle]);
 
   useEffect(() => {
@@ -186,8 +187,23 @@ export default function PhraseBoard({
    */
   const shellRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const boardRef = useRef<HTMLDivElement | null>(null);
   const [shellHeight, setShellHeight] = useState(0);
   const [headerHeight, setHeaderHeight] = useState(0);
+  /**
+   * Height the board is over its container, measured after layout.
+   *
+   * trayHeightAt models the tray from the tile size, but a model drifts from
+   * the real thing — margins, flex gaps and borders are easy to miss, and a
+   * few pixels is the difference between a four-row board fitting and spilling
+   * past both ends. This measures the actual overflow and feeds it back as a
+   * correction, so the sizing self-corrects instead of relying on the model
+   * being exactly right.
+   *
+   * It cannot oscillate: overflow only ever shrinks the tile, and a tile that
+   * fits reports zero overflow, which leaves it where it is.
+   */
+  const [overflow, setOverflow] = useState(0);
   /**
    * The shell's real width. It is capped at 430px but a narrower phone gets
    * less — an iPhone SE is 375 — and assuming the cap overflowed the board off
@@ -205,11 +221,18 @@ export default function PhraseBoard({
 
       const width = shellRef.current?.clientWidth ?? 0;
       if (width > 0) setShellWidth(width);
+
+      const board = boardRef.current;
+      if (board) {
+        const spill = board.scrollHeight - board.clientHeight;
+        // Only ever tighten; a fitting board reports zero and stays put.
+        if (spill > 0) setOverflow((current) => current + spill);
+      }
     };
 
     measure();
     const observer = new ResizeObserver(measure);
-    for (const el of [shellRef.current, headerRef.current]) {
+    for (const el of [shellRef.current, headerRef.current, boardRef.current]) {
       if (el) observer.observe(el);
     }
     window.addEventListener('resize', measure);
@@ -292,10 +315,28 @@ export default function PhraseBoard({
     const handTile = Math.min(44, Math.round(tile * 1.15));
     const handHeight = Math.round(handTile * (52 / 44));
     const rows = handRowsAt(tile);
-    const piles = handHeight + 4;
-    const rack = rows * handHeight + (rows - 1) * HAND_GAP + 9;
-    const buttons = 30 + 34;
-    return 8 + piles + 6 + rack + 6 + buttons + 8;
+
+    const margin = 6;             // mb-1.5 below the tray
+    const padding = 8 + 8;        // pt-2 pb-2
+    const piles = handHeight + 4; // pile stage, including its stack offset
+    const columnGap = 6;          // gap-1.5 between the tray's children
+    const rackMargin = 6;         // mt-1.5 above the rack
+    const rack = rows * handHeight + (rows - 1) * HAND_GAP + 9; // + ledge
+    const buttonRow = 30;
+    const nextBar = 34;
+    const innerGaps = 6 * 2;      // gaps around the button rows
+
+    return (
+      margin +
+      padding +
+      piles +
+      columnGap +
+      rackMargin +
+      rack +
+      innerGaps +
+      buttonRow +
+      nextBar
+    );
   };
   const boardHeightAt = (tile: number): number => {
     const h = Math.round(tile * (52 / 44));
@@ -322,7 +363,7 @@ export default function PhraseBoard({
       // cutting the last row off against the tray.
       (shellHeight > 0 &&
         boardHeightAt(fitted) >
-          shellHeight - headerHeight - trayHeightAt(fitted) - BOARD_PADDING))
+          shellHeight - headerHeight - trayHeightAt(fitted) - BOARD_PADDING - overflow))
   ) {
     fitted -= 2;
   }
@@ -510,6 +551,7 @@ export default function PhraseBoard({
           air under its last rack, separating the puzzle from the tray, and the
           space comes from above rather than from the board itself. */}
       <div
+        ref={boardRef}
         className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5"
         style={{ paddingTop: 4, paddingBottom: BOARD_PADDING - 4 }}
       >
