@@ -14,7 +14,8 @@
  * Two lighter tints are derived from the terracotta — #eec4ad for the nav and
  * menu, #f2d3c0 for the tiles — because the four given colours have nothing
  * above #d99b7f, and both the nav text and the tile faces need to sit clearly
- * above the surfaces behind them.
+ * above the surfaces behind them. One darker teal (#08202c) separates the tray
+ * from the board field, which the four alone could not do.
  *
  * Layout tokens (sizes, radii, spacing) still come from the design handoff;
  * only the colours have been replaced.
@@ -23,7 +24,7 @@
   --page: #0f3040;
   --shell: #0f3040;      /* the board field the racks sit on */
   --frame: #a56f63;      /* the bright band around it */
-  --frame-text: #f2d3c0;   /* light on the clay band, so the nav reads clearly */
+  --frame-text: #f8b931;   /* light on the clay band, so the nav reads clearly */
   --tray: #0f3040;
   --text: #d99b7f;
 
@@ -31,9 +32,9 @@
   --tile-face-hand: #f2d3c0;  /* hand and piles, a step lighter so they read apart */
   --tile-text: #0f3040;
 
-  --slot-fill: #0f3040;
+  --slot-fill: #08202c;       /* darker than the field, so empty slots recede */
   --slot-border: #a56f63;
-  --spent-fill: #0f3040;
+  --spent-fill: #08202c;
   --spent-border: #464858;
 
   --ledge: #a56f63;
@@ -48,7 +49,7 @@
   --solved: #d99b7f;
 
   --pile-mid: #464858;
-  --pile-back: #0f3040;
+  --pile-back: #08202c;
 }
 
 @theme inline {
