@@ -269,14 +269,14 @@ export default function PhraseBoard({
    * scanning as a phrase.
    */
   const TILE_CAP =
-    shellWidth >= 900 ? 60 : shellWidth >= 600 ? 54 : shellWidth >= 480 ? 48 : 40;
+    shellWidth >= 900 ? 66 : shellWidth >= 600 ? 60 : shellWidth >= 480 ? 52 : 40;
 
   const longestWord = Math.max(...state.racks.map((r) => r.length));
   // clientWidth already excludes the 5px border; subtract the field's own
   // 14px horizontal padding.
   // Capped to match the racks' own max-width: sizing tiles against the full
   // shell would overflow the narrower box they actually sit in.
-  const BOARD_WIDTH = Math.min(680, Math.max(160, shellWidth - 28));
+  const BOARD_WIDTH = Math.min(750, Math.max(160, shellWidth - 28));
   const GAP = 5;
 
   // How many rows the racks will wrap into at full size. A phrase of many
@@ -311,7 +311,7 @@ export default function PhraseBoard({
 
   // Tray margin (6px each side) and padding (16px each side).
   // Matches the tray's capped inner column, not the full shell.
-  const HAND_WIDTH = Math.min(560, Math.max(160, shellWidth - 44));
+  const HAND_WIDTH = Math.min(620, Math.max(160, shellWidth - 44));
   const HAND_GAP = 6;
 
   /**
@@ -605,7 +605,7 @@ export default function PhraseBoard({
         className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5"
         style={{ paddingTop: 4, paddingBottom: BOARD_PADDING - 4 }}
       >
-        <div className="mx-auto flex w-full max-w-[680px] flex-wrap content-center justify-center gap-x-2 gap-y-2">
+        <div className="mx-auto flex w-full max-w-[750px] flex-wrap content-center justify-center gap-x-2 gap-y-2">
         {state.racks.map((rack, rackIndex) => {
           // Three states, signalled the moment the arithmetic says so rather
           // than waiting for the rack to fill: under (neutral), exact (green),
@@ -774,7 +774,7 @@ export default function PhraseBoard({
           centred: a full-width button row reads as a toolbar on a desktop, not
           as part of the game. */}
       <div className="mx-1.5 mb-1.5 shrink-0 bg-tray px-4 pb-2 pt-2 sm:mx-2 sm:mb-2 sm:px-8 sm:pb-4 sm:pt-4">
-        <div className="mx-auto flex w-full max-w-[560px] flex-col gap-1.5 sm:gap-4">
+        <div className="mx-auto flex w-full max-w-[620px] flex-col gap-1.5 sm:gap-4">
         <div>
           <div className="flex justify-between gap-2">
             {state.vowels.map((letter, i) => {
