@@ -1,226 +1,182 @@
-# PROCRO — Game Specification
+# LACUNO — Game Specification
 
-Daily word-deduction puzzle. A product of Vitura Studio, sibling to OROBORO.
-Live at: playprocro.com (planned)
+Word puzzle. A product of Vitura Studio, sibling to OROBORO.
+
+A *lacuna* is a gap in a text. The player fills the gaps in a phrase.
 
 ## 1. Concept
 
-Player receives a fixed pool of letter tiles and a set of empty racks.
-Each rack's length equals the length of one solution word. Each rack has
-a target point total. The player must place ALL tiles into the racks such
-that every rack contains a valid word AND hits its exact point total.
+The player is shown a phrase with every letter missing — one rack per word,
+read left to right and wrapping like a line of text. Below the board sit two
+supplies: five vowel piles, and the phrase's consonants as a scarce rack.
 
-Each daily puzzle has EXACTLY ONE solution (verified at generation time
-against the dictionary — see §5). Boards that fail this gate are
-discarded and regenerated; they never reach a player.
+Each rack shows a target: the sum of that word's consonant values. Vowels score
+nothing. The player fills the racks until every word is right.
 
-Name derives from Procrustes (the mythic bandit whose iron bed victims
-were stretched or cut to fit exactly). The racks are Procrustean beds
-for words. Myth may be used as flavor/antagonist framing ("Procrustes
-is not satisfied") but the game name is PROCRO.
+The category above the board ("Idiom", "Place", "Person"…) is the only other
+clue.
 
 ## 2. Core rules
 
-- All tiles must be used. No leftovers, no unused rack slots.
-- Rack lengths are visible and fixed (they telegraph word lengths).
-- Each rack displays its target total at all times.
-- Each rack may contain positional multiplier slots (e.g., 2× letter
-  score on slot 3). Multipliers are essential, not decorative: they
-  break anagram ties (STARE vs RATES score differently) and enable
-  uniqueness. Placement varies per puzzle.
-- Tiles show their letter and point value on their face.
-- Win condition = constraint satisfaction, NOT answer matching. Accept
-  any configuration where every rack holds a valid word at the exact
-  total using all tiles. (Uniqueness verification at generation time
-  means this coincides with the intended answer — but the engine must
-  never hard-compare against a stored answer.)
+- **One rack per word**, in reading order.
+- **Consonants are scarce.** The player is given exactly the consonants the
+  phrase needs — no spares, no decoys. Each carries a point value.
+- **Vowels are free and unlimited.** All five piles are always available,
+  whether or not the phrase uses them. Restricting the piles to the vowels in
+  play would leak which ones are absent.
+- **Vowels score zero.** A rack's target is therefore its consonant total, and
+  a rack targeting 0 is a word with no consonants at all.
+- **Win condition = the phrase.** Unlike a single-word puzzle, where any
+  anagram at the right total is legitimately correct, a phrase has exactly one
+  intended reading. `CLOD FEET` is not a win.
 
-## 3. Feedback model (decided)
+## 3. Feedback
 
-Three escalating tiers:
+- **Live rack totals**, updating on every placement. Three states, each with
+  non-colour redundancy so the signal does not depend on distinguishing green
+  from red:
+  - UNDER — neutral, `11 / 18`
+  - EXACT — green with a check, `✓18 / 18`
+  - OVER — red with an up-arrow, `▲21 / 18`. The overshoot is deliberate
+    information; players use it to deduce which tiles cannot belong.
+- **Solved board** — every tile takes a glow, rippling left to right across the
+  whole phrase. The delay is keyed to each letter's position in the phrase, not
+  its rack, so a multi-word answer reads as one sweep rather than several
+  simultaneous flashes.
+- **Placement** — a tile plays a short overshoot-and-settle when it lands, so a
+  drop reads as landing rather than appearing.
+- All motion respects `prefers-reduced-motion`.
 
-1. **Live rack totals** — always visible, updating on every placement.
-   Three number states, each with non-color redundancy (icon/weight):
-   - UNDER target: neutral (e.g., "11 / 18")
-   - EXACT: success state with checkmark
-   - OVER: distinct warning state with up-arrow; show the magnitude
-     (overshoot amount is deliberate information — players use it to
-     deduce which tiles don't belong)
-2. **Rack glow** — fires when a rack satisfies BOTH exact total AND
-   valid word (checked against the dictionary, client-side).
-   - Debounce ~400ms so mid-shuffle coincidences don't flash.
-   - Glowing racks NEVER lock. Tiles remain freely removable, no
-     confirmation friction. False summits (locally-valid racks that
-     are globally wrong because they steal a tile a sibling rack
-     needs) are an intentional, core difficulty mechanic.
-   - On glow loss: soft fade, not a snap. Optionally retain a faint
-     "was solved" marker (thin underline) as memory aid.
-3. **Full-board celebration** — all racks glow + all tiles consumed.
-   Visually distinct from and bigger than rack glow.
+## 4. Letter values (decided)
 
-## 4. Tile values (decided: custom, NOT Scrabble's)
+Vowels are 0. Consonants:
 
-Scrabble values are frequency-compensation for a different game; ten
-common letters all worth 1 point make totals non-discriminating exactly
-where English lives. PROCRO values exist to make totals an information
-channel (a checksum).
+    R1 S1 T1  D2 L2 N2  C3 G3 M3 P3  B4 H4 Y4  F5 K5 W5  V6 X6 Z6  J7 Q7
 
-- Design goal: maximize "sum entropy" — minimize same-length word pairs
-  that collide on identical totals.
-- High-frequency letters need the MOST value differentiation (they do
-  the discriminating work). Rare letters (J,Q,X,Z) are nearly free
-  parameters.
-- Preserve rough intuitive ordering (rare letters worth more) but exact
-  numbers are chosen empirically: generate candidate schemes, measure
-  first-try uniqueness rate of the puzzle generator under each, pick
-  the winner. (See §6 — the solver doubles as the evaluation harness.)
-- Values are FIXED forever once chosen (players build fluency over
-  weeks; deduction skill compounds). One-time offline optimization.
-- Letter frequency reference should be computed from the actual word
-  list (dictionary frequency), NOT running-text frequency. Expect S, R,
-  C, L to rank higher and H, W lower than the classic prose table.
+Two deliberate properties:
 
-## 5. Dictionary (decided: ONE dictionary)
+- **Low.** A typical rack targets under 10. The player re-sums a rack on every
+  placement, so the size of that sum is a usability cost, not a cosmetic one.
+- **Repeated.** Distinct values would make a total nearly identify its word,
+  turning the puzzle into arithmetic bookkeeping. Repeated values mean many
+  consonant sets share a total, so the player must reason about what actually
+  spells a word.
 
-1. **Dictionary = 2of12inf + delta file.**
-   - Base: the `2of12inf` list from the 12dicts package
-     (source: http://wordlist.aspell.net/12dicts/, ~81k words,
-     inflections included). Built by intersecting twelve source
-     dictionaries and keeping words appearing in at least two — a junk
-     filter by lexicographic consensus.
-   - Delta file (`data/delta.txt`): our own curated additions/removals,
-     applied to the base at build time. Nobody ever edits the base file.
-   - This ONE dictionary is used for BOTH:
-     a) client-side word validation (does this rack glow?), and
-     b) generator-side uniqueness verification.
-   - Same list, same version, both places. One source of truth.
+Ordering is roughly by frequency, so the commonest consonants are cheapest.
 
-2. **ENABLE is not used.** A word outside our dictionary cannot form an
-   alternate solution, because the game itself will not accept it. The
-   dictionary defines what a solution is.
+## 5. Content
 
-3. **Solution vocabulary** — the words puzzles are BUILT from: a
-   frequency-filtered subset of this same dictionary (~5k–20k common
-   words, tiered by frequency for difficulty ramping, Monday = top tier).
-   A strict subset: puzzles are built from common words but may be
-   solved with any dictionary word.
-   - Optional ban on -S plurals and -ED/-ING inflections as SOLUTION
-     words (they remain valid to spell either way). Defaults OFF —
-     revisit after playing one on paper (§11.5).
+Phrases live in `data/phrases.txt`, one per line, with an optional category:
 
-4. **Drift guard:** any change to the base list or the delta file
-   re-triggers uniqueness re-verification of all unpublished puzzles in
-   the queue. Each puzzle stores the hash of the dictionary version it
-   was verified against. A word added later must never retroactively
-   create a second solution.
+    Idiom | Cold feet
+    Person | Marie Curie
+    Cold feet              <- no category given, shown as "Phrase"
 
-5. **Licensing:** 12dicts is public-domain-grade; the compiler requests
-   acknowledgment. The 12dicts README ships verbatim in the repo
-   (`data/raw/12dicts-ReadMe.html`), and the game's About/footer carries:
-   "Word list based on 12dicts by Alan Beale."
+`npm run build:puzzles` compiles them to `app/puzzles-phrases.json`.
 
-**If a player's obscure-but-real word isn't recognized:** correct
-behavior, not a bug. FAQ line: "PROCRO uses a dictionary of common
-English words."
+**There is no generator and no solver.** A phrase puzzle cannot be verified by
+search: `BEAT AROUND THE BUSH` admits over a thousand legal rack fillings, and
+only one of them is a phrase. Curation replaces verification, which means the
+phrase list *is* the game's quality.
 
-## 6. The solver (build this FIRST — it is the whole engine)
+Current library: 90 phrases — 20 each of Person, Place and Movie, 10 each of
+Animal, Object and Idiom. Categories are singular, since each puzzle is one
+place or one person, and specific: "Animal" tells a player more than a
+catch-all "Thing".
 
-One core function serving four roles: uniqueness validator, puzzle
-generator (run backwards), difficulty grader, tile-value optimizer.
+### Content limits
 
-    solve(tiles, racks, dictionary) -> [solutions]
-    # rack = (length, target_total, multipliers)
+Enforced at build time; an over-limit phrase is skipped with a warning naming
+the reason. Set by what fits legibly on the narrowest phone worth supporting
+(375 × 667, the iPhone SE) without dropping tiles below about 30px:
 
-Algorithm:
+| limit | value | why |
+|---|---|---|
+| consonants | ≤ 16 | the binding one — the rack caps at two rows, and past sixteen those rows only fit by going unreadable |
+| letters per word | ≤ 9 | nine renders at 33px tiles; ten drops to 29px, legible but fiddly to tap |
+| words | ≤ 5 | rows 1–3 are free, the fourth costs tile size, the fifth exhausts a small screen |
 
-- Per rack, filter dictionary: length match → multiset containment
-  against tile pool (Counter/26-int array) → exact score under that
-  rack's multipliers. Constraints prune ~82k to dozens per rack.
-- Backtracking across racks: choose candidate, subtract letters,
-  recurse; branches that consume the pool exactly are solutions.
-- Order racks by fewest candidates first. Do not optimize beyond that;
-  exhaustiveness IS the correctness guarantee. Milliseconds at scale.
+## 6. Difficulty
 
-Generation pipeline:
+Four levels, each a route. Same puzzles and same consonant pool throughout;
+what varies is how much of the vowel work is done for the player.
 
-1. Pick 2–4 words from solution vocabulary (tier per target difficulty).
-2. Pool their tiles; place multipliers; compute rack targets.
-3. Run solve() against the dictionary (§5) — the same list the client
-   validates against.
-4. len(solutions) == 1 → publish candidate. Else: repair (nudge a
-   multiplier, swap a word — the alternate solution's diff says which)
-   or regenerate. Roughly half of random boards pass first try, so
-   retries are cheap.
+| level | route | vowel help |
+|---|---|---|
+| Standard | `/standard` | every vowel already on the board, all piles disabled |
+| Challenging | `/challenging` | one whole vowel pre-filled throughout |
+| Difficult | `/difficult` | only the vowels in play are offered |
+| Brutal | `/brutal` | nothing given, all five piles live |
 
-Difficulty proxy: per-rack candidate count before applying the total
-constraint (search-space size). Grade puzzles objectively; schedule
-easy→hard across the week.
+A new visitor lands on Standard. Brutal is the original behaviour. Each level
+hands over at least as much as the one below it, and a test asserts that
+ordering holds.
 
-## 7. Architecture
+`Hint` reveals a letter — consonants before vowels, longest word first, since a
+consonant is a scarce tile the player must place anyway. `Give Up` fills the
+board and drains the rack.
 
-- **Frontend:** Next.js (this repo, create-next-app). Daily puzzle is a
-  static JSON blob. Client-side: rendering, interaction, live totals,
-  glow validation against the shipped dictionary.
-- **Offline tooling:** generator/solver as TypeScript scripts in this
-  repo (`lib/`, `scripts/`), run via tsx. Single-language codebase: the
-  same solver serves offline generation and client-side glow checks, so
-  there is only one implementation to keep correct. Commonness ranking
-  comes from a static frequency list, not a runtime library.
-- **Anti-cheat:** the validation dictionary shipping client-side is
-  fine; the daily SOLUTION must not sit in the client payload in
-  plaintext. Validate final submission server-side or ship only a
-  solution hash. Leaderboard/streak integrity depends on this.
-- **Puzzle format (sketch):**
+## 7. Layout
 
-  {
-  "id": "2026-08-12",
-  "dictVersion": "<hash>",
-  "tiles": ["G","L","O","W", ...],
-  "racks": [
-  { "length": 5, "target": 18, "multipliers": {"2": 2} },
-  { "length": 4, "target": 9 }
-  ],
-  "solutionHash": "<hash>"
-  }
+The shell is exactly one viewport and never scrolls. `position: fixed` on the
+body removes the scroll container entirely, which is what defeats iOS
+pull-to-refresh and address-bar shifting — height and `overflow` alone are not
+enough there.
 
-## 8. UX decisions
+Three regions: a fixed header, a fixed tray, and the board flexing between
+them. Tiles size themselves so the whole game fits, stepping down only when
+they must:
 
-- Live totals: yes (decided). The arithmetic deduction is the fun;
-  never make players do mental math against hidden state.
-- Input model: OPEN — tap-tile-then-tap-slot vs drag-and-drop.
-  Leaning tap-tap for mobile forgiveness; prototype both.
-- Tiles ~44px minimum touch targets.
-- All state signals need non-color redundancy (color-blind safe).
-- Share artifact: OPEN — spoiler-free, braggable; carries
-  playprocro.com; candidates: move count, time, rack-solve order.
-  Design early, not bolted on. Aesthetic: ink/myth, not confetti.
+- at most 4 board rows and 2 rack rows
+- the racks must fit the measured board region
 
-## 9. Brand context
+**The sizing must stay a pure function of the tile size.** The tray's height is
+*derived* rather than measured, because measuring it creates a feedback loop —
+shrinking the tile shrinks the tray, which frees height, which lets the tile
+grow. The board visibly shudders between two sizes. Anything added to the tray
+belongs in `trayHeightAt`, not in a measurement.
 
-- Vitura Studio credit: footer only, "from Vitura Studio," small type.
-  Games-forward; no "Vitura Games" sub-brand at current scale.
-- Sibling naming grammar with OROBORO: myth clipped to rhythmic core
-  (no PROCROS — the S breaks the pattern, the rhythm, and the hearing
-  test). URL grammar: play\_\_\_\_.com.
-- Cross-link OROBORO ↔ PROCRO from day one (SEO cold-start for PROCRO
-  is muddy against ProGame/PROcru noise).
+Input is tap-tile-then-tap-slot, drag, or keyboard. Drag uses pointer events,
+not HTML5 drag-and-drop, which mobile browsers do not implement.
+
+## 8. Architecture
+
+- **Frontend:** Next.js, static. `app/PhraseBoard.tsx` renders; `app/usePhrase.ts`
+  holds the game state; `app/useDrag.ts` handles pointer dragging.
+- **Content pipeline:** `scripts/make-phrase-puzzles.ts`, run offline.
+- **Anti-cheat:** the payload currently ships each puzzle's answer in plaintext,
+  which is fine for playtesting and **must change before launch** — a shipped
+  puzzle should carry a solution hash, or validate server-side.
+
+## 9. Brand
+
+- Vitura Studio credit: footer only, small type.
+- Sibling naming grammar with OROBORO: a word clipped to a rhythmic core.
 - Tone: literate, a little menacing, ink-and-brass — not bubblegum.
 
-## 10. Open questions (do not resolve unilaterally — ask)
+## 10. Open questions
 
-- Final tile valuation numbers (pending solver-based optimization)
-- Input model (tap-tap vs drag)
-- Share artifact format
-- Number of racks per puzzle (2–4 assumed) and tile pool sizes
-- Whether glow-loss "ember" memory aid ships in v1
-- Server-side submission validation vs solution-hash-only approach
+- Daily delivery: one puzzle per day, seeded by date, versus the current
+  shuffled deck
+- Streaks, and a spoiler-free share artifact
+- Whether the difficulty levels ship as-is or collapse once playtesting says
+  which one the game actually is
+- Solution hashing (see §8)
 
-## 11. Build order
+---
 
-1. Solver core (solve function + tests against hand-built cases)
-2. Dictionary pipeline (2of12inf + delta, frequency tiering, ban-list rules)
-3. Valuation harness (compare schemes by generator uniqueness rate)
-4. Generator with repair loop + difficulty grading
-5. Print candidate puzzles to terminal; PLAY ONE ON PAPER before any UI
-6. Frontend: board, tiles, totals, glow states
-7. Daily delivery, streaks, share artifact
+## Appendix: what this replaced
+
+LACUNO began as PROCRO, a different game: a pool of letter tiles, racks with
+exact point targets, and a solver that proved each daily puzzle had exactly one
+answer. That version is gone, but two of its findings are worth keeping.
+
+**Scrabble's letter values are wrong for a puzzle like this.** Ten common
+letters all worth 1 makes totals non-discriminating exactly where English
+lives. Measured against a custom scheme, Scrabble produced a publishable puzzle
+13% of the time against 50%+.
+
+**Anagrams cannot be separated by any valuation.** Word score is a function of
+the letter multiset, so STARE and RATES always share a total. Only positional
+information — a multiplier, a pinned letter — can tell them apart. This is why
+the phrase, not the arithmetic, has to be what makes a LACUNO answer unique.
