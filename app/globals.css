@@ -8,9 +8,13 @@
  *   #a56f63  clay        — the frame band
  *   #d99b7f  terracotta  — tiles, text, accents, rings, ledges
  *
- * Exactly these four, nothing derived. Cool ground with warm tiles, so the
- * board sits back and the letters come forward. The frame is the one bright
- * band; everything else is either the dark ground or a terracotta mark on it.
+ * Cool ground with warm tiles, so the board sits back and the letters come
+ * forward. The frame is the one bright band.
+ *
+ * Two lighter tints are derived from the terracotta — #eec4ad for the nav and
+ * menu, #f2d3c0 for the tiles — because the four given colours have nothing
+ * above #d99b7f, and both the nav text and the tile faces need to sit clearly
+ * above the surfaces behind them.
  *
  * Layout tokens (sizes, radii, spacing) still come from the design handoff;
  * only the colours have been replaced.
@@ -19,12 +23,12 @@
   --page: #0f3040;
   --shell: #0f3040;      /* the board field the racks sit on */
   --frame: #a56f63;      /* the bright band around it */
-  --frame-text: #d99b7f;
+  --frame-text: #f2d3c0;   /* light on the clay band, so the nav reads clearly */
   --tray: #0f3040;
   --text: #d99b7f;
 
-  --tile-face: #d99b7f;       /* tiles on the board */
-  --tile-face-hand: #d99b7f;  /* hand and piles */
+  --tile-face: #eec4ad;       /* tiles on the board */
+  --tile-face-hand: #f2d3c0;  /* hand and piles, a step lighter so they read apart */
   --tile-text: #0f3040;
 
   --slot-fill: #0f3040;

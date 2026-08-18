@@ -498,7 +498,7 @@ export default function PhraseBoard({
           onClick={() => setMenuOpen((open) => !open)}
           aria-label="Menu"
           aria-expanded={menuOpen}
-          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(217,155,127,0.18)]"
+          className="flex h-[34px] w-[34px] flex-col items-center justify-center gap-[5px] rounded-md border-[1.5px] border-frame-text bg-transparent transition-colors hover:bg-[rgba(242,211,192,0.18)]"
         >
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
           <span className="block h-[2px] w-[16px] rounded-full bg-frame-text" />
@@ -528,7 +528,7 @@ export default function PhraseBoard({
                         'flex items-baseline justify-between gap-3 rounded px-2 py-1.5 transition-colors',
                         current
                           ? 'bg-frame text-frame-text'
-                          : 'hover:bg-[rgba(217,155,127,0.12)]',
+                          : 'hover:bg-[rgba(242,211,192,0.14)]',
                       ].join(' ')}
                     >
                       <span className="text-[13px] font-semibold">{meta.label}</span>
