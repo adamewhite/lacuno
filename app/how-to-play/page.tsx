@@ -63,7 +63,7 @@ function Rack({
           {score === target && <span aria-hidden>✓</span>}
           {score}
         </span>
-        <span className="self-start text-[9px] opacity-50">/{target}</span>
+        <span className="self-start text-[12px] opacity-85">/{target}</span>
       </span>
       <span className="relative flex gap-[5px] px-1 pb-[9px]">
         <span className="absolute bottom-0 left-0 right-0 h-[5px] rounded-[3px] bg-ledge" />

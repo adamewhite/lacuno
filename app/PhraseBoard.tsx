@@ -631,7 +631,10 @@ export default function PhraseBoard({
                   {over && <span aria-hidden>▲</span>}
                   {rack.total}
                 </span>
-                <span className="self-start text-[9px] opacity-50">/{rack.target}</span>
+                {/* The target is what the player is aiming at, so it is set
+                    larger and lighter than it was — at 9px and half opacity it
+                    was the least legible number on the board. */}
+                <span className="self-start text-[12px] opacity-85">/{rack.target}</span>
               </div>
 
               {/* Rack body with its ledge */}
