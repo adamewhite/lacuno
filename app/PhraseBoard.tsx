@@ -174,17 +174,20 @@ export default function PhraseBoard({
    * whole game should sit in one viewport.
    */
   /**
-   * Height available to the board: the shell minus the two fixed bands.
+   * Height available to the board: the shell minus the header and the tray.
    *
-   * Measuring the board element itself does not work — it is a flex child that
-   * grows to fit its content, so measuring it and then checking the content
-   * against that measurement is circular and always "fits". The bands around
-   * it are what is actually fixed, so those are what get measured.
+   * The header is measured, since it does not change with the tile size. The
+   * TRAY IS NOT: its height depends on the tile size, which is what we are
+   * computing, so measuring it creates a feedback loop — shrinking the tile
+   * shrinks the tray, which frees height, which lets the tile grow, which
+   * grows the tray again. The board visibly shudders between two sizes. The
+   * tray's height is therefore derived from a candidate tile size instead
+   * (see trayHeightAt), which is a pure function and cannot oscillate.
    */
   const shellRef = useRef<HTMLDivElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
-  const trayRef = useRef<HTMLDivElement | null>(null);
-  const [available, setAvailable] = useState(0);
+  const [shellHeight, setShellHeight] = useState(0);
+  const [headerHeight, setHeaderHeight] = useState(0);
   /**
    * The shell's real width. It is capped at 430px but a narrower phone gets
    * less — an iPhone SE is 375 — and assuming the cap overflowed the board off
@@ -195,9 +198,10 @@ export default function PhraseBoard({
   useEffect(() => {
     const measure = () => {
       const shell = shellRef.current?.clientHeight ?? 0;
+      if (shell > 0) setShellHeight(shell);
+
       const header = headerRef.current?.offsetHeight ?? 0;
-      const tray = trayRef.current?.offsetHeight ?? 0;
-      if (shell > 0) setAvailable(shell - header - tray);
+      if (header > 0) setHeaderHeight(header);
 
       const width = shellRef.current?.clientWidth ?? 0;
       if (width > 0) setShellWidth(width);
@@ -205,7 +209,7 @@ export default function PhraseBoard({
 
     measure();
     const observer = new ResizeObserver(measure);
-    for (const el of [shellRef.current, headerRef.current, trayRef.current]) {
+    for (const el of [shellRef.current, headerRef.current]) {
       if (el) observer.observe(el);
     }
     window.addEventListener('resize', measure);
@@ -275,6 +279,24 @@ export default function PhraseBoard({
   const RACK_OVERHEAD = 14 + 3 + 9;
   /** The field's own vertical padding, which comes out of the same budget. */
   const BOARD_PADDING = 18;
+
+  /**
+   * Height the tray takes at a given board tile size, derived rather than
+   * measured so the sizing cannot feed back on itself.
+   *
+   * Bands, top to bottom: the tray's own padding, the vowel pile row, a gap,
+   * the player's rack (one or two rows plus its ledge), a gap, the Hint/Give Up
+   * row, and the Next Puzzle bar.
+   */
+  const trayHeightAt = (tile: number): number => {
+    const handTile = Math.min(44, Math.round(tile * 1.15));
+    const handHeight = Math.round(handTile * (52 / 44));
+    const rows = handRowsAt(tile);
+    const piles = handHeight + 4;
+    const rack = rows * handHeight + (rows - 1) * HAND_GAP + 9;
+    const buttons = 30 + 34;
+    return 8 + piles + 6 + rack + 6 + buttons + 8;
+  };
   const boardHeightAt = (tile: number): number => {
     const h = Math.round(tile * (52 / 44));
     const rows = rowsAtWidth(tile);
@@ -298,7 +320,9 @@ export default function PhraseBoard({
       // racks must fit what is left after it — otherwise a tall board spills
       // past both ends, hiding the first row's score under the header and
       // cutting the last row off against the tray.
-      (available > 0 && boardHeightAt(fitted) > available - BOARD_PADDING))
+      (shellHeight > 0 &&
+        boardHeightAt(fitted) >
+          shellHeight - headerHeight - trayHeightAt(fitted) - BOARD_PADDING))
   ) {
     fitted -= 2;
   }
@@ -649,10 +673,7 @@ export default function PhraseBoard({
       </div>
 
       {/* Tray */}
-      <div
-        ref={trayRef}
-        className="mx-1.5 mb-1.5 flex shrink-0 flex-col gap-1.5 bg-tray px-4 pb-2 pt-2"
-      >
+      <div className="mx-1.5 mb-1.5 flex shrink-0 flex-col gap-1.5 bg-tray px-4 pb-2 pt-2">
         <div>
           <div className="flex justify-between gap-2">
             {state.vowels.map((letter, i) => {
