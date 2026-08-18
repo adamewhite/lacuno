@@ -504,7 +504,7 @@ export default function PhraseBoard({
             className="font-tile text-[28px] font-normal leading-[1.1]"
             style={{ letterSpacing: '0.14em' }}
           >
-            GIST
+            LACUNO
           </div>
         </div>
         {/* Menu placeholder. The solved counter and reset control lived here;

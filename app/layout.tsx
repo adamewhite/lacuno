@@ -16,8 +16,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "GIST",
-  description: "A daily word puzzle. Catch the gist from the consonants.",
+  title: "LACUNO",
+  description: "A daily word puzzle. Fill the gaps in the phrase.",
 };
 
 export default function RootLayout({
