@@ -14,8 +14,9 @@
  * Two lighter tints are derived from the terracotta — #eec4ad for the nav and
  * menu, #f2d3c0 for the tiles — because the four given colours have nothing
  * above #d99b7f, and both the nav text and the tile faces need to sit clearly
- * above the surfaces behind them. One darker teal (#08202c) separates the tray
- * from the board field, which the four alone could not do.
+ * above the surfaces behind them. One darker teal (#08202c) backs the player's
+ * half so it reads apart from the puzzle above, which the four alone could not
+ * do.
  *
  * Layout tokens (sizes, radii, spacing) still come from the design handoff;
  * only the colours have been replaced.
@@ -25,16 +26,19 @@
   --shell: #0f3040;      /* the board field the racks sit on */
   --frame: #a56f63;      /* the bright band around it */
   --frame-text: #f8b931;   /* light on the clay band, so the nav reads clearly */
-  --tray: #0f3040;
+  /* The bottom half's background sits DARKER than the puzzle area above it, so
+     the two regions read apart. Only the surface changes — the tiles on it are
+     untouched. */
+  --tray: #08202c;
   --text: #d99b7f;
 
   --tile-face: #eec4ad;       /* tiles on the board */
-  --tile-face-hand: #f2d3c0;  /* hand and piles, a step lighter so they read apart */
+  --tile-face-hand: #f7dfd1;  /* hand and piles, a step lighter so they read apart */
   --tile-text: #0f3040;
 
-  --slot-fill: #08202c;       /* darker than the field, so empty slots recede */
+  --slot-fill: #0f3040;
   --slot-border: #a56f63;
-  --spent-fill: #08202c;
+  --spent-fill: #0f3040;
   --spent-border: #464858;
 
   --ledge: #a56f63;
@@ -49,7 +53,7 @@
   --solved: #d99b7f;
 
   --pile-mid: #464858;
-  --pile-back: #08202c;
+  --pile-back: #0f3040;
 }
 
 @theme inline {
