@@ -602,7 +602,7 @@ export default function PhraseBoard({
                     <Link
                       key={slug}
                       href={`/${slug}`}
-                      onClick={() => setMenuOpen(false)}
+                      onClick={toggleMenu}
                       className={[
                         'flex items-baseline justify-between gap-3 rounded px-2 py-1.5 transition-colors',
                         current
@@ -619,7 +619,7 @@ export default function PhraseBoard({
 
               <Link
                 href="/how-to-play"
-                onClick={() => setMenuOpen(false)}
+                onClick={toggleMenu}
                 className="mt-2 block rounded border-[1.5px] border-accent px-2 py-1.5 text-center text-[12px] font-semibold text-accent-text"
               >
                 How to play
