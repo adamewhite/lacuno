@@ -520,7 +520,7 @@ export default function PhraseBoard({
         <div>
           <div
             className="font-tile text-[28px] font-normal leading-[1.1] sm:text-[38px]"
-            style={{ letterSpacing: '0.14em' }}
+            style={{ letterSpacing: '0.126em' }}
           >
             LACUNO
           </div>
