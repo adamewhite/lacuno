@@ -36,7 +36,9 @@
   --tile-face-hand: #f7dfd1;  /* hand and piles, a step lighter so they read apart */
   --tile-text: #0f3040;
 
-  --slot-fill: #0f3040;
+  /* Empty slots sit darker than the field they are on, so a hole reads as a
+     hole rather than as part of the board. */
+  --slot-fill: #08202c;
   --slot-border: #a56f63;
   --spent-fill: #0f3040;
   --spent-border: #464858;
