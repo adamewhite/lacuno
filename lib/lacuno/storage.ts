@@ -22,6 +22,12 @@ export interface DayRecord {
   readonly rounds: number;
   /** Hints spent across the whole game. */
   readonly hints: number;
+  /**
+   * Total time, hint penalties included. Optional: days recorded before the
+   * clock existed have none, and the calendar shows them without a time
+   * rather than pretending they were instant.
+   */
+  readonly timeMs?: number;
 }
 
 interface DayStore {

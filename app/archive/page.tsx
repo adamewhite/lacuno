@@ -17,6 +17,7 @@ import {
   isPlayableDay,
 } from '../../lib/lacuno/daily';
 import { isFullySolved, loadDays, type DayRecord } from '../../lib/lacuno/storage';
+import { formatTileClock } from '../../lib/lacuno/clock';
 
 /**
  * The archive: a month calendar of every daily game the archive reaches. Each
@@ -159,10 +160,17 @@ export default function ArchivePage() {
                     <span className="text-[13px] font-semibold leading-none sm:text-[15px]">
                       {new Date(day * DAY_MS).getUTCDate()}
                     </span>
-                    {/* A part-solved day is marked but not filled, so the
-                        calendar still shows at a glance what is outstanding. */}
+                    {/* Every finished day shows its time. A part-solved day
+                        also shows the count, since the time alone would not
+                        say it was left unfinished — and days recorded before
+                        the clock existed have no time to show. */}
+                    {record?.timeMs !== undefined && (
+                      <span className="tabular-nums text-[9px] leading-none sm:text-[10px]">
+                        {formatTileClock(record.timeMs)}
+                      </span>
+                    )}
                     {partial && (
-                      <span className="text-[9px] leading-none sm:text-[10px]">
+                      <span className="text-[9px] leading-none opacity-70 sm:text-[10px]">
                         {record.solved}/{record.rounds}
                       </span>
                     )}

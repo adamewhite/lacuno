@@ -46,6 +46,8 @@ export default function PhraseBoard({
   difficulty = DEFAULT_DIFFICULTY,
   round,
   nextLabel = 'Next Puzzle',
+  onHint,
+  clock,
 }: {
   puzzle: PhrasePuzzleData;
   values: readonly number[];
@@ -58,6 +60,10 @@ export default function PhraseBoard({
   /** Advance button text — the last round finishes the game rather than
    *  leading to another puzzle. */
   nextLabel?: string;
+  /** Called when a hint is spent, so a timed game can charge for it. */
+  onHint?: () => void;
+  /** Running time to display. Omitted when the game is not timed. */
+  clock?: string;
 }) {
   const [state, actions] = usePhrase(puzzle, values, difficulty);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -670,6 +676,14 @@ export default function PhraseBoard({
             </>
           )}
           {puzzle.category}
+          {/* Tabular numerals so the seconds ticking over does not shift the
+              line, which would jitter the whole band once a second. */}
+          {clock && (
+            <>
+              <span className="opacity-40"> · </span>
+              <span className="tabular-nums">{clock}</span>
+            </>
+          )}
         </span>
       </div>
 
@@ -991,7 +1005,12 @@ export default function PhraseBoard({
           {/* Hint and Give Up split the width, directly above Next Puzzle. */}
           <div className="flex gap-2 sm:gap-4">
             <button
-              onClick={actions.revealHint}
+              onClick={() => {
+                actions.revealHint();
+                // Charged as it is spent, so the running clock shows the cost
+                // immediately rather than surprising the player at the end.
+                onHint?.();
+              }}
               disabled={state.hintsUsed >= state.hintsAvailable}
               className="flex-1 rounded-md border-[1.5px] border-accent bg-transparent px-2.5 py-1.5 text-[12px] font-semibold text-accent-text transition-colors hover:bg-[rgba(217,155,127,0.16)] disabled:opacity-40 sm:py-3 sm:text-[15px]"
             >

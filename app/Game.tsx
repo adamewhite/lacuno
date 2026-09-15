@@ -10,6 +10,17 @@ import { DEFAULT_DIFFICULTY, type Difficulty } from '../lib/lacuno/difficulty';
 import { pickRounds, ROUND_COUNT } from '../lib/lacuno/rounds';
 import { dateKeyOfDay, gameDayNumber, roundsForDay } from '../lib/lacuno/daily';
 import { recordDay } from '../lib/lacuno/storage';
+import {
+  chargeHint,
+  elapsedMs,
+  formatClock,
+  HINT_PENALTY_MS,
+  idleClock,
+  pause,
+  resume,
+  startedClock,
+  type Clock,
+} from '../lib/lacuno/clock';
 
 /**
  * Phrase puzzles: one rack per word of a phrase, consonants scarce, vowels
@@ -63,13 +74,48 @@ export default function Game({
   const [solvedCount, setSolvedCount] = useState(0);
   const [hintCount, setHintCount] = useState(0);
 
+  /**
+   * The game clock. Starts stopped, because Date.now() during render would
+   * risk a hydration mismatch — an effect starts it once the board is up.
+   * `now` is what drives the display; the clock itself is only two numbers.
+   */
+  const [clock, setClock] = useState<Clock>(idleClock);
+  const [now, setNow] = useState(0);
+
+  useEffect(() => {
+    setClock((c) => (c.startedAt === null && c.bankedMs === 0 ? startedClock(Date.now()) : c));
+    setNow(Date.now());
+  }, []);
+
+  // Tick once a second while the clock runs. The interval only refreshes
+  // `now`, so a re-render never disturbs the clock's own arithmetic.
+  useEffect(() => {
+    if (clock.startedAt === null || complete) return;
+    const id = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, [clock.startedAt, complete]);
+
   const newGame = useCallback(() => {
     setRounds(pickRounds(puzzles, shuffle(puzzles.length)));
     setRoundIndex(0);
     setComplete(false);
     setSolvedCount(0);
     setHintCount(0);
+    setClock(startedClock(Date.now()));
+    setNow(Date.now());
   }, [shuffle]);
+
+  /**
+   * A hint costs time, banked the moment it is spent.
+   *
+   * The count comes from the round's own `hintsUsed` on advance, so this only
+   * charges the clock — incrementing here as well would count every hint
+   * twice.
+   */
+  const onHint = useCallback(() => {
+    setClock((c) => chargeHint(c));
+    setNow(Date.now());
+  }, []);
 
   // A daily game is fixed, so only the random deck needs shuffling on mount.
   useEffect(() => {
@@ -88,13 +134,21 @@ export default function Game({
     (outcome: { solved: boolean; hintsUsed: number }) => {
       const solved = solvedCount + (outcome.solved ? 1 : 0);
       const hints = hintCount + outcome.hintsUsed;
+      const isLast = roundIndex + 1 >= rounds.length;
       setSolvedCount(solved);
       setHintCount(hints);
+
+      // Stop the clock at the click, not after the fade: the 160ms transition
+      // and the summary screen are not the player's time. The final total is
+      // read from the paused clock so it cannot drift.
+      const stopped = pause(clock, Date.now());
+      setClock(stopped);
+      setNow(Date.now());
 
       setLeaving(true);
       setTimeout(() => {
         // Past the last round the game is over; the summary offers a fresh one.
-        if (roundIndex + 1 >= rounds.length) {
+        if (isLast) {
           setComplete(true);
           // Only a dated game belongs in the archive.
           if (isDaily) {
@@ -102,13 +156,19 @@ export default function Game({
               solved,
               rounds: rounds.length,
               hints,
+              timeMs: stopped.bankedMs,
             });
           }
-        } else setRoundIndex(roundIndex + 1);
+        } else {
+          setRoundIndex(roundIndex + 1);
+          // The next round resumes the same clock — it is one game's time.
+          setClock(resume(stopped, Date.now()));
+          setNow(Date.now());
+        }
         setLeaving(false);
       }, 160); // matches .board-leave
     },
-    [roundIndex, rounds.length, isDaily, day, solvedCount, hintCount],
+    [roundIndex, rounds.length, isDaily, day, solvedCount, hintCount, clock],
   );
 
   const startAgain = useCallback(() => {
@@ -141,6 +201,26 @@ export default function Game({
               ? `All ${rounds.length} rounds solved`
               : `${solvedCount} of ${rounds.length} rounds solved`}
           </p>
+
+          {/* The final time, with what made it up: a time that includes two
+              minutes of hint penalties should say so. */}
+          <div className="flex flex-col items-center gap-1">
+            <span
+              className="tabular-nums text-[28px] font-bold sm:text-[34px]"
+              style={{ color: 'var(--frame-text)' }}
+            >
+              {formatClock(clock.bankedMs)}
+            </span>
+            {hintCount > 0 && (
+              <span
+                className="text-[10px] font-semibold uppercase sm:text-[12px]"
+                style={{ letterSpacing: '0.14em', opacity: 0.6, color: 'var(--frame-text)' }}
+              >
+                Includes {hintCount} hint{hintCount === 1 ? '' : 's'} (+
+                {formatClock(hintCount * HINT_PENALTY_MS)})
+              </span>
+            )}
+          </div>
 
           {/* A dated game returns to the calendar rather than reshuffling:
               replaying it would serve the same three puzzles. */}
@@ -197,6 +277,8 @@ export default function Game({
         round={{ index: roundIndex, total: rounds.length || ROUND_COUNT }}
         nextLabel={isFinal ? 'Finish' : 'Next Round'}
         onNext={next}
+        onHint={onHint}
+        clock={formatClock(elapsedMs(clock, now))}
       />
     </main>
   );
