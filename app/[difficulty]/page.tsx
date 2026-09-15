@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation';
 
-import Game from '../Game';
+import TodayGame from '../TodayGame';
 import { DIFFICULTIES, type Difficulty } from '../../lib/lacuno/difficulty';
 
 /** One static route per level, so each is directly linkable for playtesting. */
@@ -15,5 +15,5 @@ export default async function DifficultyPage({
 }) {
   const { difficulty } = await params;
   if (!DIFFICULTIES.includes(difficulty as Difficulty)) notFound();
-  return <Game difficulty={difficulty as Difficulty} />;
+  return <TodayGame difficulty={difficulty as Difficulty} />;
 }

@@ -49,7 +49,9 @@ export default function PhraseBoard({
 }: {
   puzzle: PhrasePuzzleData;
   values: readonly number[];
-  onNext: () => void;
+  /** Called on advance, with how the round actually ended so a caller can
+   *  record it. `solved` is false when the player gave up. */
+  onNext: (outcome: { solved: boolean; hintsUsed: number }) => void;
   difficulty?: Difficulty;
   /** Set when playing a three-round game: which round this is. */
   round?: { readonly index: number; readonly total: number };
@@ -193,6 +195,15 @@ export default function PhraseBoard({
 
   /** Next is available once the puzzle is finished, either way. */
   const canAdvance = state.won || showAnswer;
+
+  /**
+   * A genuine solve, as opposed to a finished puzzle.
+   *
+   * `state.won` only asks whether the board matches the phrase, and giving up
+   * fills the board with the answer — so it reads true either way. Giving up is
+   * the one thing that sets `showAnswer`, which is what separates them.
+   */
+  const solvedIt = state.won && !showAnswer;
 
   /**
    * Puzzle tile size, shrunk so the longest word fits the shell on one line.
@@ -624,13 +635,22 @@ export default function PhraseBoard({
                 })}
               </div>
 
-              <Link
-                href="/how-to-play"
-                onClick={toggleMenu}
-                className="mt-2 block rounded border-[1.5px] border-accent px-2 py-1.5 text-center text-[12px] font-semibold text-accent-text"
-              >
-                How to play
-              </Link>
+              <div className="mt-2 flex gap-1.5">
+                <Link
+                  href="/archive"
+                  onClick={toggleMenu}
+                  className="flex-1 rounded border-[1.5px] border-accent px-2 py-1.5 text-center text-[12px] font-semibold text-accent-text"
+                >
+                  Archive
+                </Link>
+                <Link
+                  href="/how-to-play"
+                  onClick={toggleMenu}
+                  className="flex-1 rounded border-[1.5px] border-accent px-2 py-1.5 text-center text-[12px] font-semibold text-accent-text"
+                >
+                  How to play
+                </Link>
+              </div>
             </div>
           )}
 
@@ -992,7 +1012,7 @@ export default function PhraseBoard({
           {/* Gated: a puzzle has to be finished — solved or given up on —
               before moving on, so Next is never an accidental skip. */}
           <button
-            onClick={onNext}
+            onClick={() => onNext({ solved: solvedIt, hintsUsed: state.hintsUsed })}
             disabled={!canAdvance}
             title={canAdvance ? undefined : 'Solve it or give up first'}
             className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30 sm:py-3.5 sm:text-[15px]"
