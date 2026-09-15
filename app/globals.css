@@ -24,7 +24,7 @@
 :root {
   --page: #0f3040;
   --shell: #0f3040;      /* the board field the racks sit on */
-  --frame: #a56f63;      /* the bright band around it */
+  --frame: #985c4f;      /* the bright band around it */
   --frame-text: #f8b931;   /* light on the clay band, so the nav reads clearly */
   /* The bottom half's background sits DARKER than the puzzle area above it, so
      the two regions read apart. Only the surface changes — the tiles on it are
