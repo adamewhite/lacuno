@@ -10,6 +10,7 @@ import { DEFAULT_DIFFICULTY, type Difficulty } from '../lib/lacuno/difficulty';
 import { pickRounds, ROUND_COUNT } from '../lib/lacuno/rounds';
 import { dateKeyOfDay, gameDayNumber, roundsForDay } from '../lib/lacuno/daily';
 import { recordDay } from '../lib/lacuno/storage';
+import { copyToClipboard, shareText, systemShare } from '../lib/lacuno/share';
 import {
   chargeHint,
   elapsedMs,
@@ -171,6 +172,25 @@ export default function Game({
     [roundIndex, rounds.length, isDaily, day, solvedCount, hintCount, clock],
   );
 
+  /**
+   * Sharing the finished day: the system sheet where it exists, otherwise the
+   * clipboard. The time comes from the paused clock, so it matches both the
+   * summary and the archive record exactly.
+   */
+  const [shareState, setShareState] = useState<'idle' | 'copied' | 'failed'>('idle');
+
+  const onShare = useCallback(async () => {
+    if (!isDaily) return;
+    const text = shareText({
+      dateKey: dateKeyOfDay(day as number),
+      solved: solvedCount,
+      rounds: rounds.length,
+      timeMs: clock.bankedMs,
+    });
+    if (systemShare(text)) return; // the sheet took it; no confirmation needed
+    setShareState((await copyToClipboard(text)) ? 'copied' : 'failed');
+  }, [isDaily, day, solvedCount, rounds.length, clock.bankedMs]);
+
   const startAgain = useCallback(() => {
     setLeaving(true);
     setTimeout(() => {
@@ -226,10 +246,23 @@ export default function Game({
               replaying it would serve the same three puzzles. */}
           {isDaily ? (
             <div className="flex flex-col items-center gap-3">
-              <Link
-                href={`/archive${dateKey ? `?m=${dateKey.slice(0, 7)}` : ''}`}
+              {/* The system sheet on phones, a clipboard copy everywhere else.
+                  The button reports which happened rather than going quiet. */}
+              <button
+                onClick={onShare}
                 className="rounded-md border-[1.5px] border-frame bg-frame px-6 py-2.5 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 sm:py-3.5 sm:text-[15px]"
                 style={{ letterSpacing: '0.12em' }}
+              >
+                {shareState === 'copied'
+                  ? 'Copied ✓'
+                  : shareState === 'failed'
+                    ? 'Copy failed'
+                    : 'Share'}
+              </button>
+              <Link
+                href={`/archive${dateKey ? `?m=${dateKey.slice(0, 7)}` : ''}`}
+                className="text-[11px] font-semibold uppercase sm:text-[13px]"
+                style={{ letterSpacing: '0.16em', color: 'var(--frame-text)' }}
               >
                 Back to Archive
               </Link>

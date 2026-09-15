@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "../lib/lacuno/share";
 
 /**
  * Outfit for everything — UI and tiles alike.
@@ -19,10 +20,12 @@ const title = "LACUNO";
 const description = "A daily word puzzle. Fill the gaps in the phrase.";
 
 /**
- * Update this once the domain is settled. Social scrapers do not resolve
- * relative image URLs, so metadataBase is what makes /og-graph.png absolute.
+ * Update SITE_URL in lib/lacuno/share once the domain is settled — share links
+ * and this metadata read the same constant, so they cannot drift apart. Social
+ * scrapers do not resolve relative image URLs, so metadataBase is what makes
+ * /og-graph.png absolute.
  */
-const siteUrl = "https://lacuno.vercel.app";
+const siteUrl = SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
