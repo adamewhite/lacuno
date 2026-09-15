@@ -44,11 +44,18 @@ export default function PhraseBoard({
   values,
   onNext,
   difficulty = DEFAULT_DIFFICULTY,
+  round,
+  nextLabel = 'Next Puzzle',
 }: {
   puzzle: PhrasePuzzleData;
   values: readonly number[];
   onNext: () => void;
   difficulty?: Difficulty;
+  /** Set when playing a three-round game: which round this is. */
+  round?: { readonly index: number; readonly total: number };
+  /** Advance button text — the last round finishes the game rather than
+   *  leading to another puzzle. */
+  nextLabel?: string;
 }) {
   const [state, actions] = usePhrase(puzzle, values, difficulty);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -629,12 +636,19 @@ export default function PhraseBoard({
 
       </div>
 
-      {/* Category — the kind of answer, centred under the header band. */}
+      {/* Category — the kind of answer, centred under the header band. In a
+          three-round game the round leads, so the player can see the ramp. */}
       <div className="shrink-0 pb-0.5 pt-1 text-center">
         <span
           className="text-[11px] font-semibold uppercase sm:text-[14px]"
           style={{ letterSpacing: '0.18em', color: 'var(--frame-text)' }}
         >
+          {round && (
+            <>
+              Round {round.index + 1} of {round.total}
+              <span className="opacity-40"> · </span>
+            </>
+          )}
           {puzzle.category}
         </span>
       </div>
@@ -984,7 +998,7 @@ export default function PhraseBoard({
             className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30 sm:py-3.5 sm:text-[15px]"
             style={{ letterSpacing: '0.12em' }}
           >
-            Next Puzzle
+            {nextLabel}
           </button>
         </div>
         </div>

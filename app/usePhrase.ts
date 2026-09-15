@@ -7,6 +7,7 @@ import {
   planVowels,
   type Difficulty,
 } from '../lib/lacuno/difficulty';
+import { chooseHint } from '../lib/lacuno/phrase';
 
 export interface PhrasePuzzleData {
   readonly id: string;
@@ -17,7 +18,12 @@ export interface PhrasePuzzleData {
   /** Vowels this phrase uses. Unlimited supply, but only these are offered. */
   readonly vowels: readonly string[];
   readonly letterCount: number;
-  readonly hints: readonly { readonly rackIndex: number; readonly slot: number; readonly letter: string }[];
+  readonly hints: readonly {
+    readonly rackIndex: number;
+    readonly slot: number;
+    readonly letter: string;
+    readonly value: number;
+  }[];
   readonly phrase: string;
 }
 
@@ -339,11 +345,17 @@ export function usePhrase(
   }, [lockedSlots]);
 
   const revealHint = useCallback(() => {
-    const hint = puzzle.hints[hintsUsed];
+    // Chosen against the live board: a misplaced tile worth as much as the
+    // letter we would reveal is relocated instead. So the hint depends on
+    // where things currently sit, not just on how many hints have been used.
+    const board = contents.map((rack) => rack.map((s) => s?.letter ?? null));
+    const hint = chooseHint(puzzle.hints, board, lockedSlots);
     if (!hint) return;
 
     setContents((current) => {
       const next = current.map((r) => [...r]);
+      // Relocating: clear the slot the tile is being taken from.
+      if ('from' in hint) next[hint.from.rackIndex][hint.from.slot] = null;
       if (isVowel(hint.letter)) {
         next[hint.rackIndex][hint.slot] = { kind: 'vowel', letter: hint.letter };
       } else {
@@ -374,7 +386,7 @@ export function usePhrase(
 
     setHintsUsed((n) => n + 1);
     setSelected(null);
-  }, [puzzle, hintsUsed, tiles]);
+  }, [puzzle, contents, lockedSlots, tiles]);
 
   /**
    * Give up: write the answer onto the board and empty the rack.

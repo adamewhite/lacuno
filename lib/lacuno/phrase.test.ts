@@ -6,6 +6,7 @@ import {
   isPhraseSolved,
   normalizePhrase,
   parsePhraseLine,
+  chooseHint,
   phraseHints,
 } from './phrase';
 import { TILE_VALUES } from './letter-values';
@@ -179,15 +180,106 @@ describe('phraseHints', () => {
     expect(firstVowel).toBeGreaterThan(lastConsonant);
   });
 
-  it('prefers longer words first', () => {
-    // BREAK (5) should be mined before THE (3).
+  it('reveals the highest-value letter first', () => {
+    // K is worth 5 in BREAK THE ICE; nothing else is worth more.
+    expect(hints[0].letter).toBe('K');
+    expect(hints[0].value).toBe(5);
+  });
+
+  it('orders strictly by descending value', () => {
+    for (let i = 1; i < hints.length; i++) {
+      expect(hints[i].value).toBeLessThanOrEqual(hints[i - 1].value);
+    }
+  });
+
+  it('prefers longer words first within one value', () => {
+    // B and C are both worth 4: BREAK (5 letters) outranks ICE (3).
+    const fours = hints.filter((h) => h.value === 4);
     const words = puzzle.phrase.split(' ');
-    const firstLen = words[hints[0].rackIndex].length;
-    expect(firstLen).toBe(5);
+    expect(words[fours[0].rackIndex].length).toBeGreaterThanOrEqual(
+      words[fours[fours.length - 1].rackIndex].length,
+    );
   });
 
   it('never repeats a slot', () => {
     const keys = hints.map((h) => `${h.rackIndex}:${h.slot}`);
     expect(new Set(keys).size).toBe(keys.length);
+  });
+});
+
+describe('chooseHint', () => {
+  const puzzle = buildPhrasePuzzle('BREAK THE ICE', V, 'p1');
+  const hints = phraseHints(puzzle);
+  /** An empty board shaped like the phrase. */
+  const empty = (): (string | null)[][] =>
+    puzzle.phrase.split(' ').map((w) => [...w].map(() => null));
+
+  it('reveals the best letter on an empty board', () => {
+    const hint = chooseHint(hints, empty());
+    expect(hint?.letter).toBe('K');
+    expect(hint && 'from' in hint).toBe(false);
+  });
+
+  it('relocates a misplaced tile worth more than the reveal', () => {
+    // K (5) sits in BREAK's slot 0, where B belongs. Correcting it beats
+    // revealing K fresh, and the hint reports where to take it from.
+    const board = empty();
+    board[0][0] = 'K';
+    const hint = chooseHint(hints, board);
+    expect(hint?.letter).toBe('K');
+    expect(hint?.rackIndex).toBe(0);
+    expect(hint?.slot).toBe(4);
+    expect(hint && 'from' in hint && hint.from).toEqual({ rackIndex: 0, slot: 0 });
+  });
+
+  it('relocates a misplaced tile across words', () => {
+    // K is in THE's slot 0; its home is BREAK slot 4.
+    const board = empty();
+    board[1][0] = 'K';
+    const hint = chooseHint(hints, board);
+    expect(hint?.letter).toBe('K');
+    expect(hint && 'from' in hint && hint.from).toEqual({ rackIndex: 1, slot: 0 });
+  });
+
+  it('ignores a misplaced tile worth less than the reveal', () => {
+    // A stray T (1) does not pre-empt revealing K (5).
+    const board = empty();
+    board[0][0] = 'T';
+    const hint = chooseHint(hints, board);
+    expect(hint?.letter).toBe('K');
+    expect(hint && 'from' in hint).toBe(false);
+  });
+
+  it('relocates at equal value', () => {
+    // "as high or higher" — a misplaced B (4) pre-empts revealing C (4)
+    // once K and H are already correctly placed.
+    const board = empty();
+    board[0][4] = 'K';
+    board[1][0] = 'T';
+    board[1][1] = 'H';
+    board[2][2] = 'B'; // B loitering in ICE; its home is BREAK slot 0
+    const locked = new Set(['0:4', '1:1']);
+    const hint = chooseHint(hints, board, locked);
+    expect(hint?.letter).toBe('B');
+    expect(hint && 'from' in hint && hint.from).toEqual({ rackIndex: 2, slot: 2 });
+  });
+
+  it('skips letters already correctly placed', () => {
+    const board = empty();
+    board[0][4] = 'K';
+    const hint = chooseHint(hints, board);
+    expect(hint?.letter).not.toBe('K');
+  });
+
+  it('never targets a locked slot', () => {
+    const board = empty();
+    const locked = new Set(['0:4']);
+    const hint = chooseHint(hints, board, locked);
+    expect(`${hint?.rackIndex}:${hint?.slot}`).not.toBe('0:4');
+  });
+
+  it('returns null once every slot is correct', () => {
+    const board = puzzle.phrase.split(' ').map((w) => [...w]);
+    expect(chooseHint(hints, board)).toBe(null);
   });
 });

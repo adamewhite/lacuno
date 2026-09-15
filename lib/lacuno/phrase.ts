@@ -18,7 +18,7 @@
  * judge that. Curation replaces verification.
  */
 
-import { scoreWord, VOWELS, type LetterValues } from './letter-values';
+import { scoreWord, TILE_VALUES, VOWELS, type LetterValues } from './letter-values';
 
 export interface PhraseRack {
   /** Number of letters in this word. */
@@ -177,31 +177,47 @@ export function isPhraseSolved(
 /**
  * Hints, best first: reveal a letter of the phrase.
  *
- * Consonants are revealed before vowels — a consonant is a scarce tile the
- * player must place anyway, so revealing one both narrows the word and removes
- * a placement decision. Within each group, longer words first, since they
- * constrain recall the most.
+ * Highest tile value first, so a hint always spends itself on the letter the
+ * player gains most from. Value tracks scarcity here — a Q or J is both the
+ * hardest letter to think of and the one whose placement pins down the most of
+ * a rack's target, while an S adds almost nothing. Vowels score 0 and so fall
+ * to the end naturally, which preserves the old rule that consonants come
+ * first without stating it separately.
+ *
+ * Within one value, longer words first, since they constrain recall the most.
+ *
+ * This order is the *fallback*. A hint is chosen against the live board, and a
+ * tile the player has already misplaced at this value or higher is relocated
+ * instead of a new letter being revealed — see `chooseHint`.
  */
 export interface PhraseHint {
   readonly rackIndex: number;
   readonly slot: number;
   readonly letter: string;
+  /** Tile value of `letter`; 0 for vowels. Drives the ordering. */
+  readonly value: number;
 }
 
-export function phraseHints(puzzle: PhrasePuzzle): PhraseHint[] {
+export function phraseHints(
+  puzzle: PhrasePuzzle,
+  values: LetterValues = TILE_VALUES,
+): PhraseHint[] {
   const words = puzzle.phrase.split(' ');
   const hints: PhraseHint[] = [];
 
   words.forEach((word, rackIndex) => {
     [...word].forEach((letter, slot) => {
-      hints.push({ rackIndex, slot, letter });
+      hints.push({
+        rackIndex,
+        slot,
+        letter,
+        value: values[letter.charCodeAt(0) - 65] ?? 0,
+      });
     });
   });
 
   return hints.sort((a, b) => {
-    const aVowel = isVowelLetter(a.letter);
-    const bVowel = isVowelLetter(b.letter);
-    if (aVowel !== bVowel) return aVowel ? 1 : -1;
+    if (a.value !== b.value) return b.value - a.value;
 
     const aLen = words[a.rackIndex].length;
     const bLen = words[b.rackIndex].length;
@@ -209,4 +225,63 @@ export function phraseHints(puzzle: PhrasePuzzle): PhraseHint[] {
 
     return a.rackIndex - b.rackIndex || a.slot - b.slot;
   });
+}
+
+/** A letter sitting somewhere it does not belong, and where it should go. */
+export interface MisplacedHint extends PhraseHint {
+  /** Where the tile currently sits, so the caller can vacate it. */
+  readonly from: { readonly rackIndex: number; readonly slot: number };
+}
+
+/**
+ * The next hint, resolved against the live board.
+ *
+ * Correcting beats revealing. A letter the player has already placed in the
+ * wrong slot is a mistake actively working against them — it makes a rack's
+ * total look satisfied while the phrase stays unreachable — so a hint spent
+ * moving it to its home is worth more than one uncovering a letter they have
+ * not thought about yet. We only prefer the correction when the misplaced tile
+ * is worth AT LEAST as much as the letter we would otherwise reveal; a stray S
+ * does not get to pre-empt revealing a J.
+ *
+ * `board[rack][slot]` is the letter in that slot, or null when empty. Slots
+ * already settled (a given vowel, an earlier hint) belong in `locked` so a
+ * hint never spends itself re-revealing them.
+ */
+export function chooseHint(
+  hints: readonly PhraseHint[],
+  board: readonly (readonly (string | null)[])[],
+  locked: ReadonlySet<string> = new Set(),
+): PhraseHint | MisplacedHint | null {
+  /** The letter the phrase wants at a slot, from the hints themselves. */
+  const wants = new Map(hints.map((h) => [`${h.rackIndex}:${h.slot}`, h.letter]));
+
+  // The best letter not yet correctly in place — what we would reveal.
+  const target = hints.find(
+    (h) => !locked.has(`${h.rackIndex}:${h.slot}`) && board[h.rackIndex]?.[h.slot] !== h.letter,
+  );
+  if (!target) return null;
+
+  // A misplaced tile whose letter is still needed somewhere, worth >= target.
+  for (const h of hints) {
+    if (h.value < target.value) break; // hints are value-descending
+    if (locked.has(`${h.rackIndex}:${h.slot}`)) continue;
+    if (board[h.rackIndex]?.[h.slot] === h.letter) continue;
+
+    for (let rackIndex = 0; rackIndex < board.length; rackIndex++) {
+      for (let slot = 0; slot < board[rackIndex].length; slot++) {
+        if (rackIndex === h.rackIndex && slot === h.slot) continue;
+        if (locked.has(`${rackIndex}:${slot}`)) continue;
+        if (board[rackIndex][slot] !== h.letter) continue;
+        // A tile of the letter h needs sits here. It is MISPLACED when this
+        // slot wants something else — so moving it home both fixes a mistake
+        // and fills h, rather than robbing a slot that was already right.
+        if (wants.get(`${rackIndex}:${slot}`) !== h.letter) {
+          return { ...h, from: { rackIndex, slot } };
+        }
+      }
+    }
+  }
+
+  return target;
 }
