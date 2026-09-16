@@ -4,6 +4,8 @@ import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import PhraseBoard from './PhraseBoard';
+import Opening from './Opening';
+import Dialog from './Dialog';
 import phraseData from './puzzles-phrases.json';
 import type { PhrasePuzzleData } from './usePhrase';
 import { DEFAULT_DIFFICULTY, type Difficulty } from '../lib/lacuno/difficulty';
@@ -73,6 +75,12 @@ export default function Game({
   const [complete, setComplete] = useState(false);
   /** Rounds solved outright this game — giving up does not count. */
   const [solvedCount, setSolvedCount] = useState(0);
+  /**
+   * Whether the LAST round was solved, which is what earns Congratulations.
+   * Not the same as a clean sweep: cracking the longest phrase after giving up
+   * earlier is still the moment worth marking.
+   */
+  const [solvedFinal, setSolvedFinal] = useState(false);
   const [hintCount, setHintCount] = useState(0);
 
   /**
@@ -83,8 +91,15 @@ export default function Game({
   const [clock, setClock] = useState<Clock>(idleClock);
   const [now, setNow] = useState(0);
 
-  useEffect(() => {
-    setClock((c) => (c.startedAt === null && c.bankedMs === 0 ? startedClock(Date.now()) : c));
+  /**
+   * The board waits behind an opening screen. Nothing is timed until Begin, so
+   * nobody's clock runs while they are reading the intro.
+   */
+  const [begun, setBegun] = useState(false);
+
+  const begin = useCallback(() => {
+    setBegun(true);
+    setClock(startedClock(Date.now()));
     setNow(Date.now());
   }, []);
 
@@ -101,7 +116,10 @@ export default function Game({
     setRoundIndex(0);
     setComplete(false);
     setSolvedCount(0);
+    setSolvedFinal(false);
     setHintCount(0);
+    // Straight into play: the player has already chosen to start another.
+    setBegun(true);
     setClock(startedClock(Date.now()));
     setNow(Date.now());
   }, [shuffle]);
@@ -146,26 +164,29 @@ export default function Game({
       setClock(stopped);
       setNow(Date.now());
 
+      // The last round does not fade: the summary opens over the finished
+      // board, so fading it out would hide the phrase the player just solved.
+      if (isLast) {
+        setSolvedFinal(outcome.solved);
+        setComplete(true);
+        // Only a dated game belongs in the archive.
+        if (isDaily) {
+          recordDay(dateKeyOfDay(day as number), {
+            solved,
+            rounds: rounds.length,
+            hints,
+            timeMs: stopped.bankedMs,
+          });
+        }
+        return;
+      }
+
       setLeaving(true);
       setTimeout(() => {
-        // Past the last round the game is over; the summary offers a fresh one.
-        if (isLast) {
-          setComplete(true);
-          // Only a dated game belongs in the archive.
-          if (isDaily) {
-            recordDay(dateKeyOfDay(day as number), {
-              solved,
-              rounds: rounds.length,
-              hints,
-              timeMs: stopped.bankedMs,
-            });
-          }
-        } else {
-          setRoundIndex(roundIndex + 1);
-          // The next round resumes the same clock — it is one game's time.
-          setClock(resume(stopped, Date.now()));
-          setNow(Date.now());
-        }
+        setRoundIndex(roundIndex + 1);
+        // The next round resumes the same clock — it is one game's time.
+        setClock(resume(stopped, Date.now()));
+        setNow(Date.now());
         setLeaving(false);
       }, 160); // matches .board-leave
     },
@@ -207,91 +228,27 @@ export default function Game({
     );
   }
 
-  if (complete) {
-    const dateKey = isDaily ? dateKeyOfDay(day as number) : null;
-    const isToday = isDaily && day === gameDayNumber(Date.now());
+  const dateKey = isDaily ? dateKeyOfDay(day as number) : null;
+
+  // The opening screen holds the board back until Begin, so nobody reads the
+  // racks while their clock runs.
+  if (!begun) {
     return (
-      <main className={`h-full ${leaving ? 'board-leave' : 'board-enter'}`}>
-        <div className="flex h-full flex-col items-center justify-center gap-6 p-8 text-center">
-          <p
-            className="text-[13px] font-semibold uppercase sm:text-[16px]"
-            style={{ letterSpacing: '0.18em', color: 'var(--frame-text)' }}
-          >
-            {solvedCount === rounds.length
-              ? `All ${rounds.length} rounds solved`
-              : `${solvedCount} of ${rounds.length} rounds solved`}
-          </p>
-
-          {/* The final time, with what made it up: a time that includes two
-              minutes of hint penalties should say so. */}
-          <div className="flex flex-col items-center gap-1">
-            <span
-              className="tabular-nums text-[28px] font-bold sm:text-[34px]"
-              style={{ color: 'var(--frame-text)' }}
-            >
-              {formatClock(clock.bankedMs)}
-            </span>
-            {hintCount > 0 && (
-              <span
-                className="text-[10px] font-semibold uppercase sm:text-[12px]"
-                style={{ letterSpacing: '0.14em', opacity: 0.6, color: 'var(--frame-text)' }}
-              >
-                Includes {hintCount} hint{hintCount === 1 ? '' : 's'} (+
-                {formatClock(hintCount * HINT_PENALTY_MS)})
-              </span>
-            )}
-          </div>
-
-          {/* A dated game returns to the calendar rather than reshuffling:
-              replaying it would serve the same three puzzles. */}
-          {isDaily ? (
-            <div className="flex flex-col items-center gap-3">
-              {/* The system sheet on phones, a clipboard copy everywhere else.
-                  The button reports which happened rather than going quiet. */}
-              <button
-                onClick={onShare}
-                className="rounded-md border-[1.5px] border-frame bg-frame px-6 py-2.5 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 sm:py-3.5 sm:text-[15px]"
-                style={{ letterSpacing: '0.12em' }}
-              >
-                {shareState === 'copied'
-                  ? 'Copied ✓'
-                  : shareState === 'failed'
-                    ? 'Copy failed'
-                    : 'Share'}
-              </button>
-              <Link
-                href={`/archive${dateKey ? `?m=${dateKey.slice(0, 7)}` : ''}`}
-                className="text-[11px] font-semibold uppercase sm:text-[13px]"
-                style={{ letterSpacing: '0.16em', color: 'var(--frame-text)' }}
-              >
-                Back to Archive
-              </Link>
-              {!isToday && (
-                <Link
-                  href="/"
-                  className="text-[11px] font-semibold uppercase sm:text-[13px]"
-                  style={{ letterSpacing: '0.16em', color: 'var(--frame-text)' }}
-                >
-                  Today&apos;s Game
-                </Link>
-              )}
-            </div>
-          ) : (
-            <button
-              onClick={startAgain}
-              className="rounded-md border-[1.5px] border-frame bg-frame px-6 py-2.5 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 sm:py-3.5 sm:text-[15px]"
-              style={{ letterSpacing: '0.12em' }}
-            >
-              Play Again
-            </button>
-          )}
-        </div>
+      <main className="h-full">
+        <Opening
+          onBegin={begin}
+          difficulty={difficulty}
+          rounds={rounds.length || ROUND_COUNT}
+          dateLabel={dateKey}
+        />
       </main>
     );
   }
 
   const puzzle = puzzles[rounds[roundIndex] ?? 0];
   const isFinal = roundIndex + 1 >= rounds.length;
+  const isToday = isDaily && day === gameDayNumber(Date.now());
+
 
   return (
     // h-full so the board's own h-full resolves against the fixed body.
@@ -312,7 +269,97 @@ export default function Game({
         onNext={next}
         onHint={onHint}
         clock={formatClock(elapsedMs(clock, now))}
+        // Solving the last round ends the game on its own.
+        finishOnSolve={isFinal}
+        // PhraseBoard shows this only once the phrase is actually solved, so
+        // it lands during the beat before the summary opens.
+        banner={isFinal ? 'Congratulations!' : null}
       />
+
+      {/* The summary arrives over the finished board rather than replacing it
+          with another screen, so the solved phrase stays in view. */}
+      <Dialog open={complete} title="Game complete" onClose={() => setComplete(false)}>
+        <div className="flex flex-col items-center gap-5">
+          <p
+            className="text-[15px] font-bold uppercase sm:text-[18px]"
+            style={{ letterSpacing: '0.14em', color: 'var(--frame-text)' }}
+          >
+            {solvedFinal ? 'Congratulations!' : 'Game complete'}
+          </p>
+
+          <div className="flex flex-col items-center gap-1">
+            <span
+              className="tabular-nums text-[30px] font-bold leading-none sm:text-[36px]"
+              style={{ color: 'var(--frame-text)' }}
+            >
+              {formatClock(clock.bankedMs)}
+            </span>
+            <span
+              className="text-[10px] font-semibold uppercase sm:text-[12px]"
+              style={{ letterSpacing: '0.14em', opacity: 0.65, color: 'var(--frame-text)' }}
+            >
+              {solvedCount} of {rounds.length} rounds solved
+            </span>
+            {/* A time that is partly hint penalties should say so. */}
+            {hintCount > 0 && (
+              <span
+                className="text-[10px] font-semibold uppercase sm:text-[12px]"
+                style={{ letterSpacing: '0.14em', opacity: 0.65, color: 'var(--frame-text)' }}
+              >
+                Includes {hintCount} hint{hintCount === 1 ? '' : 's'} (+
+                {formatClock(hintCount * HINT_PENALTY_MS)})
+              </span>
+            )}
+          </div>
+
+          <div className="flex w-full flex-col items-center gap-2.5">
+            {isDaily && (
+              <button
+                onClick={onShare}
+                className="w-full rounded-md border-[1.5px] border-frame bg-frame px-6 py-2.5 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 sm:py-3 sm:text-[15px]"
+                style={{ letterSpacing: '0.12em' }}
+              >
+                {shareState === 'copied'
+                  ? 'Copied ✓'
+                  : shareState === 'failed'
+                    ? 'Copy failed'
+                    : 'Share'}
+              </button>
+            )}
+
+            {/* A dated game does not reshuffle — replaying it would serve the
+                same three puzzles — so it offers the calendar instead. */}
+            {isDaily ? (
+              <div className="flex flex-col items-center gap-2">
+                <Link
+                  href={`/archive${dateKey ? `?m=${dateKey.slice(0, 7)}` : ''}`}
+                  className="text-[11px] font-semibold uppercase sm:text-[13px]"
+                  style={{ letterSpacing: '0.16em', color: 'var(--frame-text)' }}
+                >
+                  Back to Archive
+                </Link>
+                {!isToday && (
+                  <Link
+                    href="/"
+                    className="text-[11px] font-semibold uppercase sm:text-[13px]"
+                    style={{ letterSpacing: '0.16em', color: 'var(--frame-text)' }}
+                  >
+                    Today&apos;s Game
+                  </Link>
+                )}
+              </div>
+            ) : (
+              <button
+                onClick={startAgain}
+                className="w-full rounded-md border-[1.5px] border-frame bg-frame px-6 py-2.5 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 sm:py-3 sm:text-[15px]"
+                style={{ letterSpacing: '0.12em' }}
+              >
+                Play Again
+              </button>
+            )}
+          </div>
+        </div>
+      </Dialog>
     </main>
   );
 }

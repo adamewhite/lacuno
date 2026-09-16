@@ -220,10 +220,30 @@ button {
   transition: opacity 160ms ease-in;
 }
 
+/*
+ * The solved banner rises into the board's lower edge. Overlaid, so the
+ * finished puzzle stays put while it arrives.
+ */
+@keyframes banner-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.banner-in {
+  animation: banner-in 300ms ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tile-snap,
   .tile-solved,
   .board-enter,
+  .banner-in,
   .menu-enter,
   .menu-leave {
     animation: none;

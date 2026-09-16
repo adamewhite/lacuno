@@ -48,6 +48,8 @@ export default function PhraseBoard({
   nextLabel = 'Next Puzzle',
   onHint,
   clock,
+  finishOnSolve,
+  banner,
 }: {
   puzzle: PhrasePuzzleData;
   values: readonly number[];
@@ -64,6 +66,17 @@ export default function PhraseBoard({
   onHint?: () => void;
   /** Running time to display. Omitted when the game is not timed. */
   clock?: string;
+  /**
+   * Set on the last round so solving it ends the game by itself — a solved
+   * final puzzle needs no Finish click. Giving up still needs the button,
+   * since that is a decision rather than an achievement.
+   */
+  finishOnSolve?: boolean;
+  /**
+   * Banner text for a solved board, e.g. Congratulations on the final round.
+   * Shown only on a genuine solve — a revealed answer is not a win.
+   */
+  banner?: string | null;
 }) {
   const [state, actions] = usePhrase(puzzle, values, difficulty);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -210,6 +223,25 @@ export default function PhraseBoard({
    * the one thing that sets `showAnswer`, which is what separates them.
    */
   const solvedIt = state.won && !showAnswer;
+
+  /**
+   * Solving the last round ends the game without a Finish click.
+   *
+   * Held briefly so the solved-tile animation and the banner are seen before
+   * the summary takes over — landing on the modal the instant the last letter
+   * goes in would hide the win itself. Guarded by a ref so a re-render during
+   * the wait cannot fire it twice.
+   */
+  const finishedRef = useRef(false);
+  useEffect(() => {
+    if (!finishOnSolve || !solvedIt || finishedRef.current) return;
+    finishedRef.current = true;
+    const id = setTimeout(
+      () => onNext({ solved: true, hintsUsed: state.hintsUsed }),
+      1100,
+    );
+    return () => clearTimeout(id);
+  }, [finishOnSolve, solvedIt, onNext, state.hintsUsed]);
 
   /**
    * Puzzle tile size, shrunk so the longest word fits the shell on one line.
@@ -696,9 +728,28 @@ export default function PhraseBoard({
           space comes from above rather than from the board itself. */}
       <div
         ref={boardRef}
-        className="flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5"
+        className="relative flex min-h-0 flex-1 items-center justify-center overflow-hidden px-3.5"
         style={{ paddingTop: 4, paddingBottom: BOARD_PADDING - 4 }}
       >
+        {/* Overlaid rather than taking a slice of the field, so the solved
+            board does not shift the moment the banner appears. */}
+        {banner && solvedIt && (
+          <div
+            className="banner-in pointer-events-none absolute inset-x-0 z-20 text-center"
+            style={{ bottom: 12 }}
+          >
+            <span
+              className="inline-block rounded-md px-5 py-2 text-[14px] font-bold uppercase sm:text-[17px]"
+              style={{
+                letterSpacing: '0.14em',
+                background: 'var(--frame)',
+                color: 'var(--frame-text)',
+              }}
+            >
+              {banner}
+            </span>
+          </div>
+        )}
         <div className="mx-auto flex w-full max-w-[750px] flex-wrap content-center justify-center gap-x-2 gap-y-2">
         {state.racks.map((rack, rackIndex) => {
           // Three states, signalled the moment the arithmetic says so rather
@@ -1029,12 +1080,19 @@ export default function PhraseBoard({
           </div>
 
           {/* Gated: a puzzle has to be finished — solved or given up on —
-              before moving on, so Next is never an accidental skip. */}
+              before moving on, so Next is never an accidental skip.
+              Hidden entirely once a solved final round is ending the game
+              by itself, so there is no button left to press. */}
           <button
             onClick={() => onNext({ solved: solvedIt, hintsUsed: state.hintsUsed })}
             disabled={!canAdvance}
             title={canAdvance ? undefined : 'Solve it or give up first'}
-            className="w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30 sm:py-3.5 sm:text-[15px]"
+            className={[
+              'w-full rounded-md border-[1.5px] border-frame bg-frame px-3 py-2 text-[12px] font-bold uppercase text-frame-text transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-30 sm:py-3.5 sm:text-[15px]',
+              // Invisible rather than removed: the tray keeps its height, so
+              // the board does not jump as the game ends.
+              finishOnSolve && solvedIt ? 'invisible' : '',
+            ].join(' ')}
             style={{ letterSpacing: '0.12em' }}
           >
             {nextLabel}
