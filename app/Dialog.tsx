@@ -65,7 +65,7 @@ export default function Dialog({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-6"
+      className="scrim-enter fixed inset-0 z-50 flex items-center justify-center p-6"
       style={{ background: 'rgba(15, 48, 64, 0.72)' }}
       onClick={onClose}
     >
@@ -75,7 +75,7 @@ export default function Dialog({
         aria-modal="true"
         aria-label={title}
         onClick={(e) => e.stopPropagation()}
-        className="w-full rounded-lg border-[1.5px] border-frame p-7 text-center"
+        className="panel-enter w-full rounded-lg border-[1.5px] border-frame p-7 text-center"
         style={{ background: 'var(--shell)', maxWidth: 400 }}
       >
         {children}

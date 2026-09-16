@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import { SITE_URL } from "../lib/lacuno/share";
+import RouteTransition from "./RouteTransition";
 
 /**
  * Outfit for everything — UI and tiles alike.
@@ -75,7 +76,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${outfit.variable} antialiased`}>{children}</body>
+      <body className={`${outfit.variable} antialiased`}>
+        {/* The wrapper carries h-full so the board's own h-full still resolves
+            against the fixed body through it. */}
+        <RouteTransition>{children}</RouteTransition>
+      </body>
     </html>
   );
 }

@@ -220,6 +220,65 @@ button {
   transition: opacity 160ms ease-in;
 }
 
+/**
+ * Moving between routes — the opening screen, the archive, the rules.
+ *
+ * Enter-only, and deliberately so: animating an exit means holding the old
+ * page while the new one loads, which needs navigation to be intercepted.
+ * A short rise-and-fade on arrival reads as a transition without that
+ * machinery, and it never delays the page the player asked for.
+ *
+ * Shorter and shallower than board-in: a whole route arriving wants less
+ * flourish than a puzzle rebuilding, or it starts to feel slow.
+ */
+@keyframes route-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.route-enter {
+  animation: route-in 220ms ease-out both;
+}
+
+/**
+ * The completion modal. The scrim fades, and the panel comes up with it from
+ * slightly small and slightly low, so it reads as arriving over the board
+ * rather than being cut in.
+ */
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.scrim-enter {
+  animation: scrim-in 180ms ease-out both;
+}
+
+.panel-enter {
+  animation: panel-in 240ms cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
 /*
  * The solved banner rises into the board's lower edge. Overlaid, so the
  * finished puzzle stays put while it arrives.
@@ -244,6 +303,9 @@ button {
   .tile-solved,
   .board-enter,
   .banner-in,
+  .route-enter,
+  .scrim-enter,
+  .panel-enter,
   .menu-enter,
   .menu-leave {
     animation: none;

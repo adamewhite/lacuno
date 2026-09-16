@@ -96,11 +96,19 @@ export default function Game({
    * nobody's clock runs while they are reading the intro.
    */
   const [begun, setBegun] = useState(false);
+  /** Set while the opening screen fades, before the board replaces it. */
+  const [opening, setOpening] = useState(false);
 
   const begin = useCallback(() => {
-    setBegun(true);
-    setClock(startedClock(Date.now()));
-    setNow(Date.now());
+    // Fade the opening out first, then start — the clock begins when the
+    // board does, so the transition is not charged to the player.
+    setOpening(true);
+    setTimeout(() => {
+      setBegun(true);
+      setClock(startedClock(Date.now()));
+      setNow(Date.now());
+      setOpening(false);
+    }, 160); // matches .board-leave
   }, []);
 
   // Tick once a second while the clock runs. The interval only refreshes
@@ -234,7 +242,7 @@ export default function Game({
   // racks while their clock runs.
   if (!begun) {
     return (
-      <main className="h-full">
+      <main className={`h-full ${opening ? 'board-leave' : ''}`}>
         <Opening
           onBegin={begin}
           difficulty={difficulty}

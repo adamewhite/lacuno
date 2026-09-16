@@ -25,7 +25,9 @@ export default function Opening({
   dateLabel?: string | null;
 }) {
   return (
-    <div className="board-enter flex h-full flex-col items-center justify-center gap-7 px-7 text-center">
+    // Arrival is animated by RouteTransition in the layout; a second
+    // animation here would fight the fade-out on Begin.
+    <div className="flex h-full flex-col items-center justify-center gap-7 px-7 text-center">
       <div className="flex flex-col items-center gap-2">
         <h1
           className="text-[34px] font-bold uppercase leading-none sm:text-[44px]"
