@@ -21,6 +21,14 @@ const title = "LACUNO";
 const description = "A daily word puzzle. Fill the gaps in the phrase.";
 
 /**
+ * The title link previews show — iMessage, Safari's share sheet, social
+ * scrapers. Distinct from `title`, which names the browser tab: a tab has the
+ * site around it for context, whereas a preview arrives on its own and has to
+ * say what it is.
+ */
+const shareTitle = "LACUNO | A daily word puzzle";
+
+/**
  * Update SITE_URL in lib/lacuno/share once the domain is settled — share links
  * and this metadata read the same constant, so they cannot drift apart. Social
  * scrapers do not resolve relative image URLs, so metadataBase is what makes
@@ -46,14 +54,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: title,
-    title,
+    title: shareTitle,
     description,
     url: siteUrl,
     images: [{ url: "/og-graph.png", width: 1200, height: 630, alt: title }],
   },
   twitter: {
     card: "summary_large_image",
-    title,
+    title: shareTitle,
     description,
     images: ["/og-graph.png"],
   },
